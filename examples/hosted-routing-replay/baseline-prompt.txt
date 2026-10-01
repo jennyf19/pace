@@ -1,0 +1,9 @@
+Use view to read baseline-input.json. Apply routing_rule exactly:
+1. Keep only findings whose state is eligible and whose suppressed value matches.
+2. Deduplicate by fingerprint. Choose the winner by severity_order, then higher confidence, then ascending id.
+3. Group winners by owner. Sort each owner's finding_ids by severity_order, then ascending id.
+4. Set batch priority from the highest-severity winner. Sort batches by priority, then owner.
+5. Include exact per-severity counts and the summary counts.
+Reply with only one minified JSON object using this shape:
+{"schema_version":"0.1","batch_id":"synthetic-routing-001","batches":[{"owner":"example","priority":"P0","finding_ids":["A000"],"counts":{"critical":1,"high":0,"medium":0,"low":0,"total":1}}],"summary":{"input_findings":1,"eligible_findings":1,"selected_findings":1,"duplicates_removed":0,"owners":1}}
+Do not use markdown or add explanation.

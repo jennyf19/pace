@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-routing-001",
+  "batches": [
+    {
+      "owner": "identity",
+      "priority": "P0",
+      "finding_ids": [
+        "A001",
+        "A017",
+        "A013",
+        "A027",
+        "A038"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 2,
+        "medium": 1,
+        "low": 0,
+        "total": 5
+      }
+    },
+    {
+      "owner": "messaging",
+      "priority": "P0",
+      "finding_ids": [
+        "A011",
+        "A034",
+        "A022",
+        "A046"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 1,
+        "medium": 1,
+        "low": 0,
+        "total": 4
+      }
+    },
+    {
+      "owner": "compute",
+      "priority": "P1",
+      "finding_ids": [
+        "A008",
+        "A019",
+        "A032",
+        "A043"
+      ],
+      "counts": {
+        "critical": 0,
+        "high": 3,
+        "medium": 1,
+        "low": 0,
+        "total": 4
+      }
+    },
+    {
+      "owner": "storage",
+      "priority": "P1",
+      "finding_ids": [
+        "A005",
+        "A040",
+        "A029"
+      ],
+      "counts": {
+        "critical": 0,
+        "high": 2,
+        "medium": 1,
+        "low": 0,
+        "total": 3
+      }
+    }
+  ],
+  "summary": {
+    "input_findings": 47,
+    "eligible_findings": 39,
+    "selected_findings": 16,
+    "duplicates_removed": 23,
+    "owners": 4
+  }
+}

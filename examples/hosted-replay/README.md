@@ -22,7 +22,7 @@ the repository:
 
 ```powershell
 node .\pace\examples\hosted-replay\run-hosted-replay.mjs `
-  --out "$HOME\.copilot\pace-runs\hosted-triage-model-free-v2"
+  --out "$HOME\.copilot\pace-runs\hosted-triage-model-free-v3"
 ```
 
 The command uses two samples per cohort by default. Only baseline samples have
@@ -37,6 +37,10 @@ The deterministic receipt binds the Pace runner, transform implementation,
 input, and output. It verifies implementation hashes before and after the
 synchronous transform. This is an auditable execution contract, not an OS
 sandbox.
+
+The published v2 measured receipt and its exact source are frozen at tag
+`v0.1.0`. The current v3 entrypoint delegates to the shared hosted model-free
+runner used by additional scenarios.
 
 Only files under `receipts/` are intended to be shareable. The raw directory,
 usage files, and intermediate run manifests may contain local paths.

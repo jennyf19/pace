@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-routing-001",
+  "routing_rule": {
+    "eligible_states": [
+      "open",
+      "investigating"
+    ],
+    "suppressed": false,
+    "severity_order": [
+      "critical",
+      "high",
+      "medium",
+      "low"
+    ],
+    "priority_by_severity": {
+      "critical": "P0",
+      "high": "P1",
+      "medium": "P2",
+      "low": "P3"
+    },
+    "winner_order": [
+      "severity",
+      "confidence_descending",
+      "id_ascending"
+    ],
+    "finding_order": [
+      "severity",
+      "id_ascending"
+    ],
+    "batch_order": [
+      "priority",
+      "owner_ascending"
+    ]
+  },
+  "findings": [
+    {"id":"A001","fingerprint":"auth-token","owner":"identity","severity":"critical","confidence":0.94,"state":"open","suppressed":false},
+    {"id":"A002","fingerprint":"auth-token","owner":"identity","severity":"high","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A003","fingerprint":"auth-token","owner":"identity","severity":"critical","confidence":0.96,"state":"closed","suppressed":false},
+    {"id":"A004","fingerprint":"path-traversal","owner":"storage","severity":"high","confidence":0.91,"state":"open","suppressed":false},
+    {"id":"A005","fingerprint":"path-traversal","owner":"storage","severity":"high","confidence":0.95,"state":"investigating","suppressed":false},
+    {"id":"A006","fingerprint":"path-traversal","owner":"storage","severity":"critical","confidence":0.99,"state":"open","suppressed":true},
+    {"id":"A007","fingerprint":"cpu-starvation","owner":"compute","severity":"medium","confidence":0.98,"state":"open","suppressed":false},
+    {"id":"A008","fingerprint":"cpu-starvation","owner":"compute","severity":"high","confidence":0.82,"state":"open","suppressed":false},
+    {"id":"A009","fingerprint":"cpu-starvation","owner":"compute","severity":"high","confidence":0.82,"state":"open","suppressed":false},
+    {"id":"A010","fingerprint":"queue-loss","owner":"messaging","severity":"critical","confidence":0.9,"state":"investigating","suppressed":false},
+    {"id":"A011","fingerprint":"queue-loss","owner":"messaging","severity":"critical","confidence":0.92,"state":"open","suppressed":false},
+    {"id":"A012","fingerprint":"queue-loss","owner":"messaging","severity":"critical","confidence":0.99,"state":"closed","suppressed":false},
+    {"id":"A013","fingerprint":"stale-key","owner":"identity","severity":"high","confidence":0.89,"state":"open","suppressed":false},
+    {"id":"A014","fingerprint":"stale-key","owner":"identity","severity":"high","confidence":0.89,"state":"investigating","suppressed":false},
+    {"id":"A015","fingerprint":"stale-key","owner":"identity","severity":"medium","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A016","fingerprint":"blob-exposure","owner":"storage","severity":"critical","confidence":0.88,"state":"open","suppressed":false},
+    {"id":"A017","fingerprint":"blob-exposure","owner":"identity","severity":"critical","confidence":0.91,"state":"open","suppressed":false},
+    {"id":"A018","fingerprint":"blob-exposure","owner":"storage","severity":"critical","confidence":0.93,"state":"open","suppressed":true},
+    {"id":"A019","fingerprint":"vm-secret","owner":"compute","severity":"high","confidence":0.94,"state":"open","suppressed":false},
+    {"id":"A020","fingerprint":"vm-secret","owner":"compute","severity":"high","confidence":0.8,"state":"open","suppressed":false},
+    {"id":"A021","fingerprint":"vm-secret","owner":"compute","severity":"critical","confidence":0.99,"state":"closed","suppressed":false},
+    {"id":"A022","fingerprint":"poison-message","owner":"messaging","severity":"high","confidence":0.91,"state":"open","suppressed":false},
+    {"id":"A023","fingerprint":"poison-message","owner":"messaging","severity":"high","confidence":0.91,"state":"investigating","suppressed":false},
+    {"id":"A024","fingerprint":"poison-message","owner":"messaging","severity":"medium","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A025","fingerprint":"auth-loop","owner":"identity","severity":"medium","confidence":0.96,"state":"open","suppressed":false},
+    {"id":"A026","fingerprint":"auth-loop","owner":"identity","severity":"medium","confidence":0.97,"state":"open","suppressed":false},
+    {"id":"A027","fingerprint":"auth-loop","owner":"identity","severity":"high","confidence":0.7,"state":"open","suppressed":false},
+    {"id":"A028","fingerprint":"disk-fill","owner":"storage","severity":"low","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A029","fingerprint":"disk-fill","owner":"storage","severity":"medium","confidence":0.75,"state":"investigating","suppressed":false},
+    {"id":"A030","fingerprint":"disk-fill","owner":"storage","severity":"medium","confidence":0.92,"state":"closed","suppressed":false},
+    {"id":"A031","fingerprint":"scheduler-drift","owner":"compute","severity":"high","confidence":0.87,"state":"open","suppressed":false},
+    {"id":"A032","fingerprint":"scheduler-drift","owner":"compute","severity":"high","confidence":0.91,"state":"investigating","suppressed":false},
+    {"id":"A033","fingerprint":"scheduler-drift","owner":"compute","severity":"high","confidence":0.95,"state":"open","suppressed":true},
+    {"id":"A034","fingerprint":"topic-permission","owner":"messaging","severity":"critical","confidence":0.85,"state":"open","suppressed":false},
+    {"id":"A035","fingerprint":"topic-permission","owner":"messaging","severity":"critical","confidence":0.85,"state":"investigating","suppressed":false},
+    {"id":"A036","fingerprint":"topic-permission","owner":"messaging","severity":"high","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A037","fingerprint":"orphan-account","owner":"identity","severity":"low","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A038","fingerprint":"orphan-account","owner":"identity","severity":"medium","confidence":0.8,"state":"investigating","suppressed":false},
+    {"id":"A039","fingerprint":"snapshot-public","owner":"storage","severity":"high","confidence":0.9,"state":"open","suppressed":false},
+    {"id":"A040","fingerprint":"snapshot-public","owner":"storage","severity":"high","confidence":0.92,"state":"open","suppressed":false},
+    {"id":"A041","fingerprint":"snapshot-public","owner":"storage","severity":"high","confidence":0.75,"state":"investigating","suppressed":false},
+    {"id":"A042","fingerprint":"burst-limit","owner":"compute","severity":"medium","confidence":0.88,"state":"open","suppressed":false},
+    {"id":"A043","fingerprint":"burst-limit","owner":"compute","severity":"medium","confidence":0.9,"state":"open","suppressed":false},
+    {"id":"A044","fingerprint":"burst-limit","owner":"compute","severity":"high","confidence":0.6,"state":"closed","suppressed":false},
+    {"id":"A045","fingerprint":"dead-letter","owner":"messaging","severity":"low","confidence":0.99,"state":"open","suppressed":false},
+    {"id":"A046","fingerprint":"dead-letter","owner":"messaging","severity":"medium","confidence":0.81,"state":"open","suppressed":false},
+    {"id":"A047","fingerprint":"dead-letter","owner":"messaging","severity":"medium","confidence":0.81,"state":"investigating","suppressed":false}
+  ]
+}

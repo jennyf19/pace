@@ -220,7 +220,7 @@ local deterministic candidate executions:
 
 ```powershell
 node .\examples\hosted-replay\run-hosted-replay.mjs `
-  --out "$HOME\.copilot\pace-runs\hosted-triage-model-free-v2"
+  --out "$HOME\.copilot\pace-runs\hosted-triage-model-free-v3"
 ```
 
 It compares model-side filtering with a fully model-free deterministic
@@ -232,7 +232,22 @@ the orchestration source in both cohort configurations.
 See `examples/hosted-replay/measured-result-2026-09-25.md` for the intermediate
 model-copy result and
 `examples/hosted-replay/model-free-result-2026-10-01.md` for the true zero-model
-receipt.
+receipt. The measured v2 sources are frozen at tag `v0.1.0`; the current v3
+entrypoint uses the shared hosted model-free runner.
+
+## Run the second hosted workload shape
+
+The routing scenario adds duplicate winner selection, owner grouping, aggregate
+counts, and stable batch ordering:
+
+```powershell
+node .\examples\hosted-routing-replay\run-hosted-routing-replay.mjs `
+  --out "$HOME\.copilot\pace-runs\hosted-routing-v1" `
+  --samples 5
+```
+
+The baseline asks the model to perform the full transformation. The candidate
+uses the same deterministic receipt contract and starts no model session.
 
 ## Compare repeated run sets
 

@@ -40,6 +40,8 @@ warning instead of collapsing the mismatch.
 
 ## Evidence bindings
 
+- Source tag: `v0.1.0`
+- Source commit: `e56a93d47390519cdb000e01ccad1357176fa24a`
 - Replay receipt: `sha256:5477c8f6241d1a6c`
 - Comparison receipt: `sha256:fdf851461e69e6bf`
 - Workload: `sha256:b6e64a41827dc38c5b36c7cde517b95549c72461bd5f70dad4744c326cb231f8`
