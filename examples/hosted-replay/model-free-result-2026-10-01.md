@@ -1,8 +1,8 @@
 # Measured result: model-free deterministic triage
 
-**Date:** October 1, 2026  
-**Status:** Discovery receipt; descriptive `n=2` per cohort  
-**Disposition:** `keep` for this frozen experiment
+- **Date:** October 1, 2026
+- **Status:** Discovery receipt; descriptive `n=2` per cohort
+- **Disposition:** `keep` for this frozen experiment
 
 ## Experiment
 

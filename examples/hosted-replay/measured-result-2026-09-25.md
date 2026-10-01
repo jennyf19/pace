@@ -1,8 +1,8 @@
 # Measured result: deterministic triage prefilter
 
-**Date:** September 25, 2026  
-**Status:** Discovery receipt; descriptive `n=2` per cohort  
-**Disposition:** `keep` for this frozen experiment
+- **Date:** September 25, 2026
+- **Status:** Discovery receipt; descriptive `n=2` per cohort
+- **Disposition:** `keep` for this frozen experiment
 
 > Historical intermediate: this candidate still invoked a model to copy the
 > deterministic result. The true model-free successor is
