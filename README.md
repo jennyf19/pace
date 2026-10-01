@@ -248,6 +248,9 @@ node .\examples\hosted-routing-replay\run-hosted-routing-replay.mjs `
 
 The baseline asks the model to perform the full transformation. The candidate
 uses the same deterministic receipt contract and starts no model session.
+See
+`examples/hosted-routing-replay/measured-result-2026-10-01.md` for the
+five-sample result.
 
 ## Compare repeated run sets
 

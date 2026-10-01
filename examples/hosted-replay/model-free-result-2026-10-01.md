@@ -72,3 +72,10 @@ filter.
 The zero-usage receipt is auditable but bounded: it hash-binds the Pace runner
 and declared synchronous implementation. It is not an OS sandbox, network
 monitor, or supply-chain attestation.
+
+## Line-ending boundary
+
+This v2 receipt predates the repository's `.gitattributes` policy. Its source
+hashes reflect the original Windows checkout bytes at tag `v0.1.0`. Beginning
+with commit `47a1ecdacaa3628b1338feaacbecc89b194b0e41`, Pace enforces LF for
+portable byte-level replay hashes.
