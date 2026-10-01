@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "run_id": "pace-synthetic-candidate-v1",
+  "sessions": [
+    {
+      "id": "primary",
+      "role": "primary",
+      "artifact": "candidate-session",
+      "billing": "independent"
+    }
+  ]
+}

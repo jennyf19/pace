@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1",
+  "tasks": [
+    {
+      "task_id": "synthetic-review-001",
+      "status": "complete",
+      "decision": "accept",
+      "finding_ids": [
+        "synthetic-finding-001"
+      ]
+    }
+  ]
+}

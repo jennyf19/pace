@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "corpus_id": "pace-public-synthetic-corpus-v1",
+  "evaluator_id": "pace-exact-result-evaluator-v1",
+  "description": "Content-free synthetic workload for the first Pace end-to-end comparison.",
+  "tasks": [
+    {
+      "task_id": "synthetic-review-001",
+      "expected": {
+        "status": "complete",
+        "decision": "accept",
+        "finding_ids": [
+          "synthetic-finding-001"
+        ]
+      }
+    }
+  ]
+}

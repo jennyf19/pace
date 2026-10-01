@@ -1,0 +1,17 @@
+{
+  "name": "pace-agent-performance",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Provider-neutral profiling and quality-gated comparison receipts for agent performance engineering.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jennyf19/pace.git"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1",
+  "run_id": "private-run-set",
+  "sessions": [
+    {
+      "id": "main",
+      "role": "primary",
+      "artifact": "complete-session",
+      "billing": "independent"
+    },
+    {
+      "id": "classification",
+      "role": "classification",
+      "artifact": "partial-session",
+      "billing": "independent"
+    },
+    {
+      "id": "embedded-export",
+      "role": "subagent-export",
+      "artifact": "resumed-session",
+      "billing": "included",
+      "included_in": "main"
+    }
+  ]
+}

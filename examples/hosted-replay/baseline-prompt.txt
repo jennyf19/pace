@@ -1,0 +1,4 @@
+Use view to read baseline-input.json. Apply selection_rule to findings exactly.
+Reply with only one minified JSON object using this shape:
+{"schema_version":"0.1","tasks":[{"task_id":"synthetic-triage-001","status":"complete","decision":"accept","finding_ids":["F000"]}]}
+Sort finding_ids by ascending id. Do not use markdown or add explanation.

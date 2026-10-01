@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1",
+  "task_id": "synthetic-triage-001",
+  "selection_rule": {
+    "state": "open",
+    "severities": [
+      "critical",
+      "high"
+    ],
+    "minimum_confidence": 0.8,
+    "suppressed": false,
+    "sort": "id_ascending"
+  },
+  "findings": [
+    {"id": "F001", "severity": "critical", "confidence": 0.95, "state": "open", "suppressed": false},
+    {"id": "F002", "severity": "high", "confidence": 0.82, "state": "open", "suppressed": false},
+    {"id": "F003", "severity": "medium", "confidence": 0.99, "state": "open", "suppressed": false},
+    {"id": "F004", "severity": "high", "confidence": 0.79, "state": "open", "suppressed": false},
+    {"id": "F005", "severity": "critical", "confidence": 0.88, "state": "closed", "suppressed": false},
+    {"id": "F006", "severity": "high", "confidence": 0.91, "state": "open", "suppressed": true},
+    {"id": "F007", "severity": "low", "confidence": 0.9, "state": "open", "suppressed": false},
+    {"id": "F008", "severity": "high", "confidence": 0.8, "state": "open", "suppressed": false},
+    {"id": "F009", "severity": "critical", "confidence": 0.81, "state": "open", "suppressed": false},
+    {"id": "F010", "severity": "high", "confidence": 0.99, "state": "closed", "suppressed": false},
+    {"id": "F011", "severity": "medium", "confidence": 0.82, "state": "open", "suppressed": false},
+    {"id": "F012", "severity": "critical", "confidence": 0.78, "state": "open", "suppressed": false},
+    {"id": "F013", "severity": "high", "confidence": 0.85, "state": "open", "suppressed": false},
+    {"id": "F014", "severity": "critical", "confidence": 0.92, "state": "open", "suppressed": true},
+    {"id": "F015", "severity": "low", "confidence": 0.95, "state": "open", "suppressed": false},
+    {"id": "F016", "severity": "high", "confidence": 0.83, "state": "open", "suppressed": false},
+    {"id": "F017", "severity": "medium", "confidence": 0.88, "state": "closed", "suppressed": false},
+    {"id": "F018", "severity": "critical", "confidence": 0.97, "state": "open", "suppressed": false},
+    {"id": "F019", "severity": "high", "confidence": 0.8, "state": "open", "suppressed": false},
+    {"id": "F020", "severity": "high", "confidence": 0.799, "state": "open", "suppressed": false},
+    {"id": "F021", "severity": "critical", "confidence": 0.86, "state": "open", "suppressed": false},
+    {"id": "F022", "severity": "medium", "confidence": 0.9, "state": "open", "suppressed": false},
+    {"id": "F023", "severity": "high", "confidence": 0.93, "state": "open", "suppressed": true},
+    {"id": "F024", "severity": "critical", "confidence": 0.9, "state": "closed", "suppressed": false},
+    {"id": "F025", "severity": "high", "confidence": 0.88, "state": "open", "suppressed": false},
+    {"id": "F026", "severity": "low", "confidence": 0.84, "state": "open", "suppressed": false},
+    {"id": "F027", "severity": "critical", "confidence": 0.8, "state": "open", "suppressed": false},
+    {"id": "F028", "severity": "high", "confidence": 0.81, "state": "open", "suppressed": false},
+    {"id": "F029", "severity": "medium", "confidence": 0.96, "state": "open", "suppressed": false},
+    {"id": "F030", "severity": "critical", "confidence": 0.99, "state": "open", "suppressed": false}
+  ]
+}

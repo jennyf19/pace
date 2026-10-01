@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1",
+  "tasks": [
+    {
+      "task_id": "synthetic-triage-001",
+      "status": "complete",
+      "decision": "accept",
+      "finding_ids": [
+        "F001",
+        "F002",
+        "F008",
+        "F009",
+        "F013",
+        "F016",
+        "F018",
+        "F019",
+        "F021",
+        "F025",
+        "F027",
+        "F028",
+        "F030"
+      ]
+    }
+  ]
+}
