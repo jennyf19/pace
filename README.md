@@ -304,6 +304,9 @@ node .\examples\hosted-hybrid-replay\run-hosted-hybrid-replay.mjs `
 
 Each candidate sample is one composite Pace run: deterministic preprocess,
 residual model classification, and deterministic merge.
+See
+`examples/hosted-hybrid-replay/measured-result-2026-10-01.md` for the first
+three-sample result.
 
 ## Compare repeated run sets
 

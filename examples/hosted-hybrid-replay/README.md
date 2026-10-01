@@ -10,6 +10,9 @@ This scenario compares:
 The candidate is measured as one composite run containing deterministic
 preprocess, residual model, and deterministic merge component profiles.
 
+The first three-sample measured result is in
+`measured-result-2026-10-01.md`.
+
 Run a balanced three-sample cohort from the repository root:
 
 ```powershell
