@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-hybrid-routing-001",
+  "batches": [
+    {
+      "owner": "identity",
+      "finding_ids": [
+        "H001",
+        "H017",
+        "H005",
+        "H013",
+        "H021",
+        "H009"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 3,
+        "medium": 1,
+        "low": 0,
+        "total": 6
+      }
+    },
+    {
+      "owner": "storage",
+      "finding_ids": [
+        "H006",
+        "H002",
+        "H014",
+        "H018",
+        "H010",
+        "H022"
+      ],
+      "counts": {
+        "critical": 1,
+        "high": 3,
+        "medium": 2,
+        "low": 0,
+        "total": 6
+      }
+    },
+    {
+      "owner": "compute",
+      "finding_ids": [
+        "H007",
+        "H003",
+        "H015",
+        "H019",
+        "H023",
+        "H011"
+      ],
+      "counts": {
+        "critical": 1,
+        "high": 4,
+        "medium": 1,
+        "low": 0,
+        "total": 6
+      }
+    },
+    {
+      "owner": "messaging",
+      "finding_ids": [
+        "H004",
+        "H020",
+        "H008",
+        "H016",
+        "H012",
+        "H024"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 2,
+        "medium": 2,
+        "low": 0,
+        "total": 6
+      }
+    }
+  ],
+  "summary": {
+    "input_findings": 24,
+    "deterministic_findings": 16,
+    "residual_findings": 8,
+    "owners": 4
+  }
+}

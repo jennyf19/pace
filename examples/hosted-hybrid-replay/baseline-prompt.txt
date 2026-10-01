@@ -1,0 +1,8 @@
+Use view to read baseline-input.json. Produce the final owner batches exactly.
+For findings with a valid owner_hint whose confidence is at least deterministic_confidence_threshold, use that owner.
+For every other finding, infer one allowed owner from owner_taxonomy and the description.
+Within each owner, sort finding_ids by severity_order and then ascending id.
+Include exact severity counts and summary counts.
+Reply with only one minified JSON object using this shape:
+{"schema_version":"0.1","batch_id":"synthetic-hybrid-routing-001","batches":[{"owner":"identity","finding_ids":["H001"],"counts":{"critical":1,"high":0,"medium":0,"low":0,"total":1}}],"summary":{"input_findings":1,"deterministic_findings":1,"residual_findings":0,"owners":1}}
+Preserve allowed_owners order. Do not use markdown or add explanation.

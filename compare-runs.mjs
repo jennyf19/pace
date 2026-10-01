@@ -30,6 +30,72 @@ const DETERMINISTIC_ZERO_METRICS = [
     "premium_requests"
 ];
 
+function validateCompositeRunProfile(profile, label) {
+    const components = profile.accounting?.components;
+    if (!Array.isArray(components) || components.length < 2) {
+        throw new Error(
+            `${label} composite run requires at least two component receipts`
+        );
+    }
+    const componentKeys = new Set();
+    const evidenceBindings = new Set();
+    for (const [index, component] of components.entries()) {
+        if (
+            typeof component?.component_key !== "string" ||
+            !component.component_key.trim()
+        ) {
+            throw new Error(
+                `${label} composite component ${index + 1} requires component_key`
+            );
+        }
+        if (componentKeys.has(component.component_key)) {
+            throw new Error(
+                `${label} composite run contains duplicate component_key`
+            );
+        }
+        componentKeys.add(component.component_key);
+        if (
+            typeof component.run_profile_sha256 !== "string" ||
+            !SHA256_PATTERN.test(component.run_profile_sha256)
+        ) {
+            throw new Error(
+                `${label} composite component ${index + 1} requires run_profile_sha256`
+            );
+        }
+        if (
+            !Array.isArray(component.contributing_evidence_bindings) ||
+            component.contributing_evidence_bindings.length === 0
+        ) {
+            throw new Error(
+                `${label} composite component ${index + 1} requires contributing evidence bindings`
+            );
+        }
+        for (const binding of component.contributing_evidence_bindings) {
+            if (
+                typeof binding !== "string" ||
+                !SHA256_PATTERN.test(binding)
+            ) {
+                throw new Error(
+                    `${label} composite component ${index + 1} has an invalid evidence binding`
+                );
+            }
+            if (evidenceBindings.has(binding)) {
+                throw new Error(
+                    `${label} composite run reuses contributing session evidence`
+                );
+            }
+            evidenceBindings.add(binding);
+        }
+    }
+    for (const session of profile.sessions) {
+        if (!componentKeys.has(session.component_key)) {
+            throw new Error(
+                `${label} composite session requires a known component_key`
+            );
+        }
+    }
+}
+
 function numberOrNull(value) {
     return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
@@ -310,9 +376,9 @@ export function validateRunProfile(profile, label) {
     if (profile.schema_version !== SCHEMA_VERSION) {
         throw new Error(`${label} schema_version must be ${SCHEMA_VERSION}`);
     }
-    if (!["manifest", "deterministic"].includes(profile.run_type)) {
+    if (!["manifest", "deterministic", "composite"].includes(profile.run_type)) {
         throw new Error(
-            `${label} must be a Pace manifest or deterministic run profile`
+            `${label} must be a Pace manifest, deterministic, or composite run profile`
         );
     }
     if (typeof profile.run_id !== "string" || !profile.run_id.trim()) {
@@ -406,6 +472,8 @@ export function validateRunProfile(profile, label) {
     }
     if (profile.run_type === "deterministic") {
         validateDeterministicRunProfile(profile, label);
+    } else if (profile.run_type === "composite") {
+        validateCompositeRunProfile(profile, label);
     }
     return profile;
 }

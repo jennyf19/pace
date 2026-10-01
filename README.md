@@ -117,6 +117,45 @@ This is an auditable execution contract, not an operating-system sandbox or
 supply-chain attestation. Its proof scope is the hash-bound runner and declared
 synchronous implementation.
 
+## Compose a hybrid run
+
+Use `compose-run-profiles.mjs` when one logical run contains multiple measured
+components, such as deterministic preprocessing, a residual model session, and
+deterministic merge:
+
+```json
+{
+  "schema_version": "0.1",
+  "run_id": "hybrid-001",
+  "components": [
+    {
+      "id": "preprocess",
+      "role": "deterministic-preprocess",
+      "profile": "./preprocess.run-profile.json"
+    },
+    {
+      "id": "residual-model",
+      "role": "semantic-residual",
+      "profile": "./residual.run-profile.json"
+    },
+    {
+      "id": "merge",
+      "role": "deterministic-merge",
+      "profile": "./merge.run-profile.json"
+    }
+  ]
+}
+```
+
+```powershell
+node .\compose-run-profiles.mjs .\hybrid-run.json --out .\pace-output
+```
+
+Component totals contribute once. Nested session evidence remains visible for
+runtime matching and residual checks. Duplicate run IDs, profile paths, or
+contributing session evidence fail validation. Missing component metrics make
+the composite total `null`.
+
 ## Compare baseline and candidate runs
 
 Create an external quality result whose run IDs and full profile hashes exactly
@@ -251,6 +290,20 @@ uses the same deterministic receipt contract and starts no model session.
 See
 `examples/hosted-routing-replay/measured-result-2026-10-01.md` for the
 five-sample result.
+
+## Run the hybrid semantic-residual workload
+
+The hybrid scenario keeps 16 high-confidence routes in deterministic code and
+sends only 8 ambiguous descriptions to Copilot:
+
+```powershell
+node .\examples\hosted-hybrid-replay\run-hosted-hybrid-replay.mjs `
+  --out "$HOME\.copilot\pace-runs\hosted-hybrid-v1" `
+  --samples 3
+```
+
+Each candidate sample is one composite Pace run: deterministic preprocess,
+residual model classification, and deterministic merge.
 
 ## Compare repeated run sets
 
@@ -463,12 +516,12 @@ The tests use synthetic artifacts only.
 ## Current boundary
 
 This slice profiles individual Copilot CLI sessions, explicitly declared run
-sets, hash-bound deterministic JSON runs, and baseline/candidate pairs with an
-external same-evaluator quality result. It also compares equal-size repeated
-run sets with descriptive distribution statistics bound to frozen replay
-receipts. It does not infer cross-session relationships, provide OS-level
-isolation for deterministic transforms, classify model/tool stages
-automatically, calculate confidence intervals or statistical significance,
-apply noise tolerances, analyze scaling, or monitor drift. Structural
-model/tool stages intentionally remain `unknown` until a human classifies
-them.
+sets, hash-bound deterministic JSON runs, composite hybrid runs, and
+baseline/candidate pairs with an external same-evaluator quality result. It
+also compares equal-size repeated run sets with descriptive distribution
+statistics bound to frozen replay receipts. It does not infer undeclared
+cross-session relationships, provide OS-level isolation for deterministic
+transforms, classify model/tool stages automatically, calculate confidence
+intervals or statistical significance, apply noise tolerances, analyze
+scaling, or monitor drift. Structural model/tool stages intentionally remain
+`unknown` until a human classifies them.

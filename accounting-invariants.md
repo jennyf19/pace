@@ -75,6 +75,21 @@ Duplicate artifact paths and duplicate profiled session IDs fail validation.
    execution timing and a deterministic stage. Mixed model/deterministic
    comparisons still use the weakest cohort evidence level.
 
+## Composite runs
+
+1. **Each component run contributes once.** Composite totals sum top-level
+   component totals; nested sessions remain evidence and attribution views.
+2. **Contributing evidence is unique across components.** Duplicate profile
+   paths, run IDs, or nested session evidence fail validation.
+3. **Wall time is end to end.** A composite uses the earliest contributing
+   component-session start and latest contributing component-session end rather
+   than summing component durations.
+4. **Missing component metrics fail closed.** A composite metric is `null` when
+   any component is incomplete. Known component subtotals remain visible.
+5. **Runtime matching sees every component.** Replay configuration must declare
+   the complete unique runtime set observed across deterministic and model
+   sessions.
+
 ## Comparisons
 
 1. **Baseline and candidate identities are bound to their quality evidence.**
