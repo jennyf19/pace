@@ -42,6 +42,10 @@ provider AI-unit and premium-request fields incomplete rather than inventing
 cross-provider zeros. The decision therefore uses exact quality, logical input,
 output, and latency metrics available on both sides.
 
+The first three-sample measured result is in
+`measured-result-2026-10-05.md`. It compares the same declared model name, not
+proven-identical model weights or serving stacks.
+
 Only files under `receipts/` are intended to be shareable. Raw responses,
 provider configuration, component profiles, usage files, prompts, and
 intermediate manifests may contain local or provider-specific content.

@@ -372,6 +372,11 @@ shareable receipts. See
 `examples/hosted-direct-model-boundary-replay/README.md` for setup and
 accounting boundaries.
 
+The first three-sample result preserved exact quality while reducing
+logical-input p50 by 79.76%, output-token p50 by 4.98%, and wall-time p90 by
+93.82%. Provider billing remained intentionally unmeasured. See
+`examples/hosted-direct-model-boundary-replay/measured-result-2026-10-05.md`.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition
