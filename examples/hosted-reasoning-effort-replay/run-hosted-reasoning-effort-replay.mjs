@@ -49,21 +49,21 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-hybrid-routing-corpus-v1";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-reasoning-effort-v1";
+const SOURCE_REVISION = "pace-hosted-reasoning-effort-v2";
 export const REASONING_EFFORT_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-reasoning-medium-v1",
-        experimentPrefix: "pace-reasoning-medium",
+        configurationId: "pace-reasoning-medium-v2",
+        experimentPrefix: "pace-reasoning-medium-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "medium"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-reasoning-minimal-v1",
-        experimentPrefix: "pace-reasoning-minimal",
+        configurationId: "pace-reasoning-low-v2",
+        experimentPrefix: "pace-reasoning-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
-        reasoningEffort: "minimal"
+        reasoningEffort: "low"
     })
 });
 
@@ -151,7 +151,7 @@ export async function runHostedReasoningEffortReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "reasoning-effort-v1",
+        experiment: "reasoning-effort-v2",
         residual_transport:
             REASONING_EFFORT_TREATMENTS.baseline.residualMode,
         available_tools: [
@@ -166,7 +166,7 @@ export async function runHostedReasoningEffortReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "reasoning-effort-v1",
+        experiment: "reasoning-effort-v2",
         residual_transport:
             REASONING_EFFORT_TREATMENTS.candidate.residualMode,
         available_tools: [
@@ -321,7 +321,7 @@ export async function runHostedReasoningEffortReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-reasoning-effort-replay-v1",
+        replay_id: "pace-hosted-reasoning-effort-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -410,7 +410,7 @@ export async function runHostedReasoningEffortReplay({
     const comparisonPath = join(output, "comparison.json");
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
-        comparison_id: "pace-hosted-reasoning-effort-comparison-v1",
+        comparison_id: "pace-hosted-reasoning-effort-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [

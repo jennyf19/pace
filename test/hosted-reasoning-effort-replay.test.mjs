@@ -10,5 +10,5 @@ test("reasoning replay changes only reasoning effort", () => {
     assert.deepEqual(baseline.availableTools, []);
     assert.deepEqual(candidate.availableTools, baseline.availableTools);
     assert.equal(baseline.reasoningEffort, "medium");
-    assert.equal(candidate.reasoningEffort, "minimal");
+    assert.equal(candidate.reasoningEffort, "low");
 });
