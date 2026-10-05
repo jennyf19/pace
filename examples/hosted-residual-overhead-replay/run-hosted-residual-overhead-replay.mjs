@@ -133,6 +133,7 @@ export async function runHostedResidualOverheadReplay({
         available_tools: ["view"],
         prompt: "residual-prompt.txt",
         semantic_input: "generated residual-input.json",
+        reasoning_effort: "medium",
         execution_order: executionOrder.map((entry) => entry.sample)
     });
     writeJson(candidateConfigPath, {
@@ -143,6 +144,7 @@ export async function runHostedResidualOverheadReplay({
         tool_filter_sentinel: NO_TOOLS_SENTINEL,
         prompt_template: "inline-residual-prompt.txt",
         semantic_input: "identical generated residual JSON appended inline",
+        reasoning_effort: "medium",
         execution_order: executionOrder.map((entry) => entry.sample)
     });
 
@@ -171,7 +173,8 @@ export async function runHostedResidualOverheadReplay({
             experimentPrefix:
                 entry.side === "baseline"
                     ? "pace-residual-file-view"
-                    : "pace-residual-inline"
+                    : "pace-residual-inline",
+            reasoningEffort: "medium"
         });
         if (entry.side === "baseline") {
             baselineRuns[entry.index] = run;

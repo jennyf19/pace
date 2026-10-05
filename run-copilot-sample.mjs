@@ -21,6 +21,15 @@ import {
 
 const SCHEMA_VERSION = "0.1";
 export const NO_TOOLS_SENTINEL = "__pace_no_tools__";
+const REASONING_EFFORTS = new Set([
+    "none",
+    "minimal",
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "max"
+]);
 
 function writeJson(path, value) {
     writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
@@ -133,6 +142,15 @@ export function buildToolArguments(availableTools = ["view"]) {
     ];
 }
 
+export function validateReasoningEffort(value) {
+    if (!REASONING_EFFORTS.has(value)) {
+        throw new Error(
+            "reasoningEffort must be none, minimal, low, medium, high, xhigh, or max"
+        );
+    }
+    return value;
+}
+
 export async function runCopilotSample({
     output,
     sampleName,
@@ -144,7 +162,8 @@ export async function runCopilotSample({
     copilotCommand,
     sessionName,
     runIdPrefix,
-    availableTools = ["view"]
+    availableTools = ["view"],
+    reasoningEffort = "medium"
 }) {
     if (!Array.isArray(workspaceFiles)) {
         throw new Error("workspaceFiles must be an array");
@@ -171,7 +190,7 @@ export async function runCopilotSample({
             "--model",
             model,
             "--reasoning-effort",
-            "medium",
+            validateReasoningEffort(reasoningEffort),
             "--context",
             "default",
             "--session-id",

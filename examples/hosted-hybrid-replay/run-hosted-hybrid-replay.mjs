@@ -210,7 +210,8 @@ export async function runHostedHybridReplay({
                       runtimeVersion: version,
                       maxAiCredits,
                       copilotCommand,
-                      experimentPrefix: "pace-hosted-hybrid"
+                      experimentPrefix: "pace-hosted-hybrid",
+                      reasoningEffort: "medium"
                   });
         if (entry.side === "baseline") {
             baselineRuns[entry.index] = run;

@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildToolArguments } from "../run-copilot-sample.mjs";
+import {
+    buildToolArguments,
+    validateReasoningEffort
+} from "../run-copilot-sample.mjs";
 import { buildInlineResidualPrompt } from "../run-hybrid-sample.mjs";
 
 test("builds an explicit view-only tool set", () => {
@@ -35,5 +38,14 @@ test("builds a deterministic inline residual prompt", () => {
     assert.equal(
         prompt,
         'Route exactly.\n\nResidual input JSON:\n{"schema_version":"0.1","residual_findings":[{"id":"H001"}]}'
+    );
+});
+
+test("validates supported reasoning efforts", () => {
+    assert.equal(validateReasoningEffort("minimal"), "minimal");
+    assert.equal(validateReasoningEffort("medium"), "medium");
+    assert.throws(
+        () => validateReasoningEffort("tiny"),
+        /reasoningEffort must be/
     );
 });

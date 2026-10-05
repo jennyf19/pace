@@ -37,7 +37,8 @@ export async function runHybridCompositeSample({
     runtimeVersion,
     maxAiCredits,
     copilotCommand,
-    experimentPrefix
+    experimentPrefix,
+    reasoningEffort = "medium"
 }) {
     if (!RESIDUAL_MODES.has(residualMode)) {
         throw new Error(
@@ -97,7 +98,8 @@ export async function runHybridCompositeSample({
         copilotCommand,
         sessionName: `${experimentPrefix}-${sampleName}-residual`,
         runIdPrefix: `${experimentPrefix}-residual`,
-        availableTools: toolLess ? [] : ["view"]
+        availableTools: toolLess ? [] : ["view"],
+        reasoningEffort
     });
     let residualRoutes;
     try {

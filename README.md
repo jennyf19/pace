@@ -331,6 +331,22 @@ See
 `examples/hosted-residual-overhead-replay/measured-result-2026-10-05.md` for
 the corrected three-sample result.
 
+## Run the reasoning-effort isolation
+
+The reasoning scenario keeps the inline residual JSON, zero visible tools,
+model, context tier, deterministic stages, and exact evaluator fixed. It
+compares `medium` with `minimal` reasoning:
+
+```powershell
+node .\examples\hosted-reasoning-effort-replay\run-hosted-reasoning-effort-replay.mjs `
+  --out "$HOME\.copilot\pace-runs\hosted-reasoning-effort-v1" `
+  --samples 3
+```
+
+The candidate is accepted only if exact routing quality is preserved. See
+`examples/hosted-reasoning-effort-replay/README.md` for the frozen treatment
+contract.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition
