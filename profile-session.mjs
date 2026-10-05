@@ -602,6 +602,9 @@ export async function profileSession(inputPath, options = {}) {
             shutdownUsage?.cache_write_tokens ?? fallbackUsage.cache_write_tokens,
         reasoning_tokens:
             shutdownUsage?.reasoning_tokens ?? fallbackUsage.reasoning_tokens,
+        tool_definition_tokens: numberOrNull(
+            shutdownData?.toolDefinitionsTokens
+        ),
         ai_units:
             nanoAiUnits === null
                 ? sumKnown(modelCalls.map((call) => call.ai_units))
@@ -619,6 +622,7 @@ export async function profileSession(inputPath, options = {}) {
               cache_read_tokens: null,
               cache_write_tokens: null,
               reasoning_tokens: null,
+              tool_definition_tokens: null,
               ai_units: null,
               premium_requests: null
           }
@@ -902,6 +906,7 @@ export function renderMarkdown(profile) {
         `| Output tokens | ${display(profile.totals.output_tokens)} |`,
         `| Cache read tokens | ${display(profile.totals.cache_read_tokens)} |`,
         `| Cache write tokens | ${display(profile.totals.cache_write_tokens)} |`,
+        `| Tool-definition tokens | ${display(profile.totals.tool_definition_tokens)} |`,
         `| AI units | ${display(profile.totals.ai_units)} |`,
         "",
         "## Attribution views",

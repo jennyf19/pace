@@ -27,6 +27,9 @@ These rules are part of the measurement contract, not report formatting.
 5. **Subagent metrics embedded in the parent shutdown are already included.**
    Exporting the same subagent as another artifact does not make it independently
    billable.
+6. **Tool-definition tokens are measured separately.** They are part of logical
+   input, not additional usage. Pace reports them as an explanatory metric and
+   never adds them to input-token totals.
 
 ## Time
 

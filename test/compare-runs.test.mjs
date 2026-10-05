@@ -20,6 +20,7 @@ const DEFAULT_TOTALS = {
     cache_read_tokens: 40,
     cache_write_tokens: 10,
     reasoning_tokens: 5,
+    tool_definition_tokens: 12,
     ai_units: 10,
     premium_requests: 1
 };

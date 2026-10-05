@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -102,6 +102,60 @@ test("preserves telemetry version when a declared runtime version is frozen", as
             "declared runtime version 1.0.88 differs from session telemetry version 1.0.87-0"
         )
     );
+});
+
+test("captures tool-definition tokens from shutdown telemetry", async () => {
+    const directory = await mkdtemp(
+        join(tmpdir(), "pace-tool-definition-tokens-")
+    );
+    try {
+        await writeFile(
+            join(directory, "events.jsonl"),
+            [
+                JSON.stringify({
+                    type: "session.start",
+                    timestamp: "2026-10-05T00:00:00.000Z",
+                    data: {
+                        sessionId: "tool-definition-session",
+                        copilotVersion: "synthetic",
+                        producer: "pace-test",
+                        selectedModel: "synthetic-model"
+                    }
+                }),
+                JSON.stringify({
+                    type: "session.shutdown",
+                    timestamp: "2026-10-05T00:00:01.000Z",
+                    data: {
+                        currentModel: "synthetic-model",
+                        toolDefinitionsTokens: 203,
+                        totalPremiumRequests: 0,
+                        totalNanoAiu: 100000000,
+                        totalApiDurationMs: 500,
+                        modelMetrics: {
+                            "synthetic-model": {
+                                requests: { count: 1 },
+                                usage: {
+                                    inputTokens: 1000,
+                                    outputTokens: 100,
+                                    cacheReadTokens: 200,
+                                    cacheWriteTokens: 0,
+                                    reasoningTokens: 50
+                                },
+                                totalNanoAiu: 100000000
+                            }
+                        },
+                        agentMetrics: {}
+                    }
+                })
+            ].join("\n"),
+            "utf8"
+        );
+
+        const profile = await profileSession(directory);
+        assert.equal(profile.totals.tool_definition_tokens, 203);
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
 });
 
 test("selects the latest shutdown snapshot and fails closed on resumed wall time", async () => {

@@ -56,6 +56,7 @@ test("profiles a hash-bound deterministic run with explicit zero model usage", a
         assert.equal(profile.run_type, "deterministic");
         assert.equal(profile.coverage.evidence_level, "L3");
         assert.equal(profile.totals.input_tokens, 0);
+        assert.equal(profile.totals.tool_definition_tokens, 0);
         assert.equal(profile.totals.ai_units, 0);
         assert.equal(profile.totals.premium_requests, 0);
         assert.equal(

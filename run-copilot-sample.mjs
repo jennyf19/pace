@@ -20,6 +20,7 @@ import {
 } from "./profile-session.mjs";
 
 const SCHEMA_VERSION = "0.1";
+export const NO_TOOLS_SENTINEL = "__pace_no_tools__";
 
 function writeJson(path, value) {
     writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
@@ -121,10 +122,14 @@ export function buildToolArguments(availableTools = ["view"]) {
     ) {
         throw new Error("availableTools must contain non-empty strings");
     }
+    const visibleTools =
+        availableTools.length === 0
+            ? [NO_TOOLS_SENTINEL]
+            : availableTools;
     return [
         "--allow-all-tools",
         "--available-tools",
-        ...availableTools
+        ...visibleTools
     ];
 }
 

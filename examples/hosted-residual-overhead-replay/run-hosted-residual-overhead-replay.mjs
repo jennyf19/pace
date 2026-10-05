@@ -22,7 +22,10 @@ import {
     hostedReplayUsage,
     parseHostedReplayArguments
 } from "../../run-hosted-model-free-replay.mjs";
-import { readCopilotVersion } from "../../run-copilot-sample.mjs";
+import {
+    NO_TOOLS_SENTINEL,
+    readCopilotVersion
+} from "../../run-copilot-sample.mjs";
 import { runHybridCompositeSample } from "../../run-hybrid-sample.mjs";
 import { evaluateOutput } from "../hosted-hybrid-replay/evaluate-output.mjs";
 import {
@@ -137,6 +140,7 @@ export async function runHostedResidualOverheadReplay({
         experiment: "residual-overhead-v1",
         residual_transport: "inline-tool-less",
         available_tools: [],
+        tool_filter_sentinel: NO_TOOLS_SENTINEL,
         prompt_template: "inline-residual-prompt.txt",
         semantic_input: "identical generated residual JSON appended inline",
         execution_order: executionOrder.map((entry) => entry.sample)

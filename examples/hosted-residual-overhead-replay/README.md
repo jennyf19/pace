@@ -6,11 +6,17 @@ the eight residual cases reach Copilot:
 - **baseline:** write `residual-input.json`, expose only the `view` tool, and
   ask Copilot to read the file;
 - **candidate:** append the identical residual JSON directly to the prompt and
-  expose an explicit empty tool set.
+  expose an explicit empty tool set using a frozen nonexistent allowlist
+  sentinel.
 
 Both cohorts use the same deterministic preprocess and merge code, model,
 reasoning effort, context tier, semantic input, exact evaluator, and composite
 run accounting.
+
+The CLI's zero-value `--available-tools` form falls back to the default tool
+set. This scenario therefore binds the sentinel value in candidate
+configuration and verifies the result through measured
+`tool_definition_tokens`.
 
 Run a balanced three-sample cohort from the repository root:
 

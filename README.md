@@ -18,6 +18,7 @@ The profiler:
 - uses `session.shutdown` totals when present;
 - falls back to per-model-call token receipts for live or interrupted sessions;
 - reports logical input tokens and non-cached input tokens separately;
+- records tool-definition tokens separately from other logical input;
 - correlates tool start/completion events and subagent lifecycle events;
 - attributes shutdown model and agent metrics without adding them to totals;
 - selects the latest shutdown snapshot after resumes rather than summing;
@@ -322,6 +323,10 @@ node .\examples\hosted-residual-overhead-replay\run-hosted-residual-overhead-rep
 
 Both cohorts remain composite runs with the same deterministic preprocess and
 merge implementation.
+
+Pace implements the empty tool set with a frozen nonexistent sentinel in
+`--available-tools`. Passing the option with zero values falls back to the
+default tool set in the current CLI and is not a valid tool-less treatment.
 
 ## Compare repeated run sets
 

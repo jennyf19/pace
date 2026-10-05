@@ -14,7 +14,8 @@ test("builds an explicit view-only tool set", () => {
 test("builds an explicit empty tool set", () => {
     assert.deepEqual(buildToolArguments([]), [
         "--allow-all-tools",
-        "--available-tools"
+        "--available-tools",
+        "__pace_no_tools__"
     ]);
 });
 

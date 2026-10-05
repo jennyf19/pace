@@ -26,6 +26,7 @@ const DETERMINISTIC_ZERO_METRICS = [
     "cache_read_tokens",
     "cache_write_tokens",
     "reasoning_tokens",
+    "tool_definition_tokens",
     "ai_units",
     "premium_requests"
 ];

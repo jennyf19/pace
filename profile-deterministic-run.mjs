@@ -24,6 +24,7 @@ const ZERO_USAGE_METRICS = [
     "cache_read_tokens",
     "cache_write_tokens",
     "reasoning_tokens",
+    "tool_definition_tokens",
     "ai_units",
     "premium_requests"
 ];
@@ -324,6 +325,7 @@ export async function profileDeterministicJsonTransform({
         cache_read_tokens: 0,
         cache_write_tokens: 0,
         reasoning_tokens: 0,
+        tool_definition_tokens: 0,
         ai_units: 0,
         premium_requests: 0
     };
@@ -342,6 +344,7 @@ export async function profileDeterministicJsonTransform({
         output_tokens: 0,
         cache_read_tokens: 0,
         cache_write_tokens: 0,
+        tool_definition_tokens: 0,
         ai_units: 0,
         attribution: "deterministic execution receipt"
     };
