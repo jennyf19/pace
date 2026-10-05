@@ -353,6 +353,25 @@ reasoning-token p50 by 50%, AI-unit p50 by 28.57%, and wall-time p90 by
 18.20%. See
 `examples/hosted-reasoning-effort-replay/measured-result-2026-10-05.md`.
 
+## Run the direct-model boundary isolation
+
+The direct-boundary scenario keeps the same inline residual payload,
+`gpt-5-mini`, `low` reasoning, deterministic stages, and exact evaluator. It
+compares the zero-tool Copilot CLI host with one provider-neutral structured
+Responses API call:
+
+```powershell
+node .\examples\hosted-direct-model-boundary-replay\run-hosted-direct-model-boundary-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-model-boundary-v1" `
+  --samples 3
+```
+
+The private provider file and bearer token remain outside the repository and
+shareable receipts. See
+`examples/hosted-direct-model-boundary-replay/README.md` for setup and
+accounting boundaries.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition

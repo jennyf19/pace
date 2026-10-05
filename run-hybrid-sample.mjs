@@ -38,7 +38,8 @@ export async function runHybridCompositeSample({
     maxAiCredits,
     copilotCommand,
     experimentPrefix,
-    reasoningEffort = "medium"
+    reasoningEffort = "medium",
+    runResidualSample
 }) {
     if (!RESIDUAL_MODES.has(residualMode)) {
         throw new Error(
@@ -80,27 +81,37 @@ export async function runHybridCompositeSample({
               preprocess.result
           )
         : residualPrompt;
-    const residual = await runCopilotSample({
-        output,
-        sampleName: `${sampleName}-residual`,
-        workspaceFiles: toolLess
-            ? []
-            : [
-                  {
-                      path: preprocessPath,
-                      name: "residual-input.json"
-                  }
-              ],
-        prompt,
-        model,
-        runtimeVersion,
-        maxAiCredits,
-        copilotCommand,
-        sessionName: `${experimentPrefix}-${sampleName}-residual`,
-        runIdPrefix: `${experimentPrefix}-residual`,
-        availableTools: toolLess ? [] : ["view"],
-        reasoningEffort
-    });
+    const residualSampleName = `${sampleName}-residual`;
+    const residual = runResidualSample
+        ? await runResidualSample({
+              output,
+              sampleName: residualSampleName,
+              prompt,
+              model,
+              reasoningEffort,
+              runIdPrefix: `${experimentPrefix}-residual`
+          })
+        : await runCopilotSample({
+              output,
+              sampleName: residualSampleName,
+              workspaceFiles: toolLess
+                  ? []
+                  : [
+                        {
+                            path: preprocessPath,
+                            name: "residual-input.json"
+                        }
+                    ],
+              prompt,
+              model,
+              runtimeVersion,
+              maxAiCredits,
+              copilotCommand,
+              sessionName: `${experimentPrefix}-${sampleName}-residual`,
+              runIdPrefix: `${experimentPrefix}-residual`,
+              availableTools: toolLess ? [] : ["view"],
+              reasoningEffort
+          });
     let residualRoutes;
     try {
         residualRoutes = JSON.parse(residual.stdout);
