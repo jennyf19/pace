@@ -327,6 +327,9 @@ merge implementation.
 Pace implements the empty tool set with a frozen nonexistent sentinel in
 `--available-tools`. Passing the option with zero values falls back to the
 default tool set in the current CLI and is not a valid tool-less treatment.
+See
+`examples/hosted-residual-overhead-replay/measured-result-2026-10-05.md` for
+the corrected three-sample result.
 
 ## Compare repeated run sets
 

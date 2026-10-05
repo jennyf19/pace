@@ -18,6 +18,9 @@ set. This scenario therefore binds the sentinel value in candidate
 configuration and verifies the result through measured
 `tool_definition_tokens`.
 
+The corrected three-sample measured result is in
+`measured-result-2026-10-05.md`.
+
 Run a balanced three-sample cohort from the repository root:
 
 ```powershell
