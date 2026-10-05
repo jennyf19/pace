@@ -1,0 +1,5 @@
+Assign every residual finding to exactly one allowed owner using owner_taxonomy and the description.
+The complete residual input JSON is appended to this prompt.
+Reply with only one minified JSON object using this shape:
+{"schema_version":"0.1","routes":[{"id":"H001","owner":"identity"}]}
+Sort routes by ascending id. Do not use markdown or add explanation.

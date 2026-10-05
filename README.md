@@ -308,6 +308,21 @@ See
 `examples/hosted-hybrid-replay/measured-result-2026-10-01.md` for the first
 three-sample result.
 
+## Run the residual overhead isolation
+
+The overhead scenario keeps the hybrid workload and semantic residual fixed,
+then compares file+`view` transport with inline JSON and an explicit empty tool
+set:
+
+```powershell
+node .\examples\hosted-residual-overhead-replay\run-hosted-residual-overhead-replay.mjs `
+  --out "$HOME\.copilot\pace-runs\hosted-residual-overhead-v1" `
+  --samples 3
+```
+
+Both cohorts remain composite runs with the same deterministic preprocess and
+merge implementation.
+
 ## Compare repeated run sets
 
 First freeze the workload, source revision, configuration files, expected

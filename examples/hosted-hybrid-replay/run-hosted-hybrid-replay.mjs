@@ -1,4 +1,3 @@
-import { randomUUID } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { readFile, stat } from "node:fs/promises";
 import {
@@ -17,12 +16,9 @@ import {
     compareRepeatedRunManifest,
     writeRepeatedComparisonArtifacts
 } from "../../compare-run-sets.mjs";
-import { composeRunProfiles } from "../../compose-run-profiles.mjs";
 import {
-    deterministicRuntimeSignature,
-    profileDeterministicJsonTransform
+    deterministicRuntimeSignature
 } from "../../profile-deterministic-run.mjs";
-import { writeRunArtifacts } from "../../profile-run.mjs";
 import {
     buildExecutionOrder,
     hostedReplayUsage,
@@ -32,6 +28,7 @@ import {
     readCopilotVersion,
     runCopilotSample
 } from "../../run-copilot-sample.mjs";
+import { runHybridCompositeSample } from "../../run-hybrid-sample.mjs";
 import { evaluateOutput } from "./evaluate-output.mjs";
 import {
     buildHybridResultFromMergeInput,
@@ -90,150 +87,6 @@ async function runBaselineSample({
         ...measured,
         side: "baseline",
         index
-    };
-}
-
-async function runHybridSample({
-    index,
-    output,
-    sourceInput,
-    inputPath,
-    implementationPath,
-    residualPrompt,
-    model,
-    runtimeVersion,
-    maxAiCredits,
-    copilotCommand
-}) {
-    const side = "candidate";
-    const sampleName = `${side}-${index + 1}`;
-    const sampleDirectory = join(output, "raw", sampleName);
-    mkdirSync(sampleDirectory, { recursive: true });
-
-    const preprocessPath = join(sampleDirectory, "residual-input.json");
-    const preprocess = await profileDeterministicJsonTransform({
-        runId: `pace-hosted-hybrid-${sampleName}-preprocess-${randomUUID()}`,
-        input: {
-            id: "hybrid-source-input",
-            path: inputPath
-        },
-        output: {
-            id: `${sampleName}-residual-input`,
-            path: preprocessPath
-        },
-        transform: buildResidualInput,
-        implementationFiles: [
-            {
-                id: "hybrid-transform",
-                path: implementationPath
-            }
-        ]
-    });
-    const preprocessPaths = writeRunArtifacts(
-        preprocess.profile,
-        join(output, "component-profiles")
-    );
-
-    const residual = await runCopilotSample({
-        output,
-        sampleName: `${sampleName}-residual`,
-        workspaceFiles: [
-            {
-                path: preprocessPath,
-                name: "residual-input.json"
-            }
-        ],
-        prompt: residualPrompt,
-        model,
-        runtimeVersion,
-        maxAiCredits,
-        copilotCommand,
-        sessionName: `pace-hosted-hybrid-${sampleName}-residual`,
-        runIdPrefix: "pace-hosted-hybrid-residual"
-    });
-    let residualRoutes;
-    try {
-        residualRoutes = JSON.parse(residual.stdout);
-    } catch {
-        throw new Error(`${sampleName} residual model output is not JSON`);
-    }
-
-    const mergeInputPath = join(sampleDirectory, "merge-input.json");
-    writeJson(mergeInputPath, {
-        source: sourceInput,
-        residual_routes: residualRoutes
-    });
-    const finalResultPath = join(sampleDirectory, "final-result.json");
-    const merge = await profileDeterministicJsonTransform({
-        runId: `pace-hosted-hybrid-${sampleName}-merge-${randomUUID()}`,
-        input: {
-            id: `${sampleName}-merge-input`,
-            path: mergeInputPath
-        },
-        output: {
-            id: `${sampleName}-final-result`,
-            path: finalResultPath
-        },
-        transform: buildHybridResultFromMergeInput,
-        implementationFiles: [
-            {
-                id: "hybrid-transform",
-                path: implementationPath
-            }
-        ]
-    });
-    const mergePaths = writeRunArtifacts(
-        merge.profile,
-        join(output, "component-profiles")
-    );
-
-    const compositeDirectory = join(output, "composite-manifests");
-    mkdirSync(compositeDirectory, { recursive: true });
-    const compositeManifestPath = join(
-        compositeDirectory,
-        `${sampleName}.json`
-    );
-    writeJson(compositeManifestPath, {
-        schema_version: SCHEMA_VERSION,
-        run_id: `pace-hosted-hybrid-${sampleName}-${randomUUID()}`,
-        components: [
-            {
-                id: "preprocess",
-                role: "deterministic-preprocess",
-                profile: relative(
-                    compositeDirectory,
-                    preprocessPaths.jsonPath
-                )
-            },
-            {
-                id: "residual-model",
-                role: "semantic-residual",
-                profile: relative(
-                    compositeDirectory,
-                    residual.runPaths.jsonPath
-                )
-            },
-            {
-                id: "merge",
-                role: "deterministic-merge",
-                profile: relative(
-                    compositeDirectory,
-                    mergePaths.jsonPath
-                )
-            }
-        ]
-    });
-    const runProfile = await composeRunProfiles(compositeManifestPath);
-    const runPaths = writeRunArtifacts(runProfile, join(output, "profiles"));
-    const runProfileSha256 = (await sha256File(runPaths.jsonPath)).sha256;
-    return {
-        side,
-        index,
-        stdout: JSON.stringify(merge.result),
-        rendered_stdout: residual.rendered_stdout,
-        runProfile,
-        runPaths,
-        runProfileSha256
     };
 }
 
@@ -341,17 +194,23 @@ export async function runHostedHybridReplay({
                       maxAiCredits,
                       copilotCommand
                   })
-                : await runHybridSample({
+                : await runHybridCompositeSample({
+                      side: "candidate",
                       index: entry.index,
                       output,
                       sourceInput,
                       inputPath,
                       implementationPath,
                       residualPrompt,
+                      residualMode: "file-view",
+                      inlinePromptTemplate: null,
+                      preprocessTransform: buildResidualInput,
+                      mergeTransform: buildHybridResultFromMergeInput,
                       model,
                       runtimeVersion: version,
                       maxAiCredits,
-                      copilotCommand
+                      copilotCommand,
+                      experimentPrefix: "pace-hosted-hybrid"
                   });
         if (entry.side === "baseline") {
             baselineRuns[entry.index] = run;
@@ -407,6 +266,7 @@ export async function runHostedHybridReplay({
         ROOT_DIRECTORY,
         "profile-deterministic-run.mjs"
     );
+    const hybridSamplePath = join(ROOT_DIRECTORY, "run-hybrid-sample.mjs");
     const frozenFiles = [
         inputPath,
         expectedPath,
@@ -418,6 +278,7 @@ export async function runHostedHybridReplay({
         copilotHelperPath,
         compositeRunnerPath,
         deterministicRunnerPath,
+        hybridSamplePath,
         baselineConfigPath,
         candidateConfigPath
     ];
@@ -541,6 +402,12 @@ export async function runHostedHybridReplay({
                         configurationFile(
                             "deterministic-runner",
                             deterministicRunnerPath,
+                            output,
+                            hashes
+                        ),
+                        configurationFile(
+                            "hybrid-sample-runner",
+                            hybridSamplePath,
                             output,
                             hashes
                         )

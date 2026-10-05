@@ -112,20 +112,37 @@ export async function readFinalAssistantMessage(sessionDirectory) {
     return finalMessage;
 }
 
+export function buildToolArguments(availableTools = ["view"]) {
+    if (
+        !Array.isArray(availableTools) ||
+        availableTools.some(
+            (tool) => typeof tool !== "string" || !tool.trim()
+        )
+    ) {
+        throw new Error("availableTools must contain non-empty strings");
+    }
+    return [
+        "--allow-all-tools",
+        "--available-tools",
+        ...availableTools
+    ];
+}
+
 export async function runCopilotSample({
     output,
     sampleName,
-    workspaceFiles,
+    workspaceFiles = [],
     prompt,
     model,
     runtimeVersion,
     maxAiCredits,
     copilotCommand,
     sessionName,
-    runIdPrefix
+    runIdPrefix,
+    availableTools = ["view"]
 }) {
-    if (!Array.isArray(workspaceFiles) || workspaceFiles.length === 0) {
-        throw new Error("workspaceFiles requires at least one file");
+    if (!Array.isArray(workspaceFiles)) {
+        throw new Error("workspaceFiles must be an array");
     }
     const sampleDirectory = join(output, "raw", sampleName);
     const workspace = join(sampleDirectory, "workspace");
@@ -160,8 +177,7 @@ export async function runCopilotSample({
             String(maxAiCredits),
             "--usage-output-file",
             usagePath,
-            "--allow-all-tools",
-            "--available-tools=view",
+            ...buildToolArguments(availableTools),
             "--disable-builtin-mcps",
             "--no-custom-instructions",
             "--no-ask-user",
