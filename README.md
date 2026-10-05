@@ -348,6 +348,11 @@ The candidate is accepted only if exact routing quality is preserved. See
 contract. An initial `minimal` treatment was invalidated before its first
 model request because `gpt-5-mini` did not support that effort.
 
+The corrected three-sample result preserved exact quality while cutting
+reasoning-token p50 by 50%, AI-unit p50 by 28.57%, and wall-time p90 by
+18.20%. See
+`examples/hosted-reasoning-effort-replay/measured-result-2026-10-05.md`.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition

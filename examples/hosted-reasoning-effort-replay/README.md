@@ -16,6 +16,9 @@ before its first model request on October 5, 2026. That incomplete run is not
 comparison evidence. V2 uses the smallest effort accepted by the measured
 model/runtime.
 
+The corrected three-sample measured result is in
+`measured-result-2026-10-05.md`.
+
 Run a balanced three-sample cohort from the repository root:
 
 ```powershell
