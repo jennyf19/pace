@@ -374,6 +374,10 @@ The analysis binds each raw `events.jsonl` artifact by SHA-256 and reports
 system, conversation, tool-definition, classified, unclassified, request, tool
 invocation, cache, usage, and latency distributions.
 
+See
+`examples/hosted-residual-overhead-replay/context-analysis-2026-10-05.md` for
+the v0.4 residual cohort decomposition.
+
 ## Compare repeated run sets
 
 First freeze the workload, source revision, configuration files, expected

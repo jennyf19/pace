@@ -20,6 +20,8 @@ configuration and verifies the result through measured
 
 The corrected three-sample measured result is in
 `measured-result-2026-10-05.md`.
+The bound non-additive context decomposition is in
+`context-analysis-2026-10-05.md`.
 
 Run a balanced three-sample cohort from the repository root:
 

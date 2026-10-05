@@ -80,3 +80,6 @@ opposite treatment.
 
 Three samples remain descriptive evidence, not a confidence-interval or
 significance claim.
+
+The separately bound context snapshot analysis is in
+`context-analysis-2026-10-05.md`.
