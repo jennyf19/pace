@@ -128,6 +128,9 @@ test("captures tool-definition tokens from shutdown telemetry", async () => {
                     data: {
                         currentModel: "synthetic-model",
                         toolDefinitionsTokens: 203,
+                        currentTokens: 1503,
+                        systemTokens: 900,
+                        conversationTokens: 400,
                         totalPremiumRequests: 0,
                         totalNanoAiu: 100000000,
                         totalApiDurationMs: 500,
@@ -153,6 +156,10 @@ test("captures tool-definition tokens from shutdown telemetry", async () => {
 
         const profile = await profileSession(directory);
         assert.equal(profile.totals.tool_definition_tokens, 203);
+        assert.equal(profile.context.current_tokens, 1503);
+        assert.equal(profile.context.classified_tokens, 1503);
+        assert.equal(profile.context.unclassified_tokens, 0);
+        assert.equal(profile.context.additive_to_usage, false);
     } finally {
         await rm(directory, { recursive: true, force: true });
     }

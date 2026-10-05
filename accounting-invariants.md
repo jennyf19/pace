@@ -40,6 +40,20 @@ These rules are part of the measurement contract, not report formatting.
 3. **A run set reports end-to-end span.** It uses the earliest contributing
    start and latest contributing end; it never sums session durations.
 
+## Context snapshots
+
+1. **Context composition is not additive usage.** `current_tokens`,
+   `system_tokens`, `conversation_tokens`, and `tool_definition_tokens`
+   describe the latest session snapshot. They are never added to billed or
+   logical input totals.
+2. **Classified context is explicit.** Pace reports
+   `system + conversation + tool definitions` plus any remaining unclassified
+   framing tokens.
+3. **Only final snapshots support cohort analysis.** Activity after the latest
+   shutdown makes the context snapshot non-final.
+4. **Raw evidence remains bound.** Context cohort analysis hashes each
+   contributing `events.jsonl` artifact and rejects duplicate evidence.
+
 ## Run manifests
 
 Each session declares one billing role:

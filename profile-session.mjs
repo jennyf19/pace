@@ -799,6 +799,34 @@ export async function profileSession(inputPath, options = {}) {
             }
         }
     }
+    const currentContextTokens = numberOrNull(shutdownData?.currentTokens);
+    const systemContextTokens = numberOrNull(shutdownData?.systemTokens);
+    const conversationContextTokens = numberOrNull(
+        shutdownData?.conversationTokens
+    );
+    const toolDefinitionTokens = numberOrNull(
+        shutdownData?.toolDefinitionsTokens
+    );
+    const classifiedContextTokens =
+        systemContextTokens !== null &&
+        conversationContextTokens !== null &&
+        toolDefinitionTokens !== null
+            ? systemContextTokens +
+              conversationContextTokens +
+              toolDefinitionTokens
+            : null;
+    const unclassifiedContextTokens =
+        currentContextTokens !== null && classifiedContextTokens !== null
+            ? currentContextTokens - classifiedContextTokens
+            : null;
+    if (
+        unclassifiedContextTokens !== null &&
+        unclassifiedContextTokens < 0
+    ) {
+        warnings.push(
+            "context snapshot components exceed current_tokens; unclassified_tokens is invalid"
+        );
+    }
 
     return {
         schema_version: SCHEMA_VERSION,
@@ -856,6 +884,23 @@ export async function profileSession(inputPath, options = {}) {
             agentsList
         ),
         totals,
+        context: {
+            snapshot_policy: shutdown
+                ? "latest session.shutdown context snapshot"
+                : "unavailable without session.shutdown",
+            snapshot_is_final: shutdown ? !hasPostShutdownActivity : null,
+            current_tokens: currentContextTokens,
+            system_tokens: systemContextTokens,
+            conversation_tokens: conversationContextTokens,
+            tool_definition_tokens: toolDefinitionTokens,
+            classified_tokens: classifiedContextTokens,
+            unclassified_tokens:
+                unclassifiedContextTokens !== null &&
+                unclassifiedContextTokens >= 0
+                    ? unclassifiedContextTokens
+                    : null,
+            additive_to_usage: false
+        },
         accounting,
         coverage: {
             evidence_level: evidenceLevel,
@@ -908,6 +953,19 @@ export function renderMarkdown(profile) {
         `| Cache write tokens | ${display(profile.totals.cache_write_tokens)} |`,
         `| Tool-definition tokens | ${display(profile.totals.tool_definition_tokens)} |`,
         `| AI units | ${display(profile.totals.ai_units)} |`,
+        "",
+        "## Context snapshot",
+        "",
+        "These values describe the latest context snapshot and are not additive usage.",
+        "",
+        "| Metric | Value |",
+        "|---|---:|",
+        `| Current context tokens | ${display(profile.context.current_tokens)} |`,
+        `| System tokens | ${display(profile.context.system_tokens)} |`,
+        `| Conversation tokens | ${display(profile.context.conversation_tokens)} |`,
+        `| Tool-definition tokens | ${display(profile.context.tool_definition_tokens)} |`,
+        `| Classified context tokens | ${display(profile.context.classified_tokens)} |`,
+        `| Unclassified context tokens | ${display(profile.context.unclassified_tokens)} |`,
         "",
         "## Attribution views",
         "",

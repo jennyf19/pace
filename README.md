@@ -331,6 +331,49 @@ See
 `examples/hosted-residual-overhead-replay/measured-result-2026-10-05.md` for
 the corrected three-sample result.
 
+## Analyze context snapshots
+
+`analyze-context-snapshots.mjs` compares final session context composition
+without treating snapshot counters as additive usage:
+
+```json
+{
+  "schema_version": "0.1",
+  "analysis_id": "residual-context-v1",
+  "source": {
+    "replay_receipt": "sha256:1111111111111111",
+    "comparison_receipt": "sha256:2222222222222222",
+    "experiment_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "analysis_source_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "cohorts": {
+    "baseline": [
+      {
+        "id": "baseline-1",
+        "artifact": "../sessions/baseline-1",
+        "declared_runtime_version": "1.0.88"
+      }
+    ],
+    "candidate": [
+      {
+        "id": "candidate-1",
+        "artifact": "../sessions/candidate-1",
+        "declared_runtime_version": "1.0.88"
+      }
+    ]
+  }
+}
+```
+
+```powershell
+node .\analyze-context-snapshots.mjs .\context-analysis.json `
+  --out .\pace-output
+```
+
+The analysis binds each raw `events.jsonl` artifact by SHA-256 and reports
+system, conversation, tool-definition, classified, unclassified, request, tool
+invocation, cache, usage, and latency distributions.
+
 ## Compare repeated run sets
 
 First freeze the workload, source revision, configuration files, expected
