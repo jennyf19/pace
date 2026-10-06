@@ -398,6 +398,21 @@ prompt-only output reduced input-token p50 20% while increasing output-token
 p50 3.47% and reasoning-token p50 50%. See
 `examples/hosted-direct-schema-replay/measured-result-2026-10-06.md`.
 
+## Test lightweight JSON-object mode
+
+The JSON-mode scenario keeps the direct provider path fixed and replaces the
+full route schema with JSON syntax enforcement only:
+
+```powershell
+node .\examples\hosted-direct-json-mode-replay\run-hosted-direct-json-mode-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-json-mode-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-json-mode-replay/README.md` for the frozen
+treatment and private-provider boundary.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition
