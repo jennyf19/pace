@@ -423,6 +423,11 @@ one direct sample misrouted an ambiguous legal-hold finding; its counterevidence
 is preserved in
 `examples/hosted-direct-boundary-scaling-64-replay/measured-result-2026-10-06.md`.
 
+The clarified v2 cohort restored exact quality but returned `revise`:
+input-token p50 fell 47.89% and wall-time p90 fell 74.08%, while output-token
+p50 rose 7.22%. See
+`examples/hosted-direct-boundary-scaling-64-replay/revised-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the

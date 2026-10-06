@@ -40,6 +40,10 @@ provider AI-unit and premium-request fields incomplete rather than inventing
 cross-provider zeros. The result compares the same declared model name, not
 proven-identical model weights, deployments, or serving stacks.
 
+The revised three-sample result restored exact quality but returned `revise`:
+input-token p50 fell 47.89% and wall-time p90 fell 74.08%, while output-token
+p50 rose 7.22%. See `revised-result-2026-10-06.md`.
+
 Only files under `receipts/` are intended to be shareable. Raw responses,
 provider configuration, component profiles, usage files, prompts, and
 intermediate manifests may contain local or provider-specific content.
