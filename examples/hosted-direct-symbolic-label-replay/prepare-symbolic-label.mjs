@@ -94,8 +94,7 @@ export const FINDING_IDS_BY_LABEL = Object.freeze({
         "H031",
         "H035",
         "H039",
-        "H047",
-        "H055"
+        "H047"
     ]),
     "compute-capacity": Object.freeze([
         "H003",
@@ -104,6 +103,7 @@ export const FINDING_IDS_BY_LABEL = Object.freeze({
         "H023",
         "H043",
         "H051",
+        "H055",
         "H059",
         "H063"
     ]),
@@ -138,6 +138,11 @@ const LABEL_BY_FINDING_ID = Object.freeze(
     )
 );
 
+const DESCRIPTION_OVERRIDES = Object.freeze({
+    H044:
+        "Consumer checkpoint access-control corruption replays privileged commands."
+});
+
 function validateSource(input) {
     if (!Array.isArray(input?.findings) || input.findings.length !== 64) {
         throw new Error("symbolic-label source must contain 64 findings");
@@ -162,6 +167,9 @@ export function buildEightLabelSource(input) {
         owner_taxonomy: LABEL_TAXONOMY,
         findings: input.findings.map((finding) => ({
             ...finding,
+            description:
+                DESCRIPTION_OVERRIDES[finding.id] ??
+                finding.description,
             owner_hint: null,
             owner_hint_confidence: 0
         }))

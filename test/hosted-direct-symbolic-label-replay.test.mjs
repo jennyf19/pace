@@ -42,33 +42,39 @@ const symbolicPromptUrl = new URL(
     import.meta.url
 );
 
-test("eight-label workload preserves all 64 descriptions", async () => {
+test("eight-label workload preserves descriptions except one clarification", async () => {
     const [source64, input] = await Promise.all([
         readFile(source64Url, "utf8").then(JSON.parse),
         readFile(inputUrl, "utf8").then(JSON.parse)
     ]);
 
-    assert.deepEqual(
-        input.findings.map(({ id, severity, description }) => ({
-            id,
-            severity,
-            description
-        })),
-        source64.findings.map(({ id, severity, description }) => ({
-            id,
-            severity,
-            description
-        }))
+    const sourceById = new Map(
+        source64.findings.map((finding) => [finding.id, finding])
     );
+    const changedDescriptions = input.findings.filter(
+        (finding) =>
+            finding.description !==
+            sourceById.get(finding.id).description
+    );
+    assert.deepEqual(changedDescriptions, [
+        {
+            ...sourceById.get("H044"),
+            description:
+                "Consumer checkpoint access-control corruption replays privileged commands."
+        }
+    ]);
     assert.deepEqual(input.allowed_owners, Object.keys(LABEL_TAXONOMY));
 });
 
-test("eight-label taxonomy balances eight findings per label", () => {
+test("eight-label taxonomy covers all findings without forced balance", () => {
     assert.equal(Object.keys(FINDING_IDS_BY_LABEL).length, 8);
     assert.equal(new Set(Object.values(SYMBOL_BY_LABEL)).size, 8);
-    for (const findingIds of Object.values(FINDING_IDS_BY_LABEL)) {
-        assert.equal(findingIds.length, 8);
-    }
+    assert.deepEqual(
+        Object.values(FINDING_IDS_BY_LABEL)
+            .map((findingIds) => findingIds.length)
+            .sort((left, right) => left - right),
+        [7, 8, 8, 8, 8, 8, 8, 9]
+    );
 });
 
 test("frozen workload artifacts match the deterministic builder", async () => {
@@ -219,10 +225,10 @@ test("symbolic-label replay changes only label representation", () => {
     assert.equal(baseline.reasoningEffort, "low");
     assert.equal(candidate.reasoningEffort, baseline.reasoningEffort);
     assert.equal(baseline.labelEncoding, "full-semantic-labels");
-    assert.match(baseline.configurationId, /-v3$/);
+    assert.match(baseline.configurationId, /-v4$/);
     assert.equal(
         candidate.labelEncoding,
         "single-character-symbols-with-named-taxonomy"
     );
-    assert.match(candidate.configurationId, /-v3$/);
+    assert.match(candidate.configurationId, /-v4$/);
 });

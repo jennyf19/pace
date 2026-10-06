@@ -333,7 +333,7 @@
     {
       "id": "H044",
       "severity": "high",
-      "description": "Consumer checkpoint corruption replays privileged commands.",
+      "description": "Consumer checkpoint access-control corruption replays privileged commands.",
       "owner_hint": null,
       "owner_hint_confidence": 0
     },

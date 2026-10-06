@@ -9,7 +9,10 @@ and descriptions while splitting each original domain into two finer labels:
 - `compute-runtime` and `compute-capacity`;
 - `messaging-control` and `messaging-delivery`.
 
-Each label has eight ground-truth findings.
+The first six labels have eight findings; `compute-runtime` has seven and
+`compute-capacity` has nine. The initial balanced split placed one scheduler
+finding in the wrong semantic bucket, so v4 preserves semantic fit rather than
+artificial symmetry.
 
 Both cohorts use the same direct provider, deployment, declared
 `gpt-5-mini` model, `low` reasoning effort, 64 findings, taxonomy meanings,
@@ -33,7 +36,7 @@ $env:PACE_DIRECT_ACCESS_TOKEN = az account get-access-token `
 
 node .\examples\hosted-direct-symbolic-label-replay\run-hosted-direct-symbolic-label-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v3" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v4" `
   --samples 3
 
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
@@ -49,9 +52,11 @@ configuration, replay, and comparison identities.
 
 The completed v2 cohort was rejected: full labels passed 3/3, while bare
 symbols passed 0/3 and repeatedly confused finer semantic boundaries. The
-current v3 candidate keeps each full label name once in its taxonomy value
-while still emitting one-character symbols in all 64 routes. It uses fresh
-source, configuration, replay, and comparison identities.
+v3 candidate kept each full label name once in its taxonomy value, but the
+benchmark itself still contained one forced compute mapping and one ambiguous
+checkpoint description. The current v4 corpus moves the scheduler finding to
+`compute-capacity`, clarifies “checkpoint access-control,” and uses fresh
+corpus, source, configuration, replay, and comparison identities.
 
 The provider may bill direct requests independently. Pace leaves AI-unit,
 premium-request, and cache-write fields incomplete rather than inventing
