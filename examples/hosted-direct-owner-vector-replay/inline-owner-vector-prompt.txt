@@ -1,0 +1,6 @@
+Assign every residual finding to exactly one allowed owner using owner_taxonomy and the description.
+The complete residual input JSON is appended to this prompt.
+The residual_findings array order is authoritative.
+Reply with only one minified JSON object using this shape:
+{"schema_version":"0.1","owners":["identity"]}
+Return exactly one owner for each residual finding in the same order. Do not use markdown or add explanation.

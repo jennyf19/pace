@@ -454,6 +454,22 @@ directional win: output-token p50 fell 4.50%, reasoning-token p50 fell 6.67%,
 and wall-time p90 fell 24.94%. See
 `examples/hosted-direct-owner-code-replay/replication-result-2026-10-06.md`.
 
+## Compress route objects into an ordered owner vector
+
+The owner-vector scenario keeps one direct call and full semantic owner names.
+It replaces 64 repeated `{id, owner}` objects with one strict 64-position owner
+array and reconstructs the frozen IDs deterministically:
+
+```powershell
+node .\examples\hosted-direct-owner-vector-replay\run-hosted-direct-owner-vector-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-vector-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-owner-vector-replay/README.md` for the frozen
+ordering, fail-closed decode, and quality contract.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles
