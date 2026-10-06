@@ -49,6 +49,9 @@ proven-identical model weights or serving stacks.
 The current v2 entrypoint repeats the same treatment with a balanced
 five-sample cohort and fresh replay/configuration identities.
 
+The five-sample replication is in
+`replication-result-2026-10-06.md`.
+
 Only files under `receipts/` are intended to be shareable. Raw responses,
 provider configuration, component profiles, usage files, prompts, and
 intermediate manifests may contain local or provider-specific content.

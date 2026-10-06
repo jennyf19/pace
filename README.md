@@ -377,6 +377,11 @@ logical-input p50 by 79.76%, output-token p50 by 4.98%, and wall-time p90 by
 93.82%. Provider billing remained intentionally unmeasured. See
 `examples/hosted-direct-model-boundary-replay/measured-result-2026-10-05.md`.
 
+The balanced five-sample replication preserved exact quality and reproduced
+the input-token p50 reduction at 79.78%, wall-time p50 at 75.97%, and wall-time
+p90 at 80.10%. See
+`examples/hosted-direct-model-boundary-replay/replication-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
