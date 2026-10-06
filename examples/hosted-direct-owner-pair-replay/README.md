@@ -26,6 +26,10 @@ mechanism is compact visible serialization rather than reasoning reduction.
 The current v2 treatment is an unchanged balanced `n=5` replication under
 fresh source, configuration, replay, and comparison identities.
 
+V2 also returned `keep`: exact quality remained 5/5, input-token p50 fell
+0.589%, output-token p50 fell 17.536%, visible-answer p50 fell 23.930%, and
+wall-time p90 fell 17.760%. See `measured-result-2026-10-06.md`.
+
 Run after supplying the private provider configuration and a short-lived token:
 
 ```powershell

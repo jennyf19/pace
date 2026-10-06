@@ -528,6 +528,11 @@ node .\examples\hosted-direct-owner-pair-replay\run-hosted-direct-owner-pair-rep
   --samples 5
 ```
 
+The replication also returned `keep`: exact quality remained 5/5,
+input-token p50 fell 0.589%, output-token p50 fell 17.536%, visible-answer p50
+fell 23.930%, and wall-time p90 fell 17.760%. See
+`examples/hosted-direct-owner-pair-replay/measured-result-2026-10-06.md`.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles
