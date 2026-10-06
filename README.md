@@ -377,6 +377,22 @@ logical-input p50 by 79.76%, output-token p50 by 4.98%, and wall-time p90 by
 93.82%. Provider billing remained intentionally unmeasured. See
 `examples/hosted-direct-model-boundary-replay/measured-result-2026-10-05.md`.
 
+## Isolate strict structured output
+
+The schema scenario stays entirely inside the direct boundary. It compares the
+strict route schema with the identical prompt and payload using no
+`text.format`:
+
+```powershell
+node .\examples\hosted-direct-schema-replay\run-hosted-direct-schema-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-schema-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-schema-replay/README.md` for the frozen treatment
+and private-provider boundary.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition
