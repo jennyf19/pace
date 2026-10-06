@@ -38,6 +38,9 @@ V3 returned `keep`: exact quality remained 3/3, input-token p50 fell 0.804%,
 output-token p50 fell 26.322%, visible-answer p50 fell 61.453%, and wall-time
 p90 fell 9.451%. See `measured-result-2026-10-06.md`.
 
+The current v4 treatment is an unchanged balanced `n=5` replication under
+fresh source, configuration, replay, and comparison identities.
+
 Run after supplying the private provider configuration and a short-lived token:
 
 ```powershell
@@ -46,7 +49,7 @@ node examples\hosted-direct-owner-vector-replay\run-hosted-direct-owner-vector-r
   --out <new-output-directory> `
   --provider-config <private-provider-config.json> `
   --model gpt-5-mini `
-  --samples 3
+  --samples 5
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 ```
 

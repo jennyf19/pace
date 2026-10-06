@@ -201,6 +201,6 @@ test("owner-vector replay changes only response representation", () => {
         candidate.responseRepresentation,
         "eight-anchored-owner-blocks"
     );
-    assert.match(baseline.configurationId, /-v3$/);
-    assert.match(candidate.configurationId, /-v3$/);
+    assert.match(baseline.configurationId, /-v4$/);
+    assert.match(candidate.configurationId, /-v4$/);
 });

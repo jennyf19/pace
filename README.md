@@ -484,6 +484,16 @@ output-token p50 fell 26.322%, visible-answer p50 fell 61.453%, and wall-time
 p90 fell 9.451%. See
 `examples/hosted-direct-owner-vector-replay/measured-result-2026-10-06.md`.
 
+The current v4 treatment repeats the unchanged anchored representation at
+balanced `n=5` under fresh identities:
+
+```powershell
+node .\examples\hosted-direct-owner-vector-replay\run-hosted-direct-owner-vector-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-vector-v4" `
+  --samples 5
+```
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles
