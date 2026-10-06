@@ -39,12 +39,17 @@ in `source-manifest.json` and `BANKING77-ATTRIBUTION.md`.
 The full-object baseline must pass exact quality before candidate performance
 is eligible.
 
+The first balanced `n=3` cohort returned `keep`. Both arms passed exact quality
+3/3; input-token p50 fell 0.512%, output-token p50 fell 11.613%, and wall-time
+p90 fell 26.600%. The current v2 treatment is an unchanged balanced `n=5`
+replication under fresh identities.
+
 ```powershell
 $env:PACE_DIRECT_ACCESS_TOKEN = "<short-lived-token>"
 node examples\hosted-direct-owner-pair-banking77-replay\run-hosted-direct-owner-pair-banking77-replay.mjs `
   --out <new-output-directory> `
   --provider-config <private-provider-config.json> `
   --model gpt-5-mini `
-  --samples 3
+  --samples 5
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 ```

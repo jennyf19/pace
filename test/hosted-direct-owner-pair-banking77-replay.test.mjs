@@ -157,8 +157,8 @@ test("Banking77 scenario reuses pair treatment under fresh identities", () => {
         candidate.responseRepresentation,
         "ordered-explicit-id-owner-pairs"
     );
-    assert.match(baseline.configurationId, /-v1$/);
-    assert.match(candidate.configurationId, /-v1$/);
+    assert.match(baseline.configurationId, /-v2$/);
+    assert.match(candidate.configurationId, /-v2$/);
     assert.match(BANKING77_OWNER_PAIR_SCENARIO.corpusId, /banking77/);
     assert.equal(BANKING77_OWNER_PAIR_SCENARIO.configurationFiles.length, 6);
 });
