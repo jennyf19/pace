@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-scaled-routing-024",
+  "deterministic_confidence_threshold": 0.95,
+  "allowed_owners": [
+    "identity",
+    "storage",
+    "compute",
+    "messaging"
+  ],
+  "severity_order": [
+    "critical",
+    "high",
+    "medium",
+    "low"
+  ],
+  "owner_taxonomy": {
+    "identity": "authentication, authorization, accounts, credentials, access policy, and service principals",
+    "storage": "blobs, files, snapshots, retention, object data, and storage access",
+    "compute": "virtual machines, containers, hosts, scheduling, autoscale, CPU, and memory",
+    "messaging": "queues, topics, subscriptions, event streams, retries, and message delivery"
+  },
+  "findings": [
+    {"id":"H001","severity":"critical","description":"Conditional access policy excludes a break-glass group.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H002","severity":"high","description":"Blob container permits anonymous object reads.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H003","severity":"high","description":"VM scale set health probes use the wrong port.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H004","severity":"critical","description":"Topic authorization grants publish access to a guest tenant.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H005","severity":"high","description":"MFA registration bypass remains enabled for contractors.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H006","severity":"critical","description":"Storage account keys have not rotated within policy.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H007","severity":"critical","description":"Hypervisor host is missing the required isolation patch.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H008","severity":"high","description":"Queue lock timeout is shorter than handler execution time.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H009","severity":"medium","description":"Guest account review is overdue.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H010","severity":"medium","description":"Lifecycle policy moves active blobs to archive.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H011","severity":"medium","description":"Autoscale minimum keeps idle compute nodes running.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H012","severity":"medium","description":"Subscription retry delay causes delivery backlog.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H013","severity":"high","description":"App registration retains an unused privileged scope.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H014","severity":"high","description":"File share permits legacy unauthenticated protocol access.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H015","severity":"high","description":"Container host exposes the runtime socket.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H016","severity":"high","description":"Event stream checkpointing is disabled.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H017","severity":"critical","description":"OAuth refresh tokens remain valid after the user account is disabled.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H018","severity":"high","description":"A public snapshot grants anonymous read access to archived objects.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H019","severity":"high","description":"The autoscaler oscillates because CPU metrics arrive several minutes late.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H020","severity":"critical","description":"Dead-letter messages disappear after a topic failover.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H021","severity":"high","description":"A service principal keeps an administrator role after credential rotation.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H022","severity":"medium","description":"Object version retention deletes the copy protected by legal hold.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H023","severity":"high","description":"The VM scheduler pins burst workloads to one physical node.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H024","severity":"medium","description":"Queue subscription retries deliver duplicate messages.","owner_hint":null,"owner_hint_confidence":0}
+  ]
+}

@@ -382,6 +382,23 @@ the input-token p50 reduction at 79.78%, wall-time p50 at 75.97%, and wall-time
 p90 at 80.10%. See
 `examples/hosted-direct-model-boundary-replay/replication-result-2026-10-06.md`.
 
+## Scale the direct boundary to 24 semantic findings
+
+The scaling scenario removes every deterministic owner hint from the original
+24-finding corpus. All 24 findings cross the same semantic boundary while the
+prompt, model, effort, strict schema, evaluator, and deterministic merge stay
+fixed:
+
+```powershell
+node .\examples\hosted-direct-boundary-scaling-replay\run-hosted-direct-boundary-scaling-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-boundary-scale-24-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-boundary-scaling-replay/README.md` for the frozen
+workload, treatment contract, and private-provider boundary.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
