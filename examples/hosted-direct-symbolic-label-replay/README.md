@@ -33,7 +33,7 @@ $env:PACE_DIRECT_ACCESS_TOKEN = az account get-access-token `
 
 node .\examples\hosted-direct-symbolic-label-replay\run-hosted-direct-symbolic-label-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v2" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v3" `
   --samples 3
 
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
@@ -43,9 +43,15 @@ The candidate must preserve exact final quality, reduce output-token p50, and
 avoid increasing input-token p50 or wall-time p90.
 
 The first v1 baseline request exhausted the shared 2,048-token output ceiling
-and returned `incomplete` before a balanced cohort existed. The current v2
-source raises the ceiling to 4,096 for both cohorts and uses fresh source,
+and returned `incomplete` before a balanced cohort existed. The v2 source
+raised the ceiling to 4,096 for both cohorts and used fresh source,
 configuration, replay, and comparison identities.
+
+The completed v2 cohort was rejected: full labels passed 3/3, while bare
+symbols passed 0/3 and repeatedly confused finer semantic boundaries. The
+current v3 candidate keeps each full label name once in its taxonomy value
+while still emitting one-character symbols in all 64 routes. It uses fresh
+source, configuration, replay, and comparison identities.
 
 The provider may bill direct requests independently. Pace leaves AI-unit,
 premium-request, and cache-write fields incomplete rather than inventing

@@ -12,6 +12,7 @@ import {
     buildEightLabelSource,
     buildExpectedResult,
     buildFullLabelResidualInput,
+    buildNamedSymbolicLabelResidualInput,
     buildSymbolicLabelResidualInput,
     decodeSymbolicLabelMergeInput
 } from "../examples/hosted-direct-symbolic-label-replay/prepare-symbolic-label.mjs";
@@ -101,6 +102,18 @@ test("symbolic projection preserves findings and taxonomy meaning", async () => 
         assert.equal(
             symbolic.owner_taxonomy[SYMBOL_BY_LABEL[label]],
             full.owner_taxonomy[label]
+        );
+    }
+});
+
+test("named symbolic projection retains each semantic label once", async () => {
+    const input = await readFile(inputUrl, "utf8").then(JSON.parse);
+    const symbolic = buildNamedSymbolicLabelResidualInput(input);
+
+    for (const label of input.allowed_owners) {
+        assert.match(
+            symbolic.owner_taxonomy[SYMBOL_BY_LABEL[label]],
+            new RegExp(`^${label}: `)
         );
     }
 });
@@ -206,10 +219,10 @@ test("symbolic-label replay changes only label representation", () => {
     assert.equal(baseline.reasoningEffort, "low");
     assert.equal(candidate.reasoningEffort, baseline.reasoningEffort);
     assert.equal(baseline.labelEncoding, "full-semantic-labels");
-    assert.match(baseline.configurationId, /-v2$/);
+    assert.match(baseline.configurationId, /-v3$/);
     assert.equal(
         candidate.labelEncoding,
-        "single-character-symbols"
+        "single-character-symbols-with-named-taxonomy"
     );
-    assert.match(candidate.configurationId, /-v2$/);
+    assert.match(candidate.configurationId, /-v3$/);
 });

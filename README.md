@@ -463,7 +463,7 @@ symbols `a` through `h` on the same direct provider:
 ```powershell
 node .\examples\hosted-direct-symbolic-label-replay\run-hosted-direct-symbolic-label-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v2" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v3" `
   --samples 3
 ```
 

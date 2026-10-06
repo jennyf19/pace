@@ -203,6 +203,19 @@ export function buildSymbolicLabelResidualInput(input) {
     };
 }
 
+export function buildNamedSymbolicLabelResidualInput(input) {
+    const residual = buildSymbolicLabelResidualInput(input);
+    return {
+        ...residual,
+        owner_taxonomy: Object.fromEntries(
+            input.allowed_owners.map((label) => [
+                SYMBOL_BY_LABEL[label],
+                `${label}: ${input.owner_taxonomy[label]}`
+            ])
+        )
+    };
+}
+
 export function buildFullLabelResultFromMergeInput(input) {
     return buildHybridResultFromMergeInput(input);
 }
