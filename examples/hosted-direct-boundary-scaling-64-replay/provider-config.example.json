@@ -1,0 +1,6 @@
+{
+  "endpoint": "https://<resource>.cognitiveservices.azure.com",
+  "deployment": "<deployment-name>",
+  "model": "gpt-5-mini",
+  "model_version": "2025-08-07"
+}

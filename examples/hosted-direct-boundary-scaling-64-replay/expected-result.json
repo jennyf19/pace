@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-scaled-routing-064",
+  "batches": [
+    {
+      "owner": "identity",
+      "finding_ids": [
+        "H001",
+        "H017",
+        "H025",
+        "H029",
+        "H005",
+        "H013",
+        "H021",
+        "H033",
+        "H037",
+        "H041",
+        "H045",
+        "H009",
+        "H049",
+        "H053",
+        "H057",
+        "H061"
+      ],
+      "counts": {
+        "critical": 4,
+        "high": 7,
+        "medium": 4,
+        "low": 1,
+        "total": 16
+      }
+    },
+    {
+      "owner": "storage",
+      "finding_ids": [
+        "H006",
+        "H026",
+        "H030",
+        "H034",
+        "H002",
+        "H014",
+        "H018",
+        "H038",
+        "H042",
+        "H046",
+        "H050",
+        "H010",
+        "H022",
+        "H054",
+        "H058",
+        "H062"
+      ],
+      "counts": {
+        "critical": 4,
+        "high": 7,
+        "medium": 4,
+        "low": 1,
+        "total": 16
+      }
+    },
+    {
+      "owner": "compute",
+      "finding_ids": [
+        "H007",
+        "H027",
+        "H031",
+        "H035",
+        "H003",
+        "H015",
+        "H019",
+        "H023",
+        "H039",
+        "H043",
+        "H047",
+        "H011",
+        "H051",
+        "H055",
+        "H059",
+        "H063"
+      ],
+      "counts": {
+        "critical": 4,
+        "high": 7,
+        "medium": 4,
+        "low": 1,
+        "total": 16
+      }
+    },
+    {
+      "owner": "messaging",
+      "finding_ids": [
+        "H004",
+        "H020",
+        "H028",
+        "H032",
+        "H008",
+        "H016",
+        "H036",
+        "H040",
+        "H044",
+        "H048",
+        "H052",
+        "H012",
+        "H024",
+        "H056",
+        "H060",
+        "H064"
+      ],
+      "counts": {
+        "critical": 4,
+        "high": 7,
+        "medium": 4,
+        "low": 1,
+        "total": 16
+      }
+    }
+  ],
+  "summary": {
+    "input_findings": 64,
+    "deterministic_findings": 0,
+    "residual_findings": 64,
+    "owners": 4
+  }
+}

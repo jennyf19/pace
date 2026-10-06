@@ -405,6 +405,21 @@ input-token p50 by 68.15%, API-time p50 by 46.87%, and wall-time p90 by
 semantic residual. See
 `examples/hosted-direct-boundary-scaling-replay/measured-result-2026-10-06.md`.
 
+## Scale the direct boundary to 64 semantic findings
+
+The 64-finding scenario preserves the first 24 cases and adds 40 distinct
+findings with balanced owner and severity distributions:
+
+```powershell
+node .\examples\hosted-direct-boundary-scaling-64-replay\run-hosted-direct-boundary-scaling-64-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-boundary-scale-64-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-boundary-scaling-64-replay/README.md` for the
+frozen workload and treatment contract.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
