@@ -476,6 +476,24 @@ fine-grained taxonomy was not stable enough for an exact representation
 comparison. See
 `examples/hosted-direct-symbolic-label-replay/measured-result-2026-10-06.md`.
 
+## Partition the 64-finding direct request
+
+The request-partition scenario returns to the validated four-owner workload.
+It compares one 64-finding direct request with four contiguous 16-finding
+requests launched concurrently:
+
+```powershell
+node .\examples\hosted-direct-request-partition-replay\run-hosted-direct-request-partition-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-request-partition-v1" `
+  --samples 3
+```
+
+The candidate sums tokens and API time across all four calls while wall time
+records their observed parallel span. Every partition is strict-schema and
+fail-closed before deterministic final merge. See
+`examples/hosted-direct-request-partition-replay/README.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
