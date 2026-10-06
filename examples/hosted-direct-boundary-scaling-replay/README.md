@@ -36,6 +36,11 @@ provider AI-unit and premium-request fields incomplete rather than inventing
 cross-provider zeros. The result compares the same declared model name, not
 proven-identical model weights, deployments, or serving stacks.
 
+The first three-sample result preserved exact quality at 24 findings while
+reducing input-token p50 by 68.15%, API-time p50 by 46.87%, wall-time p50 by
+85.93%, and wall-time p90 by 80.57%. See
+`measured-result-2026-10-06.md`.
+
 Only files under `receipts/` are intended to be shareable. Raw responses,
 provider configuration, component profiles, usage files, prompts, and
 intermediate manifests may contain local or provider-specific content.

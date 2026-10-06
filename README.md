@@ -399,6 +399,12 @@ node .\examples\hosted-direct-boundary-scaling-replay\run-hosted-direct-boundary
 See `examples/hosted-direct-boundary-scaling-replay/README.md` for the frozen
 workload, treatment contract, and private-provider boundary.
 
+The first three-sample result preserved exact quality while reducing
+input-token p50 by 68.15%, API-time p50 by 46.87%, and wall-time p90 by
+80.57%. The absolute input gap remained 1,838 tokens after tripling the
+semantic residual. See
+`examples/hosted-direct-boundary-scaling-replay/measured-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
