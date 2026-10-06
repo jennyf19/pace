@@ -5,6 +5,12 @@ findings. The original 24 cases remain unchanged. Forty new cases preserve the
 same four-owner taxonomy and produce balanced final batches of 16 findings per
 owner, each with 4 critical, 7 high, 4 medium, and 1 low finding.
 
+The v1 discovery cohort was rejected because one direct sample routed an
+ambiguous “legal hold” finding to identity instead of storage. The current v2
+source changes only that description to explicitly say “object-storage legal
+hold” and uses fresh corpus, configuration, replay, and comparison identities.
+See `measured-result-2026-10-06.md` for the preserved v1 counterevidence.
+
 Every owner hint is absent, so all 64 findings cross the semantic boundary.
 The two cohorts keep the payload, prompt, `gpt-5-mini`, `low` reasoning,
 strict route schema, deterministic preprocess and merge, exact evaluator, and
@@ -23,7 +29,7 @@ $env:PACE_DIRECT_ACCESS_TOKEN = az account get-access-token `
 
 node .\examples\hosted-direct-boundary-scaling-64-replay\run-hosted-direct-boundary-scaling-64-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-boundary-scale-64-v1" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-boundary-scale-64-v2" `
   --samples 3
 
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN

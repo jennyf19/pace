@@ -413,12 +413,15 @@ findings with balanced owner and severity distributions:
 ```powershell
 node .\examples\hosted-direct-boundary-scaling-64-replay\run-hosted-direct-boundary-scaling-64-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-boundary-scale-64-v1" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-boundary-scale-64-v2" `
   --samples 3
 ```
 
 See `examples/hosted-direct-boundary-scaling-64-replay/README.md` for the
-frozen workload and treatment contract.
+frozen workload and treatment contract. The first v1 cohort was rejected after
+one direct sample misrouted an ambiguous legal-hold finding; its counterevidence
+is preserved in
+`examples/hosted-direct-boundary-scaling-64-replay/measured-result-2026-10-06.md`.
 
 ## Isolate strict structured output
 

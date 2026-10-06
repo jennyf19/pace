@@ -51,21 +51,21 @@ const OVERHEAD_DIRECTORY = resolve(
 );
 const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
-const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v1";
+const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-boundary-scale-64-v1";
+const SOURCE_REVISION = "pace-hosted-direct-boundary-scale-64-v2";
 export const DIRECT_MODEL_BOUNDARY_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-scale-64-inline-copilot-low-v1",
-        experimentPrefix: "pace-scale-64-inline-copilot-low-v1",
+        configurationId: "pace-scale-64-inline-copilot-low-v2",
+        experimentPrefix: "pace-scale-64-inline-copilot-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         boundary: "copilot-agent"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-scale-64-direct-responses-low-v1",
-        experimentPrefix: "pace-scale-64-direct-responses-low-v1",
+        configurationId: "pace-scale-64-direct-responses-low-v2",
+        experimentPrefix: "pace-scale-64-direct-responses-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -78,7 +78,7 @@ export function buildResidualRoutesResponseFormat(input) {
     const ids = residual.residual_findings.map((finding) => finding.id);
     return {
         type: "json_schema",
-        name: "scaled_residual_routes_64",
+        name: "scaled_residual_routes_64_v2",
         strict: true,
         schema: {
             type: "object",
@@ -265,7 +265,7 @@ export async function runHostedDirectBoundaryScaling64Replay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-boundary-scale-64-v1",
+        experiment: "direct-boundary-scale-64-v2",
         model_boundary:
             DIRECT_MODEL_BOUNDARY_TREATMENTS.baseline.boundary,
         residual_transport:
@@ -282,7 +282,7 @@ export async function runHostedDirectBoundaryScaling64Replay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-boundary-scale-64-v1",
+        experiment: "direct-boundary-scale-64-v2",
         model_boundary:
             DIRECT_MODEL_BOUNDARY_TREATMENTS.candidate.boundary,
         residual_transport:
@@ -473,7 +473,7 @@ export async function runHostedDirectBoundaryScaling64Replay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-boundary-scale-64-replay-v1",
+        replay_id: "pace-hosted-direct-boundary-scale-64-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -575,7 +575,7 @@ export async function runHostedDirectBoundaryScaling64Replay({
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
         comparison_id:
-            "pace-hosted-direct-boundary-scale-64-comparison-v1",
+            "pace-hosted-direct-boundary-scale-64-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [

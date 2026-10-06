@@ -37,6 +37,11 @@ test("64-finding workload is a strict superset of the 24-finding scale point", a
     assert.deepEqual(input.owner_taxonomy, scale24Input.owner_taxonomy);
     assert.deepEqual(input.findings.slice(0, 24), scale24Input.findings);
     assert.equal(input.findings.length, 64);
+    assert.equal(
+        input.findings.find((finding) => finding.id === "H034")
+            .description,
+        "An object-storage legal hold can be removed without a second approver."
+    );
 });
 
 test("64-finding workload sends every finding to the semantic residual", async () => {

@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "batch_id": "synthetic-scaled-routing-064",
+  "batch_id": "synthetic-scaled-routing-064-v2",
   "deterministic_confidence_threshold": 0.95,
   "allowed_owners": [
     "identity",
@@ -54,7 +54,7 @@
     {"id":"H031","severity":"critical","description":"The VM image pipeline publishes unsigned base images.","owner_hint":null,"owner_hint_confidence":0},
     {"id":"H032","severity":"critical","description":"Queue authorization permits cross-tenant message deletion.","owner_hint":null,"owner_hint_confidence":0},
     {"id":"H033","severity":"high","description":"Workload identity federation trusts tokens from an unapproved issuer.","owner_hint":null,"owner_hint_confidence":0},
-    {"id":"H034","severity":"critical","description":"A legal hold can be removed without a second approver.","owner_hint":null,"owner_hint_confidence":0},
+    {"id":"H034","severity":"critical","description":"An object-storage legal hold can be removed without a second approver.","owner_hint":null,"owner_hint_confidence":0},
     {"id":"H035","severity":"critical","description":"Confidential-compute attestation accepts an expired policy.","owner_hint":null,"owner_hint_confidence":0},
     {"id":"H036","severity":"high","description":"The event stream accepts unsigned producer identities.","owner_hint":null,"owner_hint_confidence":0},
     {"id":"H037","severity":"high","description":"A directory role assignment bypasses the approval workflow.","owner_hint":null,"owner_hint_confidence":0},
