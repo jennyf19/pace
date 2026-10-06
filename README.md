@@ -496,6 +496,12 @@ records their observed parallel span. Every partition is strict-schema and
 fail-closed before deterministic final merge. See
 `examples/hosted-direct-request-partition-replay/README.md`.
 
+V2 also returned `revise`: exact quality remained 3/3 and wall-time p90 fell
+42.05%, while input-token p50 rose 15.17% and output-token p50 rose 6.86%.
+Together the results define an optional latency mode, not a default efficiency
+optimization. See
+`examples/hosted-direct-request-partition-replay/measured-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the

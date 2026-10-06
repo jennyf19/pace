@@ -27,6 +27,13 @@ The current v2 treatment tests the principled midpoint: two parallel
 identities. It must preserve exact quality, avoid increasing input-token p50,
 reduce output-token p50, and reduce wall-time p90.
 
+V2 also returned `revise`. Exact quality remained 3/3 and wall-time p90 fell
+42.052%, but input-token p50 rose 15.174%, output-token p50 rose 6.856%, and
+summed API-time p50 rose 21.213%.
+
+The two measured points establish a latency-through-concurrency frontier, not
+an efficiency win. See `measured-result-2026-10-06.md`.
+
 Run after supplying the private provider configuration and a short-lived token:
 
 ```powershell
