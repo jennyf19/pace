@@ -470,6 +470,12 @@ node .\examples\hosted-direct-symbolic-label-replay\run-hosted-direct-symbolic-l
 See `examples/hosted-direct-symbolic-label-replay/README.md` for the frozen
 taxonomy, mapping, and treatment contract.
 
+The final cohort returned `reject`: full labels passed 1/3 and named symbols
+passed 2/3. Symbolic output remained descriptively cheaper, but the
+fine-grained taxonomy was not stable enough for an exact representation
+comparison. See
+`examples/hosted-direct-symbolic-label-replay/measured-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the

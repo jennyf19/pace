@@ -45,6 +45,11 @@ Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 The candidate must preserve exact final quality, reduce output-token p50, and
 avoid increasing input-token p50 or wall-time p90.
 
+The final v4 cohort returned `reject`. Full labels passed 1/3 and named symbols
+passed 2/3; the fine-grained taxonomy remained unstable even after removing
+forced balance and clarifying one description. Descriptive output and latency
+improved, but quality did not. See `measured-result-2026-10-06.md`.
+
 The first v1 baseline request exhausted the shared 2,048-token output ceiling
 and returned `incomplete` before a balanced cohort existed. The v2 source
 raised the ceiling to 4,096 for both cohorts and used fresh source,
