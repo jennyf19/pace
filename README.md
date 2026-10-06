@@ -444,6 +444,11 @@ node .\examples\hosted-direct-owner-code-replay\run-hosted-direct-owner-code-rep
 See `examples/hosted-direct-owner-code-replay/README.md` for the frozen
 treatment and quality contract.
 
+The first three-sample result preserved exact quality while reducing
+output-token p50 by 16.67%, reasoning-token p50 by 26.32%, and wall-time p90
+by 11.72%. See
+`examples/hosted-direct-owner-code-replay/measured-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the

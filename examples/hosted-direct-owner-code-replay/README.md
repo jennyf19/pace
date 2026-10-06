@@ -33,6 +33,10 @@ Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 The candidate must preserve exact final quality, reduce output-token p50, and
 avoid increasing input-token p50 or wall-time p90.
 
+The first three-sample result preserved exact quality while reducing
+output-token p50 by 16.67%, reasoning-token p50 by 26.32%, and wall-time p90
+by 11.72%. See `measured-result-2026-10-06.md`.
+
 The provider may bill direct requests independently of Copilot. Pace leaves
 provider AI-unit, premium-request, and cache-write fields incomplete rather
 than inventing zeros.
