@@ -4,17 +4,26 @@ This scenario compares two single-call direct strict-schema representations of
 the validated 64-finding, four-owner routing workload:
 
 - baseline: 64 `{id, owner}` route objects;
-- candidate: one 64-position owner array.
+- v1 candidate: one 64-position owner array;
+- current v2 candidate: eight owner arrays of eight, each anchored by the
+  first finding ID in its block.
 
 Both arms use the same findings, full semantic owner names, taxonomy, provider
 deployment, model, `low` reasoning effort, and exact final evaluator.
 
-The candidate removes only repeated response structure. The
-`residual_findings` order is frozen and authoritative. Deterministic code
-requires exactly 64 allowed owner names, zips each position back to its frozen
-finding ID, and fails closed before final merge.
+V1 removed all ID anchors. It reduced input-token p50 10.932%, output-token p50
+34.101%, and wall-time p90 21.216%, but passed exact quality only 2/3. One
+sample duplicated the owner at position 38, shifted every remaining label by
+one, and misrouted 27 findings while still satisfying the 64-item schema. Pace
+returned `reject`.
 
-The candidate must preserve exact quality, reduce input-token p50, reduce
+V2 preserves most structural compression while bounding alignment failures.
+The `residual_findings` order remains frozen and authoritative, but every
+eight-position block is anchored by its first finding ID. Deterministic code
+requires all eight blocks and exactly eight allowed owners per block, maps each
+position back to its frozen ID, and fails closed before final merge.
+
+The v2 candidate must preserve exact quality, reduce input-token p50, reduce
 output-token p50, and avoid increasing wall-time p90.
 
 Run after supplying the private provider configuration and a short-lived token:

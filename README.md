@@ -457,18 +457,22 @@ and wall-time p90 fell 24.94%. See
 ## Compress route objects into an ordered owner vector
 
 The owner-vector scenario keeps one direct call and full semantic owner names.
-It replaces 64 repeated `{id, owner}` objects with one strict 64-position owner
-array and reconstructs the frozen IDs deterministically:
+Its first candidate replaced 64 repeated `{id, owner}` objects with one strict
+64-position owner array. That reduced all declared metrics but passed exact
+quality only 2/3 after one insertion-style alignment shift.
+
+The current v2 candidate bounds that failure with eight fixed owner blocks of
+eight, each anchored by its first finding ID:
 
 ```powershell
 node .\examples\hosted-direct-owner-vector-replay\run-hosted-direct-owner-vector-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-vector-v1" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-vector-v2" `
   --samples 3
 ```
 
-See `examples/hosted-direct-owner-vector-replay/README.md` for the frozen
-ordering, fail-closed decode, and quality contract.
+See `examples/hosted-direct-owner-vector-replay/README.md` for the preserved
+v1 reject, anchored v2 ordering, fail-closed decode, and quality contract.
 
 ## Generalize symbolic labels to eight categories
 

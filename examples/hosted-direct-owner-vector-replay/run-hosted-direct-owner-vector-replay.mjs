@@ -31,9 +31,10 @@ import { evaluateOutput } from "../hosted-hybrid-replay/evaluate-output.mjs";
 import {
     buildFullOwnerResidualInput,
     buildFullOwnerResultFromMergeInput,
-    buildOwnerVectorResponseFormat,
+    buildOrderedFindingBlocks,
+    buildOwnerBlockResponseFormat,
     buildRouteObjectResponseFormat,
-    decodeOwnerVectorMergeInput
+    decodeOwnerBlockMergeInput
 } from "./prepare-owner-vector.mjs";
 
 const SCHEMA_VERSION = "0.1";
@@ -57,24 +58,24 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-owner-vector-v1";
+const SOURCE_REVISION = "pace-hosted-direct-owner-vector-v2";
 
 export const DIRECT_OWNER_VECTOR_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-direct-route-objects-low-v1",
-        experimentPrefix: "pace-direct-route-objects-low-v1",
+        configurationId: "pace-direct-route-objects-low-v2",
+        experimentPrefix: "pace-direct-route-objects-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         responseRepresentation: "route-objects-with-ids"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-owner-vector-low-v1",
-        experimentPrefix: "pace-direct-owner-vector-low-v1",
+        configurationId: "pace-direct-owner-blocks-low-v2",
+        experimentPrefix: "pace-direct-owner-blocks-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
-        responseRepresentation: "ordered-owner-vector"
+        responseRepresentation: "eight-anchored-owner-blocks"
     })
 });
 
@@ -172,7 +173,7 @@ export async function runHostedDirectOwnerVectorReplay({
     );
     const candidatePromptPath = join(
         EXAMPLE_DIRECTORY,
-        "inline-owner-vector-prompt.txt"
+        "inline-owner-block-prompt.txt"
     );
     const [
         sourceInput,
@@ -200,14 +201,13 @@ export async function runHostedDirectOwnerVectorReplay({
     const provider = "azure-openai-responses";
     const apiVersion = "v1";
     const responsesUrl = `${providerConfig.endpoint.replace(/\/+$/, "")}/openai/v1/responses`;
-    const residual = buildFullOwnerResidualInput(sourceInput);
     const baselineResponseFormat = buildRouteObjectResponseFormat(
         sourceInput,
-        "full_owner_route_objects_64_v1"
+        "full_owner_route_objects_64_v2"
     );
-    const candidateResponseFormat = buildOwnerVectorResponseFormat(
+    const candidateResponseFormat = buildOwnerBlockResponseFormat(
         sourceInput,
-        "ordered_owner_vector_64_v1"
+        "anchored_owner_blocks_8x8_v2"
     );
     const expectedRuntime = [
         directModelRuntimeSignature({
@@ -225,7 +225,7 @@ export async function runHostedDirectOwnerVectorReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-vector-v1",
+        experiment: "direct-owner-vector-v2",
         model_boundary: "direct-response",
         response_representation:
             DIRECT_OWNER_VECTOR_TREATMENTS.baseline.responseRepresentation,
@@ -249,7 +249,7 @@ export async function runHostedDirectOwnerVectorReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-vector-v1",
+        experiment: "direct-owner-vector-v2",
         model_boundary: "direct-response",
         response_representation:
             DIRECT_OWNER_VECTOR_TREATMENTS.candidate.responseRepresentation,
@@ -258,14 +258,12 @@ export async function runHostedDirectOwnerVectorReplay({
         available_tools: [
             ...DIRECT_OWNER_VECTOR_TREATMENTS.candidate.availableTools
         ],
-        prompt_template: "inline-owner-vector-prompt.txt",
+        prompt_template: "inline-owner-block-prompt.txt",
         semantic_input:
             "identical 64 findings and full owner-name taxonomy appended inline",
-        ordered_finding_ids: residual.residual_findings.map(
-            (finding) => finding.id
-        ),
+        ordered_finding_blocks: buildOrderedFindingBlocks(sourceInput),
         deterministic_decode:
-            "owner positions map to residual_findings positions",
+            "owner positions map within eight fixed blocks anchored by first finding id",
         reasoning_effort:
             DIRECT_OWNER_VECTOR_TREATMENTS.candidate.reasoningEffort,
         provider,
@@ -304,7 +302,7 @@ export async function runHostedDirectOwnerVectorReplay({
                 : baselinePromptTemplate,
             preprocessTransform: buildFullOwnerResidualInput,
             mergeTransform: isCandidate
-                ? decodeOwnerVectorMergeInput
+                ? decodeOwnerBlockMergeInput
                 : buildFullOwnerResultFromMergeInput,
             model,
             runtimeVersion: null,
@@ -464,7 +462,7 @@ export async function runHostedDirectOwnerVectorReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-owner-vector-replay-v1",
+        replay_id: "pace-hosted-direct-owner-vector-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -542,7 +540,7 @@ export async function runHostedDirectOwnerVectorReplay({
                             hashes
                         ),
                         configurationFile(
-                            "owner-vector-prompt",
+                            "owner-block-prompt",
                             candidatePromptPath,
                             output,
                             hashes
@@ -572,7 +570,7 @@ export async function runHostedDirectOwnerVectorReplay({
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
         comparison_id:
-            "pace-hosted-direct-owner-vector-comparison-v1",
+            "pace-hosted-direct-owner-vector-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [
