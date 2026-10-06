@@ -533,6 +533,23 @@ input-token p50 fell 0.589%, output-token p50 fell 17.536%, visible-answer p50
 fell 23.930%, and wall-time p90 fell 17.760%. See
 `examples/hosted-direct-owner-pair-replay/measured-result-2026-10-06.md`.
 
+## Generalize explicit pairs to an independent workload
+
+The independent owner-pair scenario freezes 40 new findings across network,
+database, frontend, observability, and deployment domains. It reuses the same
+route-object versus explicit-pair treatment without using the unstable
+eight-label corpus:
+
+```powershell
+node .\examples\hosted-direct-owner-pair-independent-replay\run-hosted-direct-owner-pair-independent-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-independent-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-owner-pair-independent-replay/README.md` for the
+frozen five-domain workload and treatment contract.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

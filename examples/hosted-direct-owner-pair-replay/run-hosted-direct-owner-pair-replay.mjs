@@ -55,9 +55,7 @@ const OVERHEAD_DIRECTORY = resolve(
 );
 const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
-const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-owner-pair-v2";
 
 export const DIRECT_OWNER_PAIR_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
@@ -76,6 +74,20 @@ export const DIRECT_OWNER_PAIR_TREATMENTS = Object.freeze({
         reasoningEffort: "low",
         responseRepresentation: "ordered-explicit-id-owner-pairs"
     })
+});
+
+export const DEFAULT_OWNER_PAIR_SCENARIO = Object.freeze({
+    workloadDirectory: SCALE_DIRECTORY,
+    corpusId: "pace-hosted-scaled-routing-64-corpus-v2",
+    evaluatorId: EVALUATOR_ID,
+    sourceRevision: "pace-hosted-direct-owner-pair-v2",
+    experimentId: "direct-owner-pair-v2",
+    replayId: "pace-hosted-direct-owner-pair-replay-v2",
+    comparisonId: "pace-hosted-direct-owner-pair-comparison-v2",
+    baselineSchemaName: "full_owner_route_objects_pair_control_64_v2",
+    candidateSchemaName: "explicit_id_owner_pairs_64_v2",
+    treatments: DIRECT_OWNER_PAIR_TREATMENTS,
+    configurationFiles: Object.freeze([])
 });
 
 function writeJson(path, value) {
@@ -133,7 +145,8 @@ export async function runHostedDirectOwnerPairReplay({
     providerConfigPath,
     accessToken = process.env.PACE_DIRECT_ACCESS_TOKEN,
     model = "gpt-5-mini",
-    samples = 3
+    samples = 3,
+    scenario = DEFAULT_OWNER_PAIR_SCENARIO
 }) {
     if (!Number.isInteger(samples) || samples < 2) {
         throw new Error("samples must be an integer of at least 2");
@@ -150,11 +163,16 @@ export async function runHostedDirectOwnerPairReplay({
     }
     mkdirSync(output, { recursive: true });
 
+    const treatments = scenario.treatments;
+    const workloadDirectory = resolve(scenario.workloadDirectory);
+    const evaluatorId = scenario.evaluatorId ?? EVALUATOR_ID;
+    const scenarioConfigurationFiles =
+        scenario.configurationFiles ?? [];
     const providerPath = resolve(providerConfigPath);
-    const inputPath = join(SCALE_DIRECTORY, "baseline-input.json");
-    const expectedPath = join(SCALE_DIRECTORY, "expected-result.json");
+    const inputPath = join(workloadDirectory, "baseline-input.json");
+    const expectedPath = join(workloadDirectory, "expected-result.json");
     const groundTruthPath = join(
-        SCALE_DIRECTORY,
+        workloadDirectory,
         "ground-truth-routes.json"
     );
     const evaluatorPath = join(HYBRID_DIRECTORY, "evaluate-output.mjs");
@@ -203,11 +221,11 @@ export async function runHostedDirectOwnerPairReplay({
     const residual = buildFullOwnerResidualInput(sourceInput);
     const baselineResponseFormat = buildRouteObjectResponseFormat(
         sourceInput,
-        "full_owner_route_objects_pair_control_64_v2"
+        scenario.baselineSchemaName
     );
     const candidateResponseFormat = buildOwnerPairResponseFormat(
         sourceInput,
-        "explicit_id_owner_pairs_64_v2"
+        scenario.candidateSchemaName
     );
     const expectedRuntime = [
         directModelRuntimeSignature({
@@ -215,7 +233,7 @@ export async function runHostedDirectOwnerPairReplay({
             apiVersion,
             model,
             reasoningEffort:
-                DIRECT_OWNER_PAIR_TREATMENTS.baseline.reasoningEffort
+                treatments.baseline.reasoningEffort
         }),
         deterministicRuntimeSignature()
     ];
@@ -225,20 +243,20 @@ export async function runHostedDirectOwnerPairReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-pair-v2",
+        experiment: scenario.experimentId,
         model_boundary: "direct-response",
         response_representation:
-            DIRECT_OWNER_PAIR_TREATMENTS.baseline.responseRepresentation,
+            treatments.baseline.responseRepresentation,
         residual_transport:
-            DIRECT_OWNER_PAIR_TREATMENTS.baseline.residualMode,
+            treatments.baseline.residualMode,
         available_tools: [
-            ...DIRECT_OWNER_PAIR_TREATMENTS.baseline.availableTools
+            ...treatments.baseline.availableTools
         ],
         prompt_template: "inline-residual-prompt.txt",
         semantic_input:
-            "64 findings and full owner-name taxonomy appended inline",
+            `${sourceInput.findings.length} findings and full owner-name taxonomy appended inline`,
         reasoning_effort:
-            DIRECT_OWNER_PAIR_TREATMENTS.baseline.reasoningEffort,
+            treatments.baseline.reasoningEffort,
         provider,
         api_version: apiVersion,
         model,
@@ -249,25 +267,25 @@ export async function runHostedDirectOwnerPairReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-pair-v2",
+        experiment: scenario.experimentId,
         model_boundary: "direct-response",
         response_representation:
-            DIRECT_OWNER_PAIR_TREATMENTS.candidate.responseRepresentation,
+            treatments.candidate.responseRepresentation,
         residual_transport:
-            DIRECT_OWNER_PAIR_TREATMENTS.candidate.residualMode,
+            treatments.candidate.residualMode,
         available_tools: [
-            ...DIRECT_OWNER_PAIR_TREATMENTS.candidate.availableTools
+            ...treatments.candidate.availableTools
         ],
         prompt_template: "inline-owner-pair-prompt.txt",
         semantic_input:
-            "identical 64 findings and full owner-name taxonomy appended inline",
+            `identical ${sourceInput.findings.length} findings and full owner-name taxonomy appended inline`,
         ordered_finding_ids: residual.residual_findings.map(
             (finding) => finding.id
         ),
         deterministic_decode:
             "each pair id must exactly match the corresponding residual finding id",
         reasoning_effort:
-            DIRECT_OWNER_PAIR_TREATMENTS.candidate.reasoningEffort,
+            treatments.candidate.reasoningEffort,
         provider,
         api_version: apiVersion,
         model,
@@ -280,8 +298,7 @@ export async function runHostedDirectOwnerPairReplay({
     const baselineRuns = new Array(samples);
     const candidateRuns = new Array(samples);
     for (const entry of executionOrder) {
-        const treatment =
-            DIRECT_OWNER_PAIR_TREATMENTS[entry.side];
+        const treatment = treatments[entry.side];
         const isCandidate = entry.side === "candidate";
         const responseFormat = isCandidate
             ? candidateResponseFormat
@@ -338,8 +355,8 @@ export async function runHostedDirectOwnerPairReplay({
             entry: {
                 run_id: run.runProfile.run_id,
                 run_profile_sha256: run.runProfileSha256,
-                corpus_id: CORPUS_ID,
-                evaluator_id: EVALUATOR_ID,
+                corpus_id: scenario.corpusId,
+                evaluator_id: evaluatorId,
                 complete: evaluation.complete,
                 passed: evaluation.passed,
                 score: evaluation.score
@@ -400,6 +417,7 @@ export async function runHostedDirectOwnerPairReplay({
         hybridSamplePath,
         compositeRunnerPath,
         deterministicRunnerPath,
+        ...scenarioConfigurationFiles.map((file) => resolve(file.path)),
         baselineConfigPath,
         candidateConfigPath
     ];
@@ -459,14 +477,22 @@ export async function runHostedDirectOwnerPairReplay({
             deterministicRunnerPath,
             output,
             hashes
+        ),
+        ...scenarioConfigurationFiles.map((file) =>
+            configurationFile(
+                file.id,
+                resolve(file.path),
+                output,
+                hashes
+            )
         )
     ];
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-owner-pair-replay-v2",
+        replay_id: scenario.replayId,
         evaluator: {
-            id: EVALUATOR_ID,
+            id: evaluatorId,
             files: [
                 configurationFile(
                     "evaluator",
@@ -477,8 +503,8 @@ export async function runHostedDirectOwnerPairReplay({
             ]
         },
         workload: {
-            corpus_id: CORPUS_ID,
-            source_revision: SOURCE_REVISION,
+            corpus_id: scenario.corpusId,
+            source_revision: scenario.sourceRevision,
             files: [
                 configurationFile(
                     "baseline-input",
@@ -503,7 +529,7 @@ export async function runHostedDirectOwnerPairReplay({
         cohorts: {
             baseline: {
                 configuration: {
-                    id: DIRECT_OWNER_PAIR_TREATMENTS.baseline.configurationId,
+                    id: treatments.baseline.configurationId,
                     files: [
                         configurationFile(
                             "configuration",
@@ -533,7 +559,7 @@ export async function runHostedDirectOwnerPairReplay({
             },
             candidate: {
                 configuration: {
-                    id: DIRECT_OWNER_PAIR_TREATMENTS.candidate.configurationId,
+                    id: treatments.candidate.configurationId,
                     files: [
                         configurationFile(
                             "configuration",
@@ -571,7 +597,7 @@ export async function runHostedDirectOwnerPairReplay({
     const comparisonPath = join(output, "comparison.json");
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
-        comparison_id: "pace-hosted-direct-owner-pair-comparison-v2",
+        comparison_id: scenario.comparisonId,
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [

@@ -1,0 +1,307 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-independent-routing-040",
+  "deterministic_confidence_threshold": 1,
+  "allowed_owners": [
+    "network",
+    "database",
+    "frontend",
+    "observability",
+    "deployment"
+  ],
+  "severity_order": [
+    "critical",
+    "high",
+    "medium",
+    "low"
+  ],
+  "owner_taxonomy": {
+    "network": "DNS, routing, firewalls, TLS, load balancing, packet flow, gateways, and network policy",
+    "database": "queries, indexes, transactions, replication, backups, schemas, connection pools, and data durability",
+    "frontend": "browser rendering, DOM, CSS, JavaScript bundles, accessibility, client caching, hydration, and service workers",
+    "observability": "logs, metrics, traces, alerts, dashboards, telemetry pipelines, sampling, and retention",
+    "deployment": "builds, packages, artifacts, rollouts, feature flags, environments, release orchestration, and provenance"
+  },
+  "findings": [
+    {
+      "id": "W001",
+      "severity": "high",
+      "description": "DNS resolver returns stale records after regional failover.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W002",
+      "severity": "medium",
+      "description": "Query planner ignores a selective index after statistics refresh.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W003",
+      "severity": "high",
+      "description": "Hydration mismatch duplicates interactive controls after page load.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W004",
+      "severity": "critical",
+      "description": "Trace sampling drops every failed checkout request.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W005",
+      "severity": "critical",
+      "description": "Canary rollout advances despite a failed health gate.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W006",
+      "severity": "critical",
+      "description": "Service worker caches a revoked session response.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W007",
+      "severity": "critical",
+      "description": "TLS gateway rejects clients after certificate rotation.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W008",
+      "severity": "critical",
+      "description": "Feature flag targets the production tenant during a test rollout.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W009",
+      "severity": "high",
+      "description": "Read replica serves stale rows after primary failover.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W010",
+      "severity": "high",
+      "description": "Metric label cardinality overwhelms the ingestion pipeline.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W011",
+      "severity": "high",
+      "description": "Build artifact is published without provenance metadata.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W012",
+      "severity": "high",
+      "description": "Log parser truncates the request correlation identifier.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W013",
+      "severity": "high",
+      "description": "Load balancer health probe targets a retired port.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W014",
+      "severity": "medium",
+      "description": "CSS stacking order hides the consent dialog behind the shell.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W015",
+      "severity": "critical",
+      "description": "Lock escalation blocks checkout writes across the hot table.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W016",
+      "severity": "high",
+      "description": "Connection pool leaks sessions after request timeout.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W017",
+      "severity": "critical",
+      "description": "Package promotion reuses an unsigned artifact from staging.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W018",
+      "severity": "critical",
+      "description": "Alert threshold suppresses a sustained error-rate increase.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W019",
+      "severity": "critical",
+      "description": "Route table sends private subnet traffic through a public gateway.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W020",
+      "severity": "high",
+      "description": "Bundle splitting omits the locale chunk for first-time visitors.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W021",
+      "severity": "medium",
+      "description": "Dashboard aggregates two regions into the wrong service total.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W022",
+      "severity": "high",
+      "description": "Keyboard focus escapes the modal and traps screen-reader users.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W023",
+      "severity": "critical",
+      "description": "Point-in-time restore omits the latest log segment.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W024",
+      "severity": "high",
+      "description": "Environment substitution writes a staging endpoint into production.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W025",
+      "severity": "critical",
+      "description": "Firewall rule permits management traffic from the internet.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W026",
+      "severity": "medium",
+      "description": "NAT pool exhausts ephemeral ports during traffic bursts.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W027",
+      "severity": "medium",
+      "description": "Telemetry exporter retries and emits duplicate spans.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W028",
+      "severity": "medium",
+      "description": "Browser cache serves an obsolete feature-flag configuration.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W029",
+      "severity": "high",
+      "description": "Schema migration rewrites the hot table without online mode.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W030",
+      "severity": "high",
+      "description": "Rollback restores the binary but not its matching configuration.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W031",
+      "severity": "medium",
+      "description": "Index bloat causes periodic query latency spikes.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W032",
+      "severity": "high",
+      "description": "BGP advertisement intermittently withdraws the service prefix.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W033",
+      "severity": "critical",
+      "description": "Retention policy expires audit traces before investigation completes.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W034",
+      "severity": "medium",
+      "description": "Release orchestration skips one region without failing the job.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W035",
+      "severity": "critical",
+      "description": "DOM event handler submits the payment form twice.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W036",
+      "severity": "medium",
+      "description": "Client source map exposes internal module paths in production.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W037",
+      "severity": "critical",
+      "description": "Release lock expires while a schema migration is still running.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W038",
+      "severity": "critical",
+      "description": "Retention job deletes rows still referenced by the audit ledger.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W039",
+      "severity": "high",
+      "description": "Clock skew misorders spans across dependent services.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "W040",
+      "severity": "medium",
+      "description": "Packet fragmentation drops requests across the encrypted tunnel.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-independent-routing-040",
+  "batches": [
+    {
+      "owner": "network",
+      "finding_ids": [
+        "W007",
+        "W019",
+        "W025",
+        "W001",
+        "W013",
+        "W032",
+        "W026",
+        "W040"
+      ],
+      "counts": {
+        "critical": 3,
+        "high": 3,
+        "medium": 2,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "database",
+      "finding_ids": [
+        "W015",
+        "W023",
+        "W038",
+        "W009",
+        "W016",
+        "W029",
+        "W002",
+        "W031"
+      ],
+      "counts": {
+        "critical": 3,
+        "high": 3,
+        "medium": 2,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "frontend",
+      "finding_ids": [
+        "W006",
+        "W035",
+        "W003",
+        "W020",
+        "W022",
+        "W014",
+        "W028",
+        "W036"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 3,
+        "medium": 3,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "observability",
+      "finding_ids": [
+        "W004",
+        "W018",
+        "W033",
+        "W010",
+        "W012",
+        "W039",
+        "W021",
+        "W027"
+      ],
+      "counts": {
+        "critical": 3,
+        "high": 3,
+        "medium": 2,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "deployment",
+      "finding_ids": [
+        "W005",
+        "W008",
+        "W017",
+        "W037",
+        "W011",
+        "W024",
+        "W030",
+        "W034"
+      ],
+      "counts": {
+        "critical": 4,
+        "high": 3,
+        "medium": 1,
+        "low": 0,
+        "total": 8
+      }
+    }
+  ],
+  "summary": {
+    "input_findings": 40,
+    "deterministic_findings": 0,
+    "residual_findings": 40,
+    "owners": 5
+  }
+}
