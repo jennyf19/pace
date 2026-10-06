@@ -413,6 +413,11 @@ node .\examples\hosted-direct-json-mode-replay\run-hosted-direct-json-mode-repla
 See `examples/hosted-direct-json-mode-replay/README.md` for the frozen
 treatment and private-provider boundary.
 
+The first three-sample result preserved exact quality but returned `revise`:
+JSON-object mode reduced input-token p50 20% while increasing output-token p50
+3.41% and wall-time p90 22.48%. See
+`examples/hosted-direct-json-mode-replay/measured-result-2026-10-06.md`.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition

@@ -29,6 +29,10 @@ The candidate is acceptable only if JSON-object mode preserves exact route
 quality while reducing at least one declared metric without increasing median
 output. Provider billing fields remain incomplete on both sides.
 
+The first three-sample measured result is in
+`measured-result-2026-10-06.md`. It returned `revise`: JSON-object mode saved
+input but increased median output and tail latency.
+
 Only files under `receipts/` are intended to be shareable. Raw responses,
 provider configuration, component profiles, usage files, prompts, and
 intermediate manifests may contain local or provider-specific content.
