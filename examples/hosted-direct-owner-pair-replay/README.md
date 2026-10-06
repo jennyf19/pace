@@ -18,6 +18,14 @@ validates the owner vocabulary, and fails closed before final merge.
 The candidate must preserve exact quality, reduce input-token p50, reduce
 output-token p50, and avoid increasing wall-time p90.
 
+The first balanced `n=3` cohort returned `keep`: exact quality remained 3/3,
+input-token p50 fell 0.589%, output-token p50 fell 11.074%, and wall-time p90
+fell 4.536%. Reasoning-token p50 rose from 832 to 896, so the measured
+mechanism is compact visible serialization rather than reasoning reduction.
+
+The current v2 treatment is an unchanged balanced `n=5` replication under
+fresh source, configuration, replay, and comparison identities.
+
 Run after supplying the private provider configuration and a short-lived token:
 
 ```powershell
@@ -26,7 +34,7 @@ node examples\hosted-direct-owner-pair-replay\run-hosted-direct-owner-pair-repla
   --out <new-output-directory> `
   --provider-config <private-provider-config.json> `
   --model gpt-5-mini `
-  --samples 3
+  --samples 5
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 ```
 

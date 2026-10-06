@@ -143,6 +143,6 @@ test("owner-pair replay changes only response representation", () => {
         candidate.responseRepresentation,
         "ordered-explicit-id-owner-pairs"
     );
-    assert.match(baseline.configurationId, /-v1$/);
-    assert.match(candidate.configurationId, /-v1$/);
+    assert.match(baseline.configurationId, /-v2$/);
+    assert.match(candidate.configurationId, /-v2$/);
 });

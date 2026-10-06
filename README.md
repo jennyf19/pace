@@ -516,6 +516,18 @@ node .\examples\hosted-direct-owner-pair-replay\run-hosted-direct-owner-pair-rep
 See `examples/hosted-direct-owner-pair-replay/README.md` for the strict tuple
 schema, exact ID validation, and quality contract.
 
+The first `n=3` cohort returned `keep`: exact quality remained 3/3,
+input-token p50 fell 0.589%, output-token p50 fell 11.074%, and wall-time p90
+fell 4.536%. The current v2 treatment repeats the unchanged representation at
+balanced `n=5`:
+
+```powershell
+node .\examples\hosted-direct-owner-pair-replay\run-hosted-direct-owner-pair-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-v2" `
+  --samples 5
+```
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

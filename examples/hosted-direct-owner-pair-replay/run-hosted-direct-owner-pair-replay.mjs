@@ -57,20 +57,20 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-owner-pair-v1";
+const SOURCE_REVISION = "pace-hosted-direct-owner-pair-v2";
 
 export const DIRECT_OWNER_PAIR_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-direct-route-objects-pair-control-low-v1",
-        experimentPrefix: "pace-direct-route-objects-pair-control-low-v1",
+        configurationId: "pace-direct-route-objects-pair-control-low-v2",
+        experimentPrefix: "pace-direct-route-objects-pair-control-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         responseRepresentation: "route-objects-with-ids"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-explicit-owner-pairs-low-v1",
-        experimentPrefix: "pace-direct-explicit-owner-pairs-low-v1",
+        configurationId: "pace-direct-explicit-owner-pairs-low-v2",
+        experimentPrefix: "pace-direct-explicit-owner-pairs-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -203,11 +203,11 @@ export async function runHostedDirectOwnerPairReplay({
     const residual = buildFullOwnerResidualInput(sourceInput);
     const baselineResponseFormat = buildRouteObjectResponseFormat(
         sourceInput,
-        "full_owner_route_objects_pair_control_64_v1"
+        "full_owner_route_objects_pair_control_64_v2"
     );
     const candidateResponseFormat = buildOwnerPairResponseFormat(
         sourceInput,
-        "explicit_id_owner_pairs_64_v1"
+        "explicit_id_owner_pairs_64_v2"
     );
     const expectedRuntime = [
         directModelRuntimeSignature({
@@ -225,7 +225,7 @@ export async function runHostedDirectOwnerPairReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-pair-v1",
+        experiment: "direct-owner-pair-v2",
         model_boundary: "direct-response",
         response_representation:
             DIRECT_OWNER_PAIR_TREATMENTS.baseline.responseRepresentation,
@@ -249,7 +249,7 @@ export async function runHostedDirectOwnerPairReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-pair-v1",
+        experiment: "direct-owner-pair-v2",
         model_boundary: "direct-response",
         response_representation:
             DIRECT_OWNER_PAIR_TREATMENTS.candidate.responseRepresentation,
@@ -464,7 +464,7 @@ export async function runHostedDirectOwnerPairReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-owner-pair-replay-v1",
+        replay_id: "pace-hosted-direct-owner-pair-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -571,7 +571,7 @@ export async function runHostedDirectOwnerPairReplay({
     const comparisonPath = join(output, "comparison.json");
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
-        comparison_id: "pace-hosted-direct-owner-pair-comparison-v1",
+        comparison_id: "pace-hosted-direct-owner-pair-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [
