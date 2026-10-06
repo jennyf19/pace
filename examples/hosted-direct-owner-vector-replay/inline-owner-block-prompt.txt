@@ -1,6 +1,5 @@
-Assign every residual finding to exactly one allowed owner using owner_taxonomy and the description.
-The complete residual input JSON is appended to this prompt.
-Residual findings are divided into fixed contiguous blocks of eight. Each owner_blocks property is the first finding ID in its block.
-Reply with only one minified JSON object using this shape:
+Assign each residual finding to one allowed owner using owner_taxonomy and its description.
+The complete residual input JSON is appended.
+Reply with only minified JSON:
 {"schema_version":"0.1","owner_blocks":{"H001":["identity"]}}
-Return exactly one owner for each finding in each block, preserving the residual_findings order. Do not use markdown or add explanation.
+Each key is an eight-finding block's first ID. Return one owner per finding in residual_findings order. No markdown or explanation.

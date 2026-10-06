@@ -177,9 +177,8 @@ test("owner-block prompt binds output to anchored residual order", async () => {
         readFile(candidatePromptUrl, "utf8")
     ]);
 
-    assert.match(candidate, /fixed contiguous blocks of eight/);
-    assert.match(candidate, /first finding ID/);
-    assert.match(candidate, /preserving the residual_findings order/);
+    assert.match(candidate, /eight-finding block's first ID/);
+    assert.match(candidate, /in residual_findings order/);
     assert.match(candidate, /"owner_blocks":\{"H001":\["identity"\]\}/);
     assert.match(baseline, /"routes":/);
 });
@@ -202,6 +201,6 @@ test("owner-vector replay changes only response representation", () => {
         candidate.responseRepresentation,
         "eight-anchored-owner-blocks"
     );
-    assert.match(baseline.configurationId, /-v2$/);
-    assert.match(candidate.configurationId, /-v2$/);
+    assert.match(baseline.configurationId, /-v3$/);
+    assert.match(candidate.configurationId, /-v3$/);
 });

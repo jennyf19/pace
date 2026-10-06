@@ -23,8 +23,16 @@ eight-position block is anchored by its first finding ID. Deterministic code
 requires all eight blocks and exactly eight allowed owners per block, maps each
 position back to its frozen ID, and fails closed before final merge.
 
-The v2 candidate must preserve exact quality, reduce input-token p50, reduce
-output-token p50, and avoid increasing wall-time p90.
+V2 restored exact quality 3/3 and reduced output-token p50 30.466%,
+reasoning-token p50 12.500%, and wall-time p90 30.981%. Its 77-word prompt was
+30 words longer than baseline, and input-token p50 rose by only 16 tokens
+(0.857%), so Pace returned `revise`.
+
+The current v3 treatment keeps the identical anchored schema and deterministic
+decode while reducing the prompt to 46 words under fresh source,
+configuration, replay, and comparison identities. It must preserve exact
+quality, reduce input-token p50, reduce output-token p50, and avoid increasing
+wall-time p90.
 
 Run after supplying the private provider configuration and a short-lived token:
 

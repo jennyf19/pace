@@ -58,20 +58,20 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-owner-vector-v2";
+const SOURCE_REVISION = "pace-hosted-direct-owner-vector-v3";
 
 export const DIRECT_OWNER_VECTOR_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-direct-route-objects-low-v2",
-        experimentPrefix: "pace-direct-route-objects-low-v2",
+        configurationId: "pace-direct-route-objects-low-v3",
+        experimentPrefix: "pace-direct-route-objects-low-v3",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         responseRepresentation: "route-objects-with-ids"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-owner-blocks-low-v2",
-        experimentPrefix: "pace-direct-owner-blocks-low-v2",
+        configurationId: "pace-direct-owner-blocks-low-v3",
+        experimentPrefix: "pace-direct-owner-blocks-low-v3",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -203,11 +203,11 @@ export async function runHostedDirectOwnerVectorReplay({
     const responsesUrl = `${providerConfig.endpoint.replace(/\/+$/, "")}/openai/v1/responses`;
     const baselineResponseFormat = buildRouteObjectResponseFormat(
         sourceInput,
-        "full_owner_route_objects_64_v2"
+        "full_owner_route_objects_64_v3"
     );
     const candidateResponseFormat = buildOwnerBlockResponseFormat(
         sourceInput,
-        "anchored_owner_blocks_8x8_v2"
+        "anchored_owner_blocks_8x8_v3"
     );
     const expectedRuntime = [
         directModelRuntimeSignature({
@@ -225,7 +225,7 @@ export async function runHostedDirectOwnerVectorReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-vector-v2",
+        experiment: "direct-owner-vector-v3",
         model_boundary: "direct-response",
         response_representation:
             DIRECT_OWNER_VECTOR_TREATMENTS.baseline.responseRepresentation,
@@ -249,7 +249,7 @@ export async function runHostedDirectOwnerVectorReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-vector-v2",
+        experiment: "direct-owner-vector-v3",
         model_boundary: "direct-response",
         response_representation:
             DIRECT_OWNER_VECTOR_TREATMENTS.candidate.responseRepresentation,
@@ -462,7 +462,7 @@ export async function runHostedDirectOwnerVectorReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-owner-vector-replay-v2",
+        replay_id: "pace-hosted-direct-owner-vector-replay-v3",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -570,7 +570,7 @@ export async function runHostedDirectOwnerVectorReplay({
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
         comparison_id:
-            "pace-hosted-direct-owner-vector-comparison-v2",
+            "pace-hosted-direct-owner-vector-comparison-v3",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [

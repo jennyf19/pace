@@ -461,18 +461,23 @@ Its first candidate replaced 64 repeated `{id, owner}` objects with one strict
 64-position owner array. That reduced all declared metrics but passed exact
 quality only 2/3 after one insertion-style alignment shift.
 
-The current v2 candidate bounds that failure with eight fixed owner blocks of
-eight, each anchored by its first finding ID:
+The v2 candidate bounded that failure with eight fixed owner blocks of eight,
+each anchored by its first finding ID. It restored exact quality and reduced
+output-token p50 30.47%, but a 77-word prompt left input-token p50 0.857%
+higher.
+
+The current v3 treatment keeps the anchored schema and trims only that prompt:
 
 ```powershell
 node .\examples\hosted-direct-owner-vector-replay\run-hosted-direct-owner-vector-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-vector-v2" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-vector-v3" `
   --samples 3
 ```
 
 See `examples/hosted-direct-owner-vector-replay/README.md` for the preserved
-v1 reject, anchored v2 ordering, fail-closed decode, and quality contract.
+v1 reject, anchored v2 result, concise v3 prompt, fail-closed decode, and
+quality contract.
 
 ## Generalize symbolic labels to eight categories
 
