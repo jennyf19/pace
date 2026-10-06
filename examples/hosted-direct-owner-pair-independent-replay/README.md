@@ -30,6 +30,12 @@ The treatment remains unchanged:
 The candidate must preserve exact quality, reduce input-token p50, reduce
 output-token p50, and avoid increasing wall-time p90.
 
+The first cohort returned `unproven`. Candidate quality passed 3/3, but
+baseline passed only 2/3 after one plausible deployment-versus-database
+ambiguity. Descriptive input, output, and wall time improved, but performance
+was not eligible. The corpus is disqualified rather than repaired. See
+`measured-result-2026-10-06.md`.
+
 ```powershell
 $env:PACE_DIRECT_ACCESS_TOKEN = "<short-lived-token>"
 node examples\hosted-direct-owner-pair-independent-replay\run-hosted-direct-owner-pair-independent-replay.mjs `

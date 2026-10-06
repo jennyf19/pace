@@ -550,6 +550,12 @@ node .\examples\hosted-direct-owner-pair-independent-replay\run-hosted-direct-ow
 See `examples/hosted-direct-owner-pair-independent-replay/README.md` for the
 frozen five-domain workload and treatment contract.
 
+The first cohort returned `unproven`: candidate quality passed 3/3, but the
+full-object baseline passed only 2/3 after one plausible
+deployment-versus-database ambiguity. The workload is disqualified rather than
+repaired. See
+`examples/hosted-direct-owner-pair-independent-replay/measured-result-2026-10-06.md`.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles
