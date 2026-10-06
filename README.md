@@ -479,6 +479,11 @@ See `examples/hosted-direct-owner-vector-replay/README.md` for the preserved
 v1 reject, anchored v2 result, concise v3 prompt, fail-closed decode, and
 quality contract.
 
+V3 returned `keep`: exact quality remained 3/3, input-token p50 fell 0.804%,
+output-token p50 fell 26.322%, visible-answer p50 fell 61.453%, and wall-time
+p90 fell 9.451%. See
+`examples/hosted-direct-owner-vector-replay/measured-result-2026-10-06.md`.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

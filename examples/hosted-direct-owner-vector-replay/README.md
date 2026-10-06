@@ -34,6 +34,10 @@ configuration, replay, and comparison identities. It must preserve exact
 quality, reduce input-token p50, reduce output-token p50, and avoid increasing
 wall-time p90.
 
+V3 returned `keep`: exact quality remained 3/3, input-token p50 fell 0.804%,
+output-token p50 fell 26.322%, visible-answer p50 fell 61.453%, and wall-time
+p90 fell 9.451%. See `measured-result-2026-10-06.md`.
+
 Run after supplying the private provider configuration and a short-lived token:
 
 ```powershell
