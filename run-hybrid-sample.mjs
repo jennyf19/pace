@@ -21,6 +21,26 @@ export function buildInlineResidualPrompt(template, residualInput) {
     return `${template.trim()}\n\nResidual input JSON:\n${JSON.stringify(residualInput)}`;
 }
 
+export function buildTransformImplementationFiles({
+    implementationPath,
+    implementationPaths
+}) {
+    const paths = implementationPaths ?? [implementationPath];
+    if (
+        paths.length === 0 ||
+        paths.some((path) => typeof path !== "string" || !path)
+    ) {
+        throw new Error("at least one implementation path is required");
+    }
+    return paths.map((path, index) => ({
+        id:
+            index === 0
+                ? "hybrid-transform"
+                : `hybrid-transform-${index + 1}`,
+        path
+    }));
+}
+
 export async function runHybridCompositeSample({
     side,
     index,
@@ -28,6 +48,7 @@ export async function runHybridCompositeSample({
     sourceInput,
     inputPath,
     implementationPath,
+    implementationPaths,
     residualMode,
     residualPrompt,
     inlinePromptTemplate,
@@ -46,6 +67,11 @@ export async function runHybridCompositeSample({
             "residualMode must be file-view or inline-tool-less"
         );
     }
+    const transformImplementationFiles =
+        buildTransformImplementationFiles({
+            implementationPath,
+            implementationPaths
+        });
     const sampleName = `${side}-${index + 1}`;
     const sampleDirectory = join(output, "raw", sampleName);
     mkdirSync(sampleDirectory, { recursive: true });
@@ -62,12 +88,7 @@ export async function runHybridCompositeSample({
             path: preprocessPath
         },
         transform: preprocessTransform,
-        implementationFiles: [
-            {
-                id: "hybrid-transform",
-                path: implementationPath
-            }
-        ]
+        implementationFiles: transformImplementationFiles
     });
     const preprocessPaths = writeRunArtifacts(
         preprocess.profile,
@@ -136,12 +157,7 @@ export async function runHybridCompositeSample({
             path: finalResultPath
         },
         transform: mergeTransform,
-        implementationFiles: [
-            {
-                id: "hybrid-transform",
-                path: implementationPath
-            }
-        ]
+        implementationFiles: transformImplementationFiles
     });
     const mergePaths = writeRunArtifacts(
         merge.profile,

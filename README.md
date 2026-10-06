@@ -428,6 +428,22 @@ input-token p50 fell 47.89% and wall-time p90 fell 74.08%, while output-token
 p50 rose 7.22%. See
 `examples/hosted-direct-boundary-scaling-64-replay/revised-result-2026-10-06.md`.
 
+## Compress owner encoding at 64 findings
+
+The owner-code scenario stays entirely on the direct provider. It replaces
+the repeated full owner names with one-character codes and decodes them
+deterministically before the final merge:
+
+```powershell
+node .\examples\hosted-direct-owner-code-replay\run-hosted-direct-owner-code-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-code-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-owner-code-replay/README.md` for the frozen
+treatment and quality contract.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
