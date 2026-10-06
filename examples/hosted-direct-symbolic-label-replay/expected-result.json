@@ -1,0 +1,172 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-symbolic-routing-064",
+  "batches": [
+    {
+      "owner": "identity-access",
+      "finding_ids": [
+        "H017",
+        "H029",
+        "H005",
+        "H033",
+        "H041",
+        "H045",
+        "H057",
+        "H061"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 4,
+        "medium": 1,
+        "low": 1,
+        "total": 8
+      }
+    },
+    {
+      "owner": "identity-governance",
+      "finding_ids": [
+        "H001",
+        "H025",
+        "H013",
+        "H021",
+        "H037",
+        "H009",
+        "H049",
+        "H053"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 3,
+        "medium": 3,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "storage-access",
+      "finding_ids": [
+        "H006",
+        "H026",
+        "H002",
+        "H014",
+        "H018",
+        "H038",
+        "H046",
+        "H062"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 5,
+        "medium": 0,
+        "low": 1,
+        "total": 8
+      }
+    },
+    {
+      "owner": "storage-lifecycle",
+      "finding_ids": [
+        "H030",
+        "H034",
+        "H042",
+        "H050",
+        "H010",
+        "H022",
+        "H054",
+        "H058"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 2,
+        "medium": 4,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "compute-runtime",
+      "finding_ids": [
+        "H007",
+        "H027",
+        "H031",
+        "H035",
+        "H015",
+        "H039",
+        "H047",
+        "H055"
+      ],
+      "counts": {
+        "critical": 4,
+        "high": 3,
+        "medium": 1,
+        "low": 0,
+        "total": 8
+      }
+    },
+    {
+      "owner": "compute-capacity",
+      "finding_ids": [
+        "H003",
+        "H019",
+        "H023",
+        "H043",
+        "H011",
+        "H051",
+        "H059",
+        "H063"
+      ],
+      "counts": {
+        "critical": 0,
+        "high": 4,
+        "medium": 3,
+        "low": 1,
+        "total": 8
+      }
+    },
+    {
+      "owner": "messaging-control",
+      "finding_ids": [
+        "H004",
+        "H032",
+        "H016",
+        "H036",
+        "H040",
+        "H044",
+        "H052",
+        "H064"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 5,
+        "medium": 0,
+        "low": 1,
+        "total": 8
+      }
+    },
+    {
+      "owner": "messaging-delivery",
+      "finding_ids": [
+        "H020",
+        "H028",
+        "H008",
+        "H048",
+        "H012",
+        "H024",
+        "H056",
+        "H060"
+      ],
+      "counts": {
+        "critical": 2,
+        "high": 2,
+        "medium": 4,
+        "low": 0,
+        "total": 8
+      }
+    }
+  ],
+  "summary": {
+    "input_findings": 64,
+    "deterministic_findings": 0,
+    "residual_findings": 64,
+    "owners": 8
+  }
+}

@@ -1,0 +1,481 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "synthetic-symbolic-routing-064",
+  "deterministic_confidence_threshold": 0.95,
+  "allowed_owners": [
+    "identity-access",
+    "identity-governance",
+    "storage-access",
+    "storage-lifecycle",
+    "compute-runtime",
+    "compute-capacity",
+    "messaging-control",
+    "messaging-delivery"
+  ],
+  "severity_order": [
+    "critical",
+    "high",
+    "medium",
+    "low"
+  ],
+  "owner_taxonomy": {
+    "identity-access": "sign-in, MFA, password reset, OAuth and workload tokens, federation, authentication telemetry, token lifetime, and risk signals",
+    "identity-governance": "conditional access policy, app and service-principal privilege, administrator roles, access reviews, account ownership, and identity governance",
+    "storage-access": "storage authentication, keys, encryption, anonymous access, protocols, SAS tokens, ACLs, and authorization telemetry",
+    "storage-lifecycle": "retention, legal hold, backup, replication, archive, snapshot inventory, delete markers, and data residency",
+    "compute-runtime": "hypervisors, containers, images, attestation, host networking, metadata endpoints, node quarantine, and runtime isolation",
+    "compute-capacity": "health probes, autoscale, scheduling, CPU, memory, GPU allocation, quotas, and resource inventory",
+    "messaging-control": "authorization, producer identity, checkpoint policy, filters, privileged replay, retention controls, and ownership",
+    "messaging-delivery": "locks, retries, failover, replication, forwarding, partitions, duplicate delivery, and deduplication"
+  },
+  "findings": [
+    {
+      "id": "H001",
+      "severity": "critical",
+      "description": "Conditional access policy excludes a break-glass group.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H002",
+      "severity": "high",
+      "description": "Blob container permits anonymous object reads.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H003",
+      "severity": "high",
+      "description": "VM scale set health probes use the wrong port.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H004",
+      "severity": "critical",
+      "description": "Topic authorization grants publish access to a guest tenant.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H005",
+      "severity": "high",
+      "description": "MFA registration bypass remains enabled for contractors.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H006",
+      "severity": "critical",
+      "description": "Storage account keys have not rotated within policy.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H007",
+      "severity": "critical",
+      "description": "Hypervisor host is missing the required isolation patch.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H008",
+      "severity": "high",
+      "description": "Queue lock timeout is shorter than handler execution time.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H009",
+      "severity": "medium",
+      "description": "Guest account review is overdue.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H010",
+      "severity": "medium",
+      "description": "Lifecycle policy moves active blobs to archive.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H011",
+      "severity": "medium",
+      "description": "Autoscale minimum keeps idle compute nodes running.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H012",
+      "severity": "medium",
+      "description": "Subscription retry delay causes delivery backlog.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H013",
+      "severity": "high",
+      "description": "App registration retains an unused privileged scope.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H014",
+      "severity": "high",
+      "description": "File share permits legacy unauthenticated protocol access.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H015",
+      "severity": "high",
+      "description": "Container host exposes the runtime socket.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H016",
+      "severity": "high",
+      "description": "Event stream checkpointing is disabled.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H017",
+      "severity": "critical",
+      "description": "OAuth refresh tokens remain valid after the user account is disabled.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H018",
+      "severity": "high",
+      "description": "A public snapshot grants anonymous read access to archived objects.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H019",
+      "severity": "high",
+      "description": "The autoscaler oscillates because CPU metrics arrive several minutes late.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H020",
+      "severity": "critical",
+      "description": "Dead-letter messages disappear after a topic failover.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H021",
+      "severity": "high",
+      "description": "A service principal keeps an administrator role after credential rotation.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H022",
+      "severity": "medium",
+      "description": "Object version retention deletes the copy protected by legal hold.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H023",
+      "severity": "high",
+      "description": "The VM scheduler pins burst workloads to one physical node.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H024",
+      "severity": "medium",
+      "description": "Queue subscription retries deliver duplicate messages.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H025",
+      "severity": "critical",
+      "description": "Privileged identity management allows permanent global administrator assignments.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H026",
+      "severity": "critical",
+      "description": "A customer-managed encryption key is disabled while protected data remains active.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H027",
+      "severity": "critical",
+      "description": "Container escape mitigation is disabled on privileged worker nodes.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H028",
+      "severity": "critical",
+      "description": "Namespace failover can acknowledge messages before replication.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H029",
+      "severity": "critical",
+      "description": "The password reset flow accepts recovery codes after account revocation.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H030",
+      "severity": "critical",
+      "description": "Cross-account replication copies regulated objects to an unapproved region.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H031",
+      "severity": "critical",
+      "description": "The VM image pipeline publishes unsigned base images.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H032",
+      "severity": "critical",
+      "description": "Queue authorization permits cross-tenant message deletion.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H033",
+      "severity": "high",
+      "description": "Workload identity federation trusts tokens from an unapproved issuer.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H034",
+      "severity": "critical",
+      "description": "An object-storage legal hold can be removed without a second approver.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H035",
+      "severity": "critical",
+      "description": "Confidential-compute attestation accepts an expired policy.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H036",
+      "severity": "high",
+      "description": "The event stream accepts unsigned producer identities.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H037",
+      "severity": "high",
+      "description": "A directory role assignment bypasses the approval workflow.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H038",
+      "severity": "high",
+      "description": "SAS tokens remain valid after storage account firewall changes.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H039",
+      "severity": "high",
+      "description": "The Kubernetes admission policy permits host networking.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H040",
+      "severity": "high",
+      "description": "A topic filter drops security alerts with empty optional fields.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H041",
+      "severity": "high",
+      "description": "Authentication logs omit failed sign-ins from legacy clients.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H042",
+      "severity": "high",
+      "description": "The backup vault allows deletion before the retention period expires.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H043",
+      "severity": "high",
+      "description": "An autoscale rule can exceed the approved regional quota.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H044",
+      "severity": "high",
+      "description": "Consumer checkpoint corruption replays privileged commands.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H045",
+      "severity": "high",
+      "description": "A managed identity can request tokens for an unrelated tenant.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H046",
+      "severity": "high",
+      "description": "A file share ACL grants write access to an obsolete security group.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H047",
+      "severity": "high",
+      "description": "The instance metadata endpoint is reachable from untrusted containers.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H048",
+      "severity": "high",
+      "description": "Queue forwarding creates an unbounded delivery loop.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H049",
+      "severity": "medium",
+      "description": "An access review excludes dormant external collaborators.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H050",
+      "severity": "high",
+      "description": "Object replication excludes delete markers and leaves stale replicas.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H051",
+      "severity": "medium",
+      "description": "NUMA placement causes sustained memory contention.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H052",
+      "severity": "high",
+      "description": "Dead-letter retention is shorter than the incident response window.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H053",
+      "severity": "medium",
+      "description": "Service account ownership metadata is missing.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H054",
+      "severity": "medium",
+      "description": "Snapshot inventory contains unencrypted legacy volumes.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H055",
+      "severity": "medium",
+      "description": "The batch scheduler retries jobs on quarantined nodes.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H056",
+      "severity": "medium",
+      "description": "Partition imbalance delays one tenant's events.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H057",
+      "severity": "medium",
+      "description": "Token lifetime policy is inconsistent across app registrations.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H058",
+      "severity": "medium",
+      "description": "Archive rehydration jobs bypass the data residency policy.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H059",
+      "severity": "medium",
+      "description": "Idle GPU workers remain allocated after job cancellation.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H060",
+      "severity": "medium",
+      "description": "The message deduplication window is shorter than the retry interval.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H061",
+      "severity": "low",
+      "description": "User sign-in risk alerts lack an escalation owner.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H062",
+      "severity": "low",
+      "description": "Storage metrics omit low-frequency authorization failures.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H063",
+      "severity": "low",
+      "description": "Development VM inventory lacks an assigned cost center.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "H064",
+      "severity": "low",
+      "description": "A nonproduction topic lacks an operations owner.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    }
+  ]
+}

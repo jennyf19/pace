@@ -454,6 +454,22 @@ directional win: output-token p50 fell 4.50%, reasoning-token p50 fell 6.67%,
 and wall-time p90 fell 24.94%. See
 `examples/hosted-direct-owner-code-replay/replication-result-2026-10-06.md`.
 
+## Generalize symbolic labels to eight categories
+
+The symbolic-label scenario preserves the same 64 descriptions but doubles
+semantic label cardinality from four to eight. It compares full labels with
+symbols `a` through `h` on the same direct provider:
+
+```powershell
+node .\examples\hosted-direct-symbolic-label-replay\run-hosted-direct-symbolic-label-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-symbolic-label-replay/README.md` for the frozen
+taxonomy, mapping, and treatment contract.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the
