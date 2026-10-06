@@ -158,8 +158,10 @@ test("owner-code replay changes only the owner representation", () => {
     assert.equal(baseline.reasoningEffort, "low");
     assert.equal(candidate.reasoningEffort, baseline.reasoningEffort);
     assert.equal(baseline.ownerEncoding, "full-owner-names");
+    assert.match(baseline.configurationId, /-v2$/);
     assert.equal(
         candidate.ownerEncoding,
         "single-character-owner-codes"
     );
+    assert.match(candidate.configurationId, /-v2$/);
 });

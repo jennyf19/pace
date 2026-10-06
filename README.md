@@ -437,8 +437,8 @@ deterministically before the final merge:
 ```powershell
 node .\examples\hosted-direct-owner-code-replay\run-hosted-direct-owner-code-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-code-v1" `
-  --samples 3
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-code-v2" `
+  --samples 5
 ```
 
 See `examples/hosted-direct-owner-code-replay/README.md` for the frozen

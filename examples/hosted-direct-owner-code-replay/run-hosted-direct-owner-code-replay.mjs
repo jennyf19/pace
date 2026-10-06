@@ -57,19 +57,19 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-owner-code-v1";
+const SOURCE_REVISION = "pace-hosted-direct-owner-code-v2";
 export const DIRECT_OWNER_ENCODING_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-direct-full-owner-low-v1",
-        experimentPrefix: "pace-direct-full-owner-low-v1",
+        configurationId: "pace-direct-full-owner-low-v2",
+        experimentPrefix: "pace-direct-full-owner-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         ownerEncoding: "full-owner-names"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-owner-code-low-v1",
-        experimentPrefix: "pace-direct-owner-code-low-v1",
+        configurationId: "pace-direct-owner-code-low-v2",
+        experimentPrefix: "pace-direct-owner-code-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -177,7 +177,7 @@ export async function runHostedDirectOwnerCodeReplay({
     providerConfigPath,
     accessToken = process.env.PACE_DIRECT_ACCESS_TOKEN,
     model = "gpt-5-mini",
-    samples = 3
+    samples = 5
 }) {
     if (!Number.isInteger(samples) || samples < 2) {
         throw new Error("samples must be an integer of at least 2");
@@ -245,12 +245,12 @@ export async function runHostedDirectOwnerCodeReplay({
     const responsesUrl = `${providerConfig.endpoint.replace(/\/+$/, "")}/openai/v1/responses`;
     const baselineResponseFormat = buildResidualRoutesResponseFormat({
         input: sourceInput,
-        name: "full_owner_routes_64",
+        name: "full_owner_routes_64_v2",
         owners: sourceInput.allowed_owners
     });
     const candidateResponseFormat = buildResidualRoutesResponseFormat({
         input: sourceInput,
-        name: "owner_code_routes_64",
+        name: "owner_code_routes_64_v2",
         owners: sourceInput.allowed_owners.map(
             (owner) => OWNER_CODE_BY_NAME[owner]
         )
@@ -282,7 +282,7 @@ export async function runHostedDirectOwnerCodeReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-code-v1",
+        experiment: "direct-owner-code-v2",
         model_boundary: "direct-response",
         owner_encoding:
             DIRECT_OWNER_ENCODING_TREATMENTS.baseline.ownerEncoding,
@@ -306,7 +306,7 @@ export async function runHostedDirectOwnerCodeReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-owner-code-v1",
+        experiment: "direct-owner-code-v2",
         model_boundary: "direct-response",
         owner_encoding:
             DIRECT_OWNER_ENCODING_TREATMENTS.candidate.ownerEncoding,
@@ -520,7 +520,7 @@ export async function runHostedDirectOwnerCodeReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-owner-code-replay-v1",
+        replay_id: "pace-hosted-direct-owner-code-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -627,7 +627,7 @@ export async function runHostedDirectOwnerCodeReplay({
     const comparisonPath = join(output, "comparison.json");
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
-        comparison_id: "pace-hosted-direct-owner-code-comparison-v1",
+        comparison_id: "pace-hosted-direct-owner-code-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [

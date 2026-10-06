@@ -24,8 +24,8 @@ $env:PACE_DIRECT_ACCESS_TOKEN = az account get-access-token `
 
 node .\examples\hosted-direct-owner-code-replay\run-hosted-direct-owner-code-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-code-v1" `
-  --samples 3
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-code-v2" `
+  --samples 5
 
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 ```
@@ -36,6 +36,9 @@ avoid increasing input-token p50 or wall-time p90.
 The first three-sample result preserved exact quality while reducing
 output-token p50 by 16.67%, reasoning-token p50 by 26.32%, and wall-time p90
 by 11.72%. See `measured-result-2026-10-06.md`.
+
+The current v2 entrypoint repeats the same treatment with fresh identities and
+a balanced five-sample cohort.
 
 The provider may bill direct requests independently of Copilot. Pace leaves
 provider AI-unit, premium-request, and cache-write fields incomplete rather
