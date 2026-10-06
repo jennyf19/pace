@@ -4,7 +4,7 @@ import {
 } from "../hosted-hybrid-replay/prepare-hybrid.mjs";
 
 const SCHEMA_VERSION = "0.1";
-export const PARTITION_SIZE = 16;
+export const PARTITION_SIZE = 32;
 
 function requirePositiveInteger(value, label) {
     if (!Number.isInteger(value) || value < 1) {

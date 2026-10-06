@@ -479,17 +479,19 @@ comparison. See
 ## Partition the 64-finding direct request
 
 The request-partition scenario returns to the validated four-owner workload.
-It compares one 64-finding direct request with four contiguous 16-finding
-requests launched concurrently:
+Its current treatment compares one 64-finding direct request with two
+contiguous 32-finding requests launched concurrently:
 
 ```powershell
 node .\examples\hosted-direct-request-partition-replay\run-hosted-direct-request-partition-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-request-partition-v1" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-request-partition-v2" `
   --samples 3
 ```
 
-The candidate sums tokens and API time across all four calls while wall time
+The v1 four-by-16 discovery preserved exact quality and cut wall-time p90
+64.01%, but increased input-token p50 45.42% and output-token p50 14.95%.
+The v2 midpoint sums tokens and API time across both calls while wall time
 records their observed parallel span. Every partition is strict-schema and
 fail-closed before deterministic final merge. See
 `examples/hosted-direct-request-partition-replay/README.md`.

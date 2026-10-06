@@ -27,12 +27,12 @@ test("partitioned residual preserves all 64 findings in order", async () => {
     const result = buildPartitionedResidualInput(input);
 
     assert.equal(result.partition_size, PARTITION_SIZE);
-    assert.equal(result.partition_count, 4);
+    assert.equal(result.partition_count, 2);
     assert.deepEqual(
         result.partitions.map(
             (partition) => partition.residual_findings.length
         ),
-        [16, 16, 16, 16]
+        [32, 32]
     );
     assert.deepEqual(
         result.partitions.flatMap((partition) =>
@@ -46,18 +46,18 @@ test("partitioned residual preserves all 64 findings in order", async () => {
     }
 });
 
-test("partition response schema freezes only its 16 route ids", async () => {
+test("partition response schema freezes only its 32 route ids", async () => {
     const input = await readFile(inputUrl, "utf8").then(JSON.parse);
     const partition =
         buildPartitionedResidualInput(input).partitions[1];
     const format = buildPartitionResponseFormat(
         partition,
-        "partition_routes_16_2_v1"
+        "partition_routes_32_2_v2"
     );
     const routes = format.schema.properties.routes;
 
-    assert.equal(routes.minItems, 16);
-    assert.equal(routes.maxItems, 16);
+    assert.equal(routes.minItems, 32);
+    assert.equal(routes.maxItems, 32);
     assert.deepEqual(
         routes.items.properties.id.enum,
         partition.residual_findings.map((finding) => finding.id)
@@ -141,11 +141,11 @@ test("request partition replay changes only request topology", () => {
     assert.equal(baseline.partitionSize, 64);
     assert.equal(
         candidate.requestTopology,
-        "four-parallel-contiguous-partitions"
+        "two-parallel-contiguous-partitions"
     );
-    assert.equal(candidate.requestCount, 4);
-    assert.equal(candidate.parallelism, 4);
-    assert.equal(candidate.partitionSize, 16);
-    assert.match(baseline.configurationId, /-v1$/);
-    assert.match(candidate.configurationId, /-v1$/);
+    assert.equal(candidate.requestCount, 2);
+    assert.equal(candidate.parallelism, 2);
+    assert.equal(candidate.partitionSize, 32);
+    assert.match(baseline.configurationId, /-v2$/);
+    assert.match(candidate.configurationId, /-v2$/);
 });

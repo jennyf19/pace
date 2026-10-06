@@ -70,13 +70,13 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-scaled-routing-64-corpus-v2";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-request-partition-v1";
+const SOURCE_REVISION = "pace-hosted-direct-request-partition-v2";
 const MAX_OUTPUT_TOKENS = 2048;
 
 export const DIRECT_REQUEST_PARTITION_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-direct-monolithic-64-full-owner-low-v1",
-        experimentPrefix: "pace-direct-monolithic-64-full-owner-low-v1",
+        configurationId: "pace-direct-monolithic-64-full-owner-low-v2",
+        experimentPrefix: "pace-direct-monolithic-64-full-owner-low-v2",
         reasoningEffort: "low",
         requestTopology: "one-monolithic-request",
         requestCount: 1,
@@ -84,12 +84,12 @@ export const DIRECT_REQUEST_PARTITION_TREATMENTS = Object.freeze({
         partitionSize: 64
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-parallel-4x16-full-owner-low-v1",
-        experimentPrefix: "pace-direct-parallel-4x16-full-owner-low-v1",
+        configurationId: "pace-direct-parallel-2x32-full-owner-low-v2",
+        experimentPrefix: "pace-direct-parallel-2x32-full-owner-low-v2",
         reasoningEffort: "low",
-        requestTopology: "four-parallel-contiguous-partitions",
-        requestCount: 4,
-        parallelism: 4,
+        requestTopology: "two-parallel-contiguous-partitions",
+        requestCount: 2,
+        parallelism: 2,
         partitionSize: PARTITION_SIZE
     })
 });
@@ -378,14 +378,14 @@ export async function runHostedDirectRequestPartitionReplay({
     const baselineResidual = buildResidualInput(sourceInput);
     const baselineResponseFormat = buildPartitionResponseFormat(
         baselineResidual,
-        "monolithic_routes_64_v1"
+        "monolithic_routes_64_v2"
     );
     const candidatePartitioned = buildPartitionedResidualInput(sourceInput);
     const candidateResponseFormats =
         candidatePartitioned.partitions.map((partition, index) =>
             buildPartitionResponseFormat(
                 partition,
-                `partition_routes_16_${index + 1}_v1`
+                `partition_routes_32_${index + 1}_v2`
             )
         );
     const directSignature = directModelRuntimeSignature({
@@ -405,7 +405,7 @@ export async function runHostedDirectRequestPartitionReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-request-partition-v1",
+        experiment: "direct-request-partition-v2",
         model_boundary: "direct-response",
         owner_encoding: "full-owner-names",
         request_topology:
@@ -430,7 +430,7 @@ export async function runHostedDirectRequestPartitionReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-request-partition-v1",
+        experiment: "direct-request-partition-v2",
         model_boundary: "direct-response",
         owner_encoding: "full-owner-names",
         request_topology:
@@ -658,7 +658,7 @@ export async function runHostedDirectRequestPartitionReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-request-partition-replay-v1",
+        replay_id: "pace-hosted-direct-request-partition-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -766,7 +766,7 @@ export async function runHostedDirectRequestPartitionReplay({
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
         comparison_id:
-            "pace-hosted-direct-request-partition-comparison-v1",
+            "pace-hosted-direct-request-partition-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [
