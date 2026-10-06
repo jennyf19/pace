@@ -500,6 +500,22 @@ findings. The v0.17.0 keep is a discovery result, not a stable recommendation.
 See
 `examples/hosted-direct-owner-vector-replay/replication-result-2026-10-06.md`.
 
+## Preserve explicit IDs with compact owner pairs
+
+The owner-pair scenario starts fresh after the positional treatment closed. It
+keeps every finding ID adjacent to its owner while removing repeated `id` and
+`owner` field names:
+
+```powershell
+node .\examples\hosted-direct-owner-pair-replay\run-hosted-direct-owner-pair-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-owner-pair-replay/README.md` for the strict tuple
+schema, exact ID validation, and quality contract.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

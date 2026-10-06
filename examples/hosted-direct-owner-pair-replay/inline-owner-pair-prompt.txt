@@ -1,0 +1,5 @@
+Assign each residual finding to one allowed owner using owner_taxonomy and its description.
+The complete residual input JSON is appended.
+Reply with only minified JSON:
+{"schema_version":"0.1","pairs":[["H001","identity"]]}
+Return one [finding_id,owner] pair per residual finding in residual_findings order. Copy each finding ID exactly. No markdown or explanation.
