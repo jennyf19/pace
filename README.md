@@ -556,6 +556,23 @@ deployment-versus-database ambiguity. The workload is disqualified rather than
 repaired. See
 `examples/hosted-direct-owner-pair-independent-replay/measured-result-2026-10-06.md`.
 
+## Qualify explicit pairs on BANKING77
+
+The BANKING77 scenario uses an externally labeled, CC BY 4.0 intent dataset
+from PolyAI. A deterministic rule selects five official test intents and eight
+examples per intent from a pinned upstream commit:
+
+```powershell
+node .\examples\hosted-direct-owner-pair-banking77-replay\run-hosted-direct-owner-pair-banking77-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-banking77-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-owner-pair-banking77-replay/README.md` for
+upstream hashes, attribution, license, selection rule, and the unchanged pair
+treatment.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

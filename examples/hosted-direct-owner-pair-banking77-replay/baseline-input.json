@@ -1,0 +1,304 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "banking77-test-index-step15-5x8-v1",
+  "deterministic_confidence_threshold": 1,
+  "allowed_owners": [
+    "card_arrival",
+    "top_up_by_bank_transfer_charge",
+    "unable_to_verify_identity",
+    "declined_card_payment",
+    "getting_spare_card"
+  ],
+  "severity_order": [
+    "medium"
+  ],
+  "owner_taxonomy": {
+    "card_arrival": "card arrival",
+    "top_up_by_bank_transfer_charge": "top up by bank transfer charge",
+    "unable_to_verify_identity": "unable to verify identity",
+    "declined_card_payment": "declined card payment",
+    "getting_spare_card": "getting spare card"
+  },
+  "findings": [
+    {
+      "id": "B77-0002",
+      "severity": "medium",
+      "description": "How do I locate my card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0003",
+      "severity": "medium",
+      "description": "I still have not received my new card, I ordered over a week ago.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0004",
+      "severity": "medium",
+      "description": "I ordered a card but it has not arrived. Help please!",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0005",
+      "severity": "medium",
+      "description": "Is there a way to know when my card will arrive?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0006",
+      "severity": "medium",
+      "description": "My card has not arrived yet.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0007",
+      "severity": "medium",
+      "description": "When will I get my card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0008",
+      "severity": "medium",
+      "description": "Do you know if there is a tracking number for the new card you sent me?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0009",
+      "severity": "medium",
+      "description": "i have not received my card",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0602",
+      "severity": "medium",
+      "description": "how much do you charge to accept transfers",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0603",
+      "severity": "medium",
+      "description": "I would like to make a transfer. How much does it cost?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0604",
+      "severity": "medium",
+      "description": "I need to make a transfer, what will the fee be?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0605",
+      "severity": "medium",
+      "description": "If I make a top-up are there charges applied?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0606",
+      "severity": "medium",
+      "description": "Can I also transfer with SWIFT?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0607",
+      "severity": "medium",
+      "description": "Are SWIFT transfers accepted?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0608",
+      "severity": "medium",
+      "description": "I would like to refill my account using SWIFT.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0609",
+      "severity": "medium",
+      "description": "Do I have to pay for topping up by transfer?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1202",
+      "severity": "medium",
+      "description": "I cannot verify my identity",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1203",
+      "severity": "medium",
+      "description": "I do not have what is required to prove my identity",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1204",
+      "severity": "medium",
+      "description": "Why doesn't the app believe I am who I say I am?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1205",
+      "severity": "medium",
+      "description": "I am having trouble verifying my identity.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1206",
+      "severity": "medium",
+      "description": "what do i do if my verification failed",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1207",
+      "severity": "medium",
+      "description": "It is impossible to verify my identity",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1208",
+      "severity": "medium",
+      "description": "The app doesn't know it's me.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1209",
+      "severity": "medium",
+      "description": "I'm having trouble verifying my ID.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1802",
+      "severity": "medium",
+      "description": "My credit card was declined.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1803",
+      "severity": "medium",
+      "description": "The new card that was just sent to me was declined multiple times yesterday when I tried to use it at a restaurant to pay for my dinner.  I am really disappointed  and embarrassed that my card was denied when I tried to use it to pay for my friend's birthday dinner.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1804",
+      "severity": "medium",
+      "description": "Why was my card payment declined?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1805",
+      "severity": "medium",
+      "description": "I was trying to purchase something at the store today and my card has been declined.  Why has this happened?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1806",
+      "severity": "medium",
+      "description": "My payment has been declined, I thought this issue was fixed!",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1807",
+      "severity": "medium",
+      "description": "My card was declined in a shop",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1808",
+      "severity": "medium",
+      "description": "Why did it decline my payment?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1809",
+      "severity": "medium",
+      "description": "My card declined",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2402",
+      "severity": "medium",
+      "description": "Would it be possible to get another card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2403",
+      "severity": "medium",
+      "description": "How many cards can I have for one account?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2404",
+      "severity": "medium",
+      "description": "I want to order another crad",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2405",
+      "severity": "medium",
+      "description": "How can I get additional cards?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2406",
+      "severity": "medium",
+      "description": "Is there a fee for extra cards?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2407",
+      "severity": "medium",
+      "description": "I need some spare physical cards.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2408",
+      "severity": "medium",
+      "description": "I would like to receive a few more physical cards.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2409",
+      "severity": "medium",
+      "description": "Can I have a card after my first one?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    }
+  ]
+}

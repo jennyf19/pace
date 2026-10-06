@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "banking77-test-index-step15-5x8-v1",
+  "batches": [
+    {
+      "owner": "card_arrival",
+      "finding_ids": [
+        "B77-0002",
+        "B77-0003",
+        "B77-0004",
+        "B77-0005",
+        "B77-0006",
+        "B77-0007",
+        "B77-0008",
+        "B77-0009"
+      ],
+      "counts": {
+        "medium": 8,
+        "total": 8
+      }
+    },
+    {
+      "owner": "top_up_by_bank_transfer_charge",
+      "finding_ids": [
+        "B77-0602",
+        "B77-0603",
+        "B77-0604",
+        "B77-0605",
+        "B77-0606",
+        "B77-0607",
+        "B77-0608",
+        "B77-0609"
+      ],
+      "counts": {
+        "medium": 8,
+        "total": 8
+      }
+    },
+    {
+      "owner": "unable_to_verify_identity",
+      "finding_ids": [
+        "B77-1202",
+        "B77-1203",
+        "B77-1204",
+        "B77-1205",
+        "B77-1206",
+        "B77-1207",
+        "B77-1208",
+        "B77-1209"
+      ],
+      "counts": {
+        "medium": 8,
+        "total": 8
+      }
+    },
+    {
+      "owner": "declined_card_payment",
+      "finding_ids": [
+        "B77-1802",
+        "B77-1803",
+        "B77-1804",
+        "B77-1805",
+        "B77-1806",
+        "B77-1807",
+        "B77-1808",
+        "B77-1809"
+      ],
+      "counts": {
+        "medium": 8,
+        "total": 8
+      }
+    },
+    {
+      "owner": "getting_spare_card",
+      "finding_ids": [
+        "B77-2402",
+        "B77-2403",
+        "B77-2404",
+        "B77-2405",
+        "B77-2406",
+        "B77-2407",
+        "B77-2408",
+        "B77-2409"
+      ],
+      "counts": {
+        "medium": 8,
+        "total": 8
+      }
+    }
+  ],
+  "summary": {
+    "input_findings": 40,
+    "deterministic_findings": 0,
+    "residual_findings": 40,
+    "owners": 5
+  }
+}

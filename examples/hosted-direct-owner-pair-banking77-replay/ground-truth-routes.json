@@ -1,0 +1,165 @@
+{
+  "schema_version": "0.1",
+  "routes": [
+    {
+      "id": "B77-0002",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0003",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0004",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0005",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0006",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0007",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0008",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0009",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0602",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0603",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0604",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0605",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0606",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0607",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0608",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-0609",
+      "owner": "top_up_by_bank_transfer_charge"
+    },
+    {
+      "id": "B77-1202",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1203",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1204",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1205",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1206",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1207",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1208",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1209",
+      "owner": "unable_to_verify_identity"
+    },
+    {
+      "id": "B77-1802",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1803",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1804",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1805",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1806",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1807",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1808",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-1809",
+      "owner": "declined_card_payment"
+    },
+    {
+      "id": "B77-2402",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2403",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2404",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2405",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2406",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2407",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2408",
+      "owner": "getting_spare_card"
+    },
+    {
+      "id": "B77-2409",
+      "owner": "getting_spare_card"
+    }
+  ]
+}
