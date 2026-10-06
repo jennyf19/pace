@@ -31,8 +31,8 @@ $env:PACE_DIRECT_ACCESS_TOKEN = az account get-access-token `
 
 node .\examples\hosted-direct-model-boundary-replay\run-hosted-direct-model-boundary-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-model-boundary-v1" `
-  --samples 3
+  --out "$HOME\.copilot\pace-runs\hosted-direct-model-boundary-v2" `
+  --samples 5
 
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 ```
@@ -45,6 +45,9 @@ output, and latency metrics available on both sides.
 The first three-sample measured result is in
 `measured-result-2026-10-05.md`. It compares the same declared model name, not
 proven-identical model weights or serving stacks.
+
+The current v2 entrypoint repeats the same treatment with a balanced
+five-sample cohort and fresh replay/configuration identities.
 
 Only files under `receipts/` are intended to be shareable. Raw responses,
 provider configuration, component profiles, usage files, prompts, and

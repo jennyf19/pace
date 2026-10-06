@@ -53,19 +53,19 @@ const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
 const CORPUS_ID = "pace-hosted-hybrid-routing-corpus-v1";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-model-boundary-v1";
+const SOURCE_REVISION = "pace-hosted-direct-model-boundary-v2";
 export const DIRECT_MODEL_BOUNDARY_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-inline-copilot-low-v1",
-        experimentPrefix: "pace-inline-copilot-low-v1",
+        configurationId: "pace-inline-copilot-low-v2",
+        experimentPrefix: "pace-inline-copilot-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         boundary: "copilot-agent"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-responses-low-v1",
-        experimentPrefix: "pace-direct-responses-low-v1",
+        configurationId: "pace-direct-responses-low-v2",
+        experimentPrefix: "pace-direct-responses-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -178,7 +178,7 @@ export async function runHostedDirectModelBoundaryReplay({
     providerConfigPath,
     accessToken = process.env.PACE_DIRECT_ACCESS_TOKEN,
     model = "gpt-5-mini",
-    samples = 3,
+    samples = 5,
     maxAiCredits = 30,
     copilotCommand = process.env.COPILOT_COMMAND ?? "copilot"
 }) {
@@ -269,7 +269,7 @@ export async function runHostedDirectModelBoundaryReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-model-boundary-v1",
+        experiment: "direct-model-boundary-v2",
         model_boundary:
             DIRECT_MODEL_BOUNDARY_TREATMENTS.baseline.boundary,
         residual_transport:
@@ -286,7 +286,7 @@ export async function runHostedDirectModelBoundaryReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-model-boundary-v1",
+        experiment: "direct-model-boundary-v2",
         model_boundary:
             DIRECT_MODEL_BOUNDARY_TREATMENTS.candidate.boundary,
         residual_transport:
@@ -476,7 +476,7 @@ export async function runHostedDirectModelBoundaryReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-model-boundary-replay-v1",
+        replay_id: "pace-hosted-direct-model-boundary-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -571,7 +571,7 @@ export async function runHostedDirectModelBoundaryReplay({
     const comparisonPath = join(output, "comparison.json");
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
-        comparison_id: "pace-hosted-direct-model-boundary-comparison-v1",
+        comparison_id: "pace-hosted-direct-model-boundary-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [
