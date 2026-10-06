@@ -33,7 +33,7 @@ $env:PACE_DIRECT_ACCESS_TOKEN = az account get-access-token `
 
 node .\examples\hosted-direct-symbolic-label-replay\run-hosted-direct-symbolic-label-replay.mjs `
   --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
-  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v1" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-symbolic-label-v2" `
   --samples 3
 
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
@@ -41,6 +41,11 @@ Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 
 The candidate must preserve exact final quality, reduce output-token p50, and
 avoid increasing input-token p50 or wall-time p90.
+
+The first v1 baseline request exhausted the shared 2,048-token output ceiling
+and returned `incomplete` before a balanced cohort existed. The current v2
+source raises the ceiling to 4,096 for both cohorts and uses fresh source,
+configuration, replay, and comparison identities.
 
 The provider may bill direct requests independently. Pace leaves AI-unit,
 premium-request, and cache-write fields incomplete rather than inventing

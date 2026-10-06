@@ -206,8 +206,10 @@ test("symbolic-label replay changes only label representation", () => {
     assert.equal(baseline.reasoningEffort, "low");
     assert.equal(candidate.reasoningEffort, baseline.reasoningEffort);
     assert.equal(baseline.labelEncoding, "full-semantic-labels");
+    assert.match(baseline.configurationId, /-v2$/);
     assert.equal(
         candidate.labelEncoding,
         "single-character-symbols"
     );
+    assert.match(candidate.configurationId, /-v2$/);
 });

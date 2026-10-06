@@ -228,8 +228,12 @@ export async function runDirectModelSample({
         throw new Error(`direct model response is not JSON: ${error.message}`);
     }
     if (payload.status !== "completed") {
+        const incompleteReason =
+            typeof payload.incomplete_details?.reason === "string"
+                ? ` (${payload.incomplete_details.reason})`
+                : "";
         throw new Error(
-            `direct model response status must be completed, got ${payload.status ?? "missing"}`
+            `direct model response status must be completed, got ${payload.status ?? "missing"}${incompleteReason}`
         );
     }
     const stdout = extractOutputText(payload);

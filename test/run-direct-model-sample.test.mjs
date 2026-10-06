@@ -229,3 +229,40 @@ test("rejects insecure remote endpoints and missing usage", async () => {
         await rm(directory, { recursive: true, force: true });
     }
 });
+
+test("reports the provider reason for an incomplete response", async () => {
+    const directory = await mkdtemp(
+        join(tmpdir(), "pace-direct-model-incomplete-")
+    );
+    try {
+        await assert.rejects(
+            runDirectModelSample({
+                output: directory,
+                sampleName: "incomplete",
+                prompt: "prompt",
+                responsesUrl: "http://127.0.0.1:1234/v1/responses",
+                authorizationHeader: "******",
+                provider: "provider",
+                deployment: "deployment",
+                model: "model",
+                modelVersion: "1",
+                runIdPrefix: "run",
+                fetchImpl: async () =>
+                    new Response(
+                        JSON.stringify({
+                            id: "response",
+                            status: "incomplete",
+                            incomplete_details: {
+                                reason: "max_output_tokens"
+                            },
+                            model: "model"
+                        }),
+                        { status: 200 }
+                    )
+            }),
+            /got incomplete \(max_output_tokens\)/
+        );
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
+});

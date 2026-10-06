@@ -45,21 +45,22 @@ const HYBRID_DIRECTORY = resolve(
 );
 const ROOT_DIRECTORY = resolve(EXAMPLE_DIRECTORY, "..", "..");
 const RUNNER_PATH = fileURLToPath(import.meta.url);
+const MAX_OUTPUT_TOKENS = 4096;
 const CORPUS_ID = "pace-hosted-symbolic-routing-64-corpus-v1";
 const EVALUATOR_ID = "pace-exact-hybrid-routing-evaluator-v1";
-const SOURCE_REVISION = "pace-hosted-direct-symbolic-label-v1";
+const SOURCE_REVISION = "pace-hosted-direct-symbolic-label-v2";
 export const DIRECT_SYMBOLIC_LABEL_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
-        configurationId: "pace-direct-full-label-low-v1",
-        experimentPrefix: "pace-direct-full-label-low-v1",
+        configurationId: "pace-direct-full-label-low-v2",
+        experimentPrefix: "pace-direct-full-label-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
         labelEncoding: "full-semantic-labels"
     }),
     candidate: Object.freeze({
-        configurationId: "pace-direct-symbolic-label-low-v1",
-        experimentPrefix: "pace-direct-symbolic-label-low-v1",
+        configurationId: "pace-direct-symbolic-label-low-v2",
+        experimentPrefix: "pace-direct-symbolic-label-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -235,12 +236,12 @@ export async function runHostedDirectSymbolicLabelReplay({
     const responsesUrl = `${providerConfig.endpoint.replace(/\/+$/, "")}/openai/v1/responses`;
     const baselineResponseFormat = buildResidualRoutesResponseFormat({
         input: sourceInput,
-        name: "full_semantic_label_routes_64",
+        name: "full_semantic_label_routes_64_v2",
         owners: sourceInput.allowed_owners
     });
     const candidateResponseFormat = buildResidualRoutesResponseFormat({
         input: sourceInput,
-        name: "symbolic_label_routes_64",
+        name: "symbolic_label_routes_64_v2",
         owners: sourceInput.allowed_owners.map(
             (label) => SYMBOL_BY_LABEL[label]
         )
@@ -272,7 +273,7 @@ export async function runHostedDirectSymbolicLabelReplay({
     const candidateConfigPath = join(output, "candidate-config.json");
     writeJson(baselineConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-symbolic-label-v1",
+        experiment: "direct-symbolic-label-v2",
         model_boundary: "direct-response",
         label_encoding:
             DIRECT_SYMBOLIC_LABEL_TREATMENTS.baseline.labelEncoding,
@@ -286,6 +287,7 @@ export async function runHostedDirectSymbolicLabelReplay({
             "64 findings and eight full semantic labels appended inline",
         reasoning_effort:
             DIRECT_SYMBOLIC_LABEL_TREATMENTS.baseline.reasoningEffort,
+        max_output_tokens: MAX_OUTPUT_TOKENS,
         provider,
         api_version: apiVersion,
         model,
@@ -296,7 +298,7 @@ export async function runHostedDirectSymbolicLabelReplay({
     });
     writeJson(candidateConfigPath, {
         schema_version: SCHEMA_VERSION,
-        experiment: "direct-symbolic-label-v1",
+        experiment: "direct-symbolic-label-v2",
         model_boundary: "direct-response",
         label_encoding:
             DIRECT_SYMBOLIC_LABEL_TREATMENTS.candidate.labelEncoding,
@@ -311,6 +313,7 @@ export async function runHostedDirectSymbolicLabelReplay({
         symbol_map: SYMBOL_BY_LABEL,
         reasoning_effort:
             DIRECT_SYMBOLIC_LABEL_TREATMENTS.candidate.reasoningEffort,
+        max_output_tokens: MAX_OUTPUT_TOKENS,
         provider,
         api_version: apiVersion,
         model,
@@ -339,6 +342,7 @@ export async function runHostedDirectSymbolicLabelReplay({
                 deployment: providerConfig.deployment,
                 model,
                 modelVersion: providerConfig.model_version,
+                maxOutputTokens: MAX_OUTPUT_TOKENS,
                 responseFormat
             });
         const run = await runHybridCompositeSample({
@@ -510,7 +514,7 @@ export async function runHostedDirectSymbolicLabelReplay({
     const replayPath = join(output, "replay.json");
     writeJson(replayPath, {
         schema_version: SCHEMA_VERSION,
-        replay_id: "pace-hosted-direct-symbolic-label-replay-v1",
+        replay_id: "pace-hosted-direct-symbolic-label-replay-v2",
         evaluator: {
             id: EVALUATOR_ID,
             files: [
@@ -618,7 +622,7 @@ export async function runHostedDirectSymbolicLabelReplay({
     writeJson(comparisonPath, {
         schema_version: SCHEMA_VERSION,
         comparison_id:
-            "pace-hosted-direct-symbolic-label-comparison-v1",
+            "pace-hosted-direct-symbolic-label-comparison-v2",
         replay_manifest: "replay.json",
         quality_result: "quality.json",
         decision_metrics: [
