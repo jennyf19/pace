@@ -41,6 +41,14 @@ p90 fell 9.451%. See `measured-result-2026-10-06.md`.
 The current v4 treatment is an unchanged balanced `n=5` replication under
 fresh source, configuration, replay, and comparison identities.
 
+V4 returned `reject`. Baseline passed 5/5 and anchored owner blocks passed 4/5.
+One structurally valid candidate returned `identity` for all 64 positions,
+misrouting the other 48 findings. Descriptive input, output, and wall time
+improved, but quality failed. See `replication-result-2026-10-06.md`.
+
+The v0.17.0 discovery keep is therefore not a stable recommendation. Future
+response compression should retain explicit per-finding IDs.
+
 Run after supplying the private provider configuration and a short-lived token:
 
 ```powershell

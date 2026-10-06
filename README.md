@@ -494,6 +494,12 @@ node .\examples\hosted-direct-owner-vector-replay\run-hosted-direct-owner-vector
   --samples 5
 ```
 
+The replication returned `reject`: baseline passed 5/5 and anchored blocks
+passed 4/5 after one structurally valid response assigned `identity` to all 64
+findings. The v0.17.0 keep is a discovery result, not a stable recommendation.
+See
+`examples/hosted-direct-owner-vector-replay/replication-result-2026-10-06.md`.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

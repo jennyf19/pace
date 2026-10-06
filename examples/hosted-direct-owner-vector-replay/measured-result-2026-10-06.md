@@ -4,6 +4,11 @@
 - **Status:** Descriptive `n=3` discovery sequence
 - **Final disposition:** `keep`
 
+> **Replication update:** The unchanged balanced `n=5` replication passed
+> exact quality only 4/5 and returned `reject`. The keep below is a discovery
+> result, not a stable recommendation. See
+> `replication-result-2026-10-06.md`.
+
 ## Question
 
 The direct 64-finding response repeated every finding ID inside 64
