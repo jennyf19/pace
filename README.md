@@ -393,6 +393,11 @@ node .\examples\hosted-direct-schema-replay\run-hosted-direct-schema-replay.mjs 
 See `examples/hosted-direct-schema-replay/README.md` for the frozen treatment
 and private-provider boundary.
 
+The first three-sample result preserved exact quality but returned `revise`:
+prompt-only output reduced input-token p50 20% while increasing output-token
+p50 3.47% and reasoning-token p50 50%. See
+`examples/hosted-direct-schema-replay/measured-result-2026-10-06.md`.
+
 ## Analyze context snapshots
 
 `analyze-context-snapshots.mjs` compares final session context composition
