@@ -449,6 +449,11 @@ output-token p50 by 16.67%, reasoning-token p50 by 26.32%, and wall-time p90
 by 11.72%. See
 `examples/hosted-direct-owner-code-replay/measured-result-2026-10-06.md`.
 
+The five-sample replication preserved exact quality and reproduced the
+directional win: output-token p50 fell 4.50%, reasoning-token p50 fell 6.67%,
+and wall-time p90 fell 24.94%. See
+`examples/hosted-direct-owner-code-replay/replication-result-2026-10-06.md`.
+
 ## Isolate strict structured output
 
 The schema scenario stays entirely inside the direct boundary. It compares the

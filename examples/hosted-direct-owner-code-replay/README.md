@@ -40,6 +40,10 @@ by 11.72%. See `measured-result-2026-10-06.md`.
 The current v2 entrypoint repeats the same treatment with fresh identities and
 a balanced five-sample cohort.
 
+The five-sample replication preserved exact quality while reducing
+output-token p50 by 4.50%, reasoning-token p50 by 6.67%, and wall-time p90 by
+24.94%. See `replication-result-2026-10-06.md`.
+
 The provider may bill direct requests independently of Copilot. Pace leaves
 provider AI-unit, premium-request, and cache-write fields incomplete rather
 than inventing zeros.
