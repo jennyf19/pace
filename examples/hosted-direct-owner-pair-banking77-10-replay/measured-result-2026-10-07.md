@@ -56,9 +56,28 @@ For the unchanged v2 `n=5` replication:
    `ECONNRESET`;
 2. a fresh-output `n=2` probe failed with `ECONNRESET`;
 3. a second probe after a two-minute cooldown also failed with `ECONNRESET`.
+4. a later retry from the exact frozen source tree failed on its first model
+   request with `ECONNRESET`.
 
 No balanced `n=5` cohort exists. Partial attempts and probes remain outside the
 repository and contribute no profiles to the discovery comparison.
+
+## Transport isolation
+
+The later retry separated provider state from the client path:
+
+- DNS resolution and TCP port 443 connectivity succeeded;
+- Node `fetch` and `curl --http1.1` both reset on the Responses route;
+- unauthenticated and deliberately invalid-auth POSTs reset in the same way,
+  so the failure is not specific to the bearer token;
+- the Azure account, deployment, and Resource Health control-plane views all
+  reported healthy or succeeded states;
+- the resource recorded 199 successful calls in the preceding 24 hours but
+  recorded zero calls or errors for the recent reset window.
+
+This supports an upstream transport-path failure before Azure request
+accounting, but it does not identify the failing network component. It does not
+change the experiment stopping rule.
 
 ## Interpretation
 

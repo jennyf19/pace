@@ -1,8 +1,8 @@
 # Explicit-pair wire-cost analysis
 
 This model-free analysis reconstructs the exact prompts, strict response
-schemas, and expected minified outputs used by Pace's three qualified
-route-object versus explicit-pair scenarios.
+schemas, and expected minified outputs used by three prior exact-quality
+route-object versus explicit-pair cohorts.
 
 It answers a narrow question:
 
@@ -24,3 +24,11 @@ expected result before their sizes are reported.
 The result can rank representations for later model experiments. It cannot
 predict tokenizer behavior, latency, or semantic quality, and it cannot replace
 the exact-quality gate.
+
+Across the frozen 64-item and 40-item workloads, explicit pairs remove exactly
+13 bytes per item plus one byte from the shorter `pairs` container key. The
+full serialized request saves only 79 to 90 bytes, while the expected minified
+output saves 521 to 833 bytes.
+
+See `measured-result-2026-10-07.md` for the cross-scenario result and evidence
+boundaries.

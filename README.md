@@ -623,8 +623,33 @@ node .\examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-o
 
 The unchanged `n=5` replication is transport-blocked by repeated
 `ECONNRESET` failures; no balanced cohort exists and no partial profiles are
-included. See
+included. A later exact-tree retry and both authenticated and unauthenticated
+`curl` probes also reset, while Azure control-plane health remained available
+and the attempts produced zero service-side calls. This localizes the current
+blocker before Azure request accounting without identifying the failing
+network component. See
 `examples/hosted-direct-owner-pair-banking77-10-replay/measured-result-2026-10-07.md`.
+
+## Screen explicit-pair wire cost without model calls
+
+The model-free wire-cost analysis reconstructs the exact prompts, strict
+schemas, and expected outputs for the three prior exact-quality explicit-pair
+cohorts:
+
+```powershell
+node .\examples\explicit-pair-wire-cost\analyze-explicit-pair-wire-cost.mjs `
+  --out .\examples\explicit-pair-wire-cost\wire-cost-result.json
+```
+
+Explicit pairs save exactly 13 output bytes per item plus one byte from the
+shorter `pairs` key. Across the frozen workloads, full request savings were 79
+to 90 bytes and expected minified-output savings were 521 to 833 bytes. The
+static direction matched observed token direction, but byte-to-token conversion
+varied materially.
+
+Use this result to prioritize later cohorts, never to predict latency or bypass
+exact semantic quality. See
+`examples/explicit-pair-wire-cost/measured-result-2026-10-07.md`.
 
 ## Generalize symbolic labels to eight categories
 
