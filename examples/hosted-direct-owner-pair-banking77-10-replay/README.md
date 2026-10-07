@@ -43,6 +43,12 @@ and wall-time p90 fell 19.859%.
 The current v2 treatment is an unchanged balanced `n=5` replication under
 fresh identities.
 
+The v2 replication is currently transport-blocked. One attempt completed one
+response before `ECONNRESET`; two fresh-output probes also failed with
+`ECONNRESET`, including one after a two-minute cooldown. No balanced `n=5`
+cohort exists, and no partial evidence is included. See
+`measured-result-2026-10-07.md`.
+
 ```powershell
 $env:PACE_DIRECT_ACCESS_TOKEN = "<short-lived-token>"
 node examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-owner-pair-banking77-10-replay.mjs `

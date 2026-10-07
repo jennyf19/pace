@@ -621,6 +621,11 @@ node .\examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-o
   --samples 5
 ```
 
+The unchanged `n=5` replication is transport-blocked by repeated
+`ECONNRESET` failures; no balanced cohort exists and no partial profiles are
+included. See
+`examples/hosted-direct-owner-pair-banking77-10-replay/measured-result-2026-10-07.md`.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles
