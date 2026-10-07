@@ -1,0 +1,18 @@
+{
+  "id": "banking77-test-index-step8-10x4-v1",
+  "batch_id": "banking77-test-index-step8-10x4-v1",
+  "category_indexes": [
+    0,
+    8,
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    64,
+    72
+  ],
+  "examples_per_category": 4,
+  "rule": "official category indexes 0,8,16,24,32,40,48,56,64,72; first four matching test rows in upstream order"
+}

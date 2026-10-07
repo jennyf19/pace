@@ -1,0 +1,351 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "dataset": "BANKING77",
+    "repository": "https://github.com/PolyAI-LDN/task-specific-datasets",
+    "commit": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+    "split": "test",
+    "license": "CC BY 4.0"
+  },
+  "selection": {
+    "id": "banking77-test-index-step8-10x4-v1",
+    "category_indexes": [
+      0,
+      8,
+      16,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64,
+      72
+    ],
+    "examples_per_category": 4,
+    "rule": "official category indexes 0,8,16,24,32,40,48,56,64,72; first four matching test rows in upstream order"
+  },
+  "labels": [
+    {
+      "index": 0,
+      "label": "card_arrival"
+    },
+    {
+      "index": 8,
+      "label": "automatic_top_up"
+    },
+    {
+      "index": 16,
+      "label": "pending_top_up"
+    },
+    {
+      "index": 24,
+      "label": "card_acceptance"
+    },
+    {
+      "index": 32,
+      "label": "visa_or_mastercard"
+    },
+    {
+      "index": 40,
+      "label": "pending_card_payment"
+    },
+    {
+      "index": 48,
+      "label": "card_swallowed"
+    },
+    {
+      "index": 56,
+      "label": "receiving_money"
+    },
+    {
+      "index": 64,
+      "label": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "index": 72,
+      "label": "cash_withdrawal_charge"
+    }
+  ],
+  "examples": [
+    {
+      "id": "B77-0002",
+      "source_row": 2,
+      "category_index": 0,
+      "text": "How do I locate my card?",
+      "label": "card_arrival"
+    },
+    {
+      "id": "B77-0003",
+      "source_row": 3,
+      "category_index": 0,
+      "text": "I still have not received my new card, I ordered over a week ago.",
+      "label": "card_arrival"
+    },
+    {
+      "id": "B77-0004",
+      "source_row": 4,
+      "category_index": 0,
+      "text": "I ordered a card but it has not arrived. Help please!",
+      "label": "card_arrival"
+    },
+    {
+      "id": "B77-0005",
+      "source_row": 5,
+      "category_index": 0,
+      "text": "Is there a way to know when my card will arrive?",
+      "label": "card_arrival"
+    },
+    {
+      "id": "B77-0322",
+      "source_row": 322,
+      "category_index": 8,
+      "text": "When traveling, can I auto top-up my card at certain times?",
+      "label": "automatic_top_up"
+    },
+    {
+      "id": "B77-0323",
+      "source_row": 323,
+      "category_index": 8,
+      "text": "Is there a limit when using auto top-up?",
+      "label": "automatic_top_up"
+    },
+    {
+      "id": "B77-0324",
+      "source_row": 324,
+      "category_index": 8,
+      "text": "Will it automatically top-up or do I need to do that manually if there isn't much cash left?",
+      "label": "automatic_top_up"
+    },
+    {
+      "id": "B77-0325",
+      "source_row": 325,
+      "category_index": 8,
+      "text": "I'm running out of money, can I  auto top up?",
+      "label": "automatic_top_up"
+    },
+    {
+      "id": "B77-0642",
+      "source_row": 642,
+      "category_index": 16,
+      "text": "new customer and filling gas today, it's not working, the thing shows pending half an hour!",
+      "label": "pending_top_up"
+    },
+    {
+      "id": "B77-0643",
+      "source_row": 643,
+      "category_index": 16,
+      "text": "My card was topped this morning but I can't see the funds. Why didn't it complete?",
+      "label": "pending_top_up"
+    },
+    {
+      "id": "B77-0644",
+      "source_row": 644,
+      "category_index": 16,
+      "text": "What would lead to my top up still pending?",
+      "label": "pending_top_up"
+    },
+    {
+      "id": "B77-0645",
+      "source_row": 645,
+      "category_index": 16,
+      "text": "there's a delay in my top-up",
+      "label": "pending_top_up"
+    },
+    {
+      "id": "B77-0962",
+      "source_row": 962,
+      "category_index": 24,
+      "text": "Will my card be accepted all over the world?",
+      "label": "card_acceptance"
+    },
+    {
+      "id": "B77-0963",
+      "source_row": 963,
+      "category_index": 24,
+      "text": "Who accepts this card?",
+      "label": "card_acceptance"
+    },
+    {
+      "id": "B77-0964",
+      "source_row": 964,
+      "category_index": 24,
+      "text": "Can I use my card for payment all over the world?",
+      "label": "card_acceptance"
+    },
+    {
+      "id": "B77-0965",
+      "source_row": 965,
+      "category_index": 24,
+      "text": "It will be fine to use at any establishment that accepts Mastercard.",
+      "label": "card_acceptance"
+    },
+    {
+      "id": "B77-1282",
+      "source_row": 1282,
+      "category_index": 32,
+      "text": "I like to Mastercard rather than Visa.",
+      "label": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1283",
+      "source_row": 1283,
+      "category_index": 32,
+      "text": "Do I qualify for a visa card?",
+      "label": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1284",
+      "source_row": 1284,
+      "category_index": 32,
+      "text": "How do I get a visa card?",
+      "label": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1285",
+      "source_row": 1285,
+      "category_index": 32,
+      "text": "Do you guys accept Visa or Mastercard?",
+      "label": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1602",
+      "source_row": 1602,
+      "category_index": 40,
+      "text": "My card payment is still on hold, why is it so?",
+      "label": "pending_card_payment"
+    },
+    {
+      "id": "B77-1603",
+      "source_row": 1603,
+      "category_index": 40,
+      "text": "Why is my payment pending?",
+      "label": "pending_card_payment"
+    },
+    {
+      "id": "B77-1604",
+      "source_row": 1604,
+      "category_index": 40,
+      "text": "My card payment is still pending.",
+      "label": "pending_card_payment"
+    },
+    {
+      "id": "B77-1605",
+      "source_row": 1605,
+      "category_index": 40,
+      "text": "How do i finalize a card payment",
+      "label": "pending_card_payment"
+    },
+    {
+      "id": "B77-1922",
+      "source_row": 1922,
+      "category_index": 48,
+      "text": "What do I do if an ATM \"stole\" my card?",
+      "label": "card_swallowed"
+    },
+    {
+      "id": "B77-1923",
+      "source_row": 1923,
+      "category_index": 48,
+      "text": "How do I retrieve my card from the machine?",
+      "label": "card_swallowed"
+    },
+    {
+      "id": "B77-1924",
+      "source_row": 1924,
+      "category_index": 48,
+      "text": "I was retrieving money and my card wouldn't remove.",
+      "label": "card_swallowed"
+    },
+    {
+      "id": "B77-1925",
+      "source_row": 1925,
+      "category_index": 48,
+      "text": "What do I do since the machine swallowed my card. I need one.",
+      "label": "card_swallowed"
+    },
+    {
+      "id": "B77-2242",
+      "source_row": 2242,
+      "category_index": 56,
+      "text": "Will salary be received through this?",
+      "label": "receiving_money"
+    },
+    {
+      "id": "B77-2243",
+      "source_row": 2243,
+      "category_index": 56,
+      "text": "How can I get paid in a different currency?",
+      "label": "receiving_money"
+    },
+    {
+      "id": "B77-2244",
+      "source_row": 2244,
+      "category_index": 56,
+      "text": "Can I receive my salary in a currency other than what it is deposited in?",
+      "label": "receiving_money"
+    },
+    {
+      "id": "B77-2245",
+      "source_row": 2245,
+      "category_index": 56,
+      "text": "Can I get my salary through this?",
+      "label": "receiving_money"
+    },
+    {
+      "id": "B77-2562",
+      "source_row": 2562,
+      "category_index": 64,
+      "text": "I did not get the right amount of money when I used a different country's currency.",
+      "label": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2563",
+      "source_row": 2563,
+      "category_index": 64,
+      "text": "I took out money from a transaction machine and it exchanged the wrong dollar value amount from another currency!",
+      "label": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2564",
+      "source_row": 2564,
+      "category_index": 64,
+      "text": "I made a withdraw from the ATM this past holiday and it seems like a was charged too much. If I would have   known about these charges I wouldn't have made a withdraw.",
+      "label": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2565",
+      "source_row": 2565,
+      "category_index": 64,
+      "text": "Can you look to make sure the exchange rate is correct",
+      "label": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2882",
+      "source_row": 2882,
+      "category_index": 72,
+      "text": "I see some fees for cash withdraw.",
+      "label": "cash_withdrawal_charge"
+    },
+    {
+      "id": "B77-2883",
+      "source_row": 2883,
+      "category_index": 72,
+      "text": "How come I was charged extra when I withdrew cash?",
+      "label": "cash_withdrawal_charge"
+    },
+    {
+      "id": "B77-2884",
+      "source_row": 2884,
+      "category_index": 72,
+      "text": "Why am I being charged when I withdraw cash?",
+      "label": "cash_withdrawal_charge"
+    },
+    {
+      "id": "B77-2885",
+      "source_row": 2885,
+      "category_index": 72,
+      "text": "What is this charge on my account for a cash withdrawl?",
+      "label": "cash_withdrawal_charge"
+    }
+  ]
+}

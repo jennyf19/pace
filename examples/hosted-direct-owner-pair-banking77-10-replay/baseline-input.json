@@ -1,0 +1,314 @@
+{
+  "schema_version": "0.1",
+  "batch_id": "banking77-test-index-step8-10x4-v1",
+  "deterministic_confidence_threshold": 1,
+  "allowed_owners": [
+    "card_arrival",
+    "automatic_top_up",
+    "pending_top_up",
+    "card_acceptance",
+    "visa_or_mastercard",
+    "pending_card_payment",
+    "card_swallowed",
+    "receiving_money",
+    "wrong_exchange_rate_for_cash_withdrawal",
+    "cash_withdrawal_charge"
+  ],
+  "severity_order": [
+    "medium"
+  ],
+  "owner_taxonomy": {
+    "card_arrival": "card arrival",
+    "automatic_top_up": "automatic top up",
+    "pending_top_up": "pending top up",
+    "card_acceptance": "card acceptance",
+    "visa_or_mastercard": "visa or mastercard",
+    "pending_card_payment": "pending card payment",
+    "card_swallowed": "card swallowed",
+    "receiving_money": "receiving money",
+    "wrong_exchange_rate_for_cash_withdrawal": "wrong exchange rate for cash withdrawal",
+    "cash_withdrawal_charge": "cash withdrawal charge"
+  },
+  "findings": [
+    {
+      "id": "B77-0002",
+      "severity": "medium",
+      "description": "How do I locate my card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0003",
+      "severity": "medium",
+      "description": "I still have not received my new card, I ordered over a week ago.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0004",
+      "severity": "medium",
+      "description": "I ordered a card but it has not arrived. Help please!",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0005",
+      "severity": "medium",
+      "description": "Is there a way to know when my card will arrive?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0322",
+      "severity": "medium",
+      "description": "When traveling, can I auto top-up my card at certain times?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0323",
+      "severity": "medium",
+      "description": "Is there a limit when using auto top-up?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0324",
+      "severity": "medium",
+      "description": "Will it automatically top-up or do I need to do that manually if there isn't much cash left?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0325",
+      "severity": "medium",
+      "description": "I'm running out of money, can I  auto top up?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0642",
+      "severity": "medium",
+      "description": "new customer and filling gas today, it's not working, the thing shows pending half an hour!",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0643",
+      "severity": "medium",
+      "description": "My card was topped this morning but I can't see the funds. Why didn't it complete?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0644",
+      "severity": "medium",
+      "description": "What would lead to my top up still pending?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0645",
+      "severity": "medium",
+      "description": "there's a delay in my top-up",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0962",
+      "severity": "medium",
+      "description": "Will my card be accepted all over the world?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0963",
+      "severity": "medium",
+      "description": "Who accepts this card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0964",
+      "severity": "medium",
+      "description": "Can I use my card for payment all over the world?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-0965",
+      "severity": "medium",
+      "description": "It will be fine to use at any establishment that accepts Mastercard.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1282",
+      "severity": "medium",
+      "description": "I like to Mastercard rather than Visa.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1283",
+      "severity": "medium",
+      "description": "Do I qualify for a visa card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1284",
+      "severity": "medium",
+      "description": "How do I get a visa card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1285",
+      "severity": "medium",
+      "description": "Do you guys accept Visa or Mastercard?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1602",
+      "severity": "medium",
+      "description": "My card payment is still on hold, why is it so?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1603",
+      "severity": "medium",
+      "description": "Why is my payment pending?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1604",
+      "severity": "medium",
+      "description": "My card payment is still pending.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1605",
+      "severity": "medium",
+      "description": "How do i finalize a card payment",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1922",
+      "severity": "medium",
+      "description": "What do I do if an ATM \"stole\" my card?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1923",
+      "severity": "medium",
+      "description": "How do I retrieve my card from the machine?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1924",
+      "severity": "medium",
+      "description": "I was retrieving money and my card wouldn't remove.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-1925",
+      "severity": "medium",
+      "description": "What do I do since the machine swallowed my card. I need one.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2242",
+      "severity": "medium",
+      "description": "Will salary be received through this?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2243",
+      "severity": "medium",
+      "description": "How can I get paid in a different currency?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2244",
+      "severity": "medium",
+      "description": "Can I receive my salary in a currency other than what it is deposited in?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2245",
+      "severity": "medium",
+      "description": "Can I get my salary through this?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2562",
+      "severity": "medium",
+      "description": "I did not get the right amount of money when I used a different country's currency.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2563",
+      "severity": "medium",
+      "description": "I took out money from a transaction machine and it exchanged the wrong dollar value amount from another currency!",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2564",
+      "severity": "medium",
+      "description": "I made a withdraw from the ATM this past holiday and it seems like a was charged too much. If I would have   known about these charges I wouldn't have made a withdraw.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2565",
+      "severity": "medium",
+      "description": "Can you look to make sure the exchange rate is correct",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2882",
+      "severity": "medium",
+      "description": "I see some fees for cash withdraw.",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2883",
+      "severity": "medium",
+      "description": "How come I was charged extra when I withdrew cash?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2884",
+      "severity": "medium",
+      "description": "Why am I being charged when I withdraw cash?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    },
+    {
+      "id": "B77-2885",
+      "severity": "medium",
+      "description": "What is this charge on my account for a cash withdrawl?",
+      "owner_hint": null,
+      "owner_hint_confidence": 0
+    }
+  ]
+}

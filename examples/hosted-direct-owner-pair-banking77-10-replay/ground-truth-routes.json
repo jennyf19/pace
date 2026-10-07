@@ -1,0 +1,165 @@
+{
+  "schema_version": "0.1",
+  "routes": [
+    {
+      "id": "B77-0002",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0003",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0004",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0005",
+      "owner": "card_arrival"
+    },
+    {
+      "id": "B77-0322",
+      "owner": "automatic_top_up"
+    },
+    {
+      "id": "B77-0323",
+      "owner": "automatic_top_up"
+    },
+    {
+      "id": "B77-0324",
+      "owner": "automatic_top_up"
+    },
+    {
+      "id": "B77-0325",
+      "owner": "automatic_top_up"
+    },
+    {
+      "id": "B77-0642",
+      "owner": "pending_top_up"
+    },
+    {
+      "id": "B77-0643",
+      "owner": "pending_top_up"
+    },
+    {
+      "id": "B77-0644",
+      "owner": "pending_top_up"
+    },
+    {
+      "id": "B77-0645",
+      "owner": "pending_top_up"
+    },
+    {
+      "id": "B77-0962",
+      "owner": "card_acceptance"
+    },
+    {
+      "id": "B77-0963",
+      "owner": "card_acceptance"
+    },
+    {
+      "id": "B77-0964",
+      "owner": "card_acceptance"
+    },
+    {
+      "id": "B77-0965",
+      "owner": "card_acceptance"
+    },
+    {
+      "id": "B77-1282",
+      "owner": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1283",
+      "owner": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1284",
+      "owner": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1285",
+      "owner": "visa_or_mastercard"
+    },
+    {
+      "id": "B77-1602",
+      "owner": "pending_card_payment"
+    },
+    {
+      "id": "B77-1603",
+      "owner": "pending_card_payment"
+    },
+    {
+      "id": "B77-1604",
+      "owner": "pending_card_payment"
+    },
+    {
+      "id": "B77-1605",
+      "owner": "pending_card_payment"
+    },
+    {
+      "id": "B77-1922",
+      "owner": "card_swallowed"
+    },
+    {
+      "id": "B77-1923",
+      "owner": "card_swallowed"
+    },
+    {
+      "id": "B77-1924",
+      "owner": "card_swallowed"
+    },
+    {
+      "id": "B77-1925",
+      "owner": "card_swallowed"
+    },
+    {
+      "id": "B77-2242",
+      "owner": "receiving_money"
+    },
+    {
+      "id": "B77-2243",
+      "owner": "receiving_money"
+    },
+    {
+      "id": "B77-2244",
+      "owner": "receiving_money"
+    },
+    {
+      "id": "B77-2245",
+      "owner": "receiving_money"
+    },
+    {
+      "id": "B77-2562",
+      "owner": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2563",
+      "owner": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2564",
+      "owner": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2565",
+      "owner": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "id": "B77-2882",
+      "owner": "cash_withdrawal_charge"
+    },
+    {
+      "id": "B77-2883",
+      "owner": "cash_withdrawal_charge"
+    },
+    {
+      "id": "B77-2884",
+      "owner": "cash_withdrawal_charge"
+    },
+    {
+      "id": "B77-2885",
+      "owner": "cash_withdrawal_charge"
+    }
+  ]
+}

@@ -99,11 +99,42 @@ async function loadSourceFile(descriptor, sourceDirectory) {
     return bytes;
 }
 
-export function selectBanking77Examples(categories, testCsvText) {
+export function selectBanking77Examples(
+    categories,
+    testCsvText,
+    options = {}
+) {
     if (!Array.isArray(categories) || categories.length !== 77) {
         throw new Error("Banking77 categories must contain 77 labels");
     }
-    const selectedLabels = CATEGORY_INDEXES.map((index) => ({
+    const categoryIndexes =
+        options.categoryIndexes ?? CATEGORY_INDEXES;
+    const examplesPerCategory =
+        options.examplesPerCategory ?? EXAMPLES_PER_CATEGORY;
+    if (
+        !Array.isArray(categoryIndexes) ||
+        categoryIndexes.length === 0 ||
+        new Set(categoryIndexes).size !== categoryIndexes.length ||
+        categoryIndexes.some(
+            (index) =>
+                !Number.isInteger(index) ||
+                index < 0 ||
+                index >= categories.length
+        )
+    ) {
+        throw new Error(
+            "categoryIndexes must contain unique valid category indexes"
+        );
+    }
+    if (
+        !Number.isInteger(examplesPerCategory) ||
+        examplesPerCategory < 1
+    ) {
+        throw new Error(
+            "examplesPerCategory must be a positive integer"
+        );
+    }
+    const selectedLabels = categoryIndexes.map((index) => ({
         index,
         label: categories[index]
     }));
@@ -125,10 +156,10 @@ export function selectBanking77Examples(categories, testCsvText) {
                 label: row[1]
             }))
             .filter((row) => row.label === label)
-            .slice(0, EXAMPLES_PER_CATEGORY);
-        if (matches.length !== EXAMPLES_PER_CATEGORY) {
+            .slice(0, examplesPerCategory);
+        if (matches.length !== examplesPerCategory) {
             throw new Error(
-                `Banking77 label ${label} has fewer than ${EXAMPLES_PER_CATEGORY} test examples`
+                `Banking77 label ${label} has fewer than ${examplesPerCategory} test examples`
             );
         }
         selected.push(
@@ -154,9 +185,11 @@ export function selectBanking77Examples(categories, testCsvText) {
             license: "CC BY 4.0"
         },
         selection: {
-            category_indexes: [...CATEGORY_INDEXES],
-            examples_per_category: EXAMPLES_PER_CATEGORY,
+            ...(options.id ? { id: options.id } : {}),
+            category_indexes: [...categoryIndexes],
+            examples_per_category: examplesPerCategory,
             rule:
+                options.rule ??
                 "official category indexes 0,15,30,45,60; first eight matching test rows in upstream order"
         },
         labels: selectedLabels,
@@ -164,11 +197,16 @@ export function selectBanking77Examples(categories, testCsvText) {
     };
 }
 
-export function buildBanking77Source(selectedSource) {
+export function buildBanking77Source(
+    selectedSource,
+    options = {}
+) {
     const labels = selectedSource.labels.map((entry) => entry.label);
     return {
         schema_version: SCHEMA_VERSION,
-        batch_id: "banking77-test-index-step15-5x8-v1",
+        batch_id:
+            options.batchId ??
+            "banking77-test-index-step15-5x8-v1",
         deterministic_confidence_threshold: 1,
         allowed_owners: labels,
         severity_order: ["medium"],
@@ -198,9 +236,12 @@ export function buildBanking77GroundTruth(selectedSource) {
     };
 }
 
-export function buildBanking77ExpectedResult(selectedSource) {
+export function buildBanking77ExpectedResult(
+    selectedSource,
+    options = {}
+) {
     return buildHybridResult(
-        buildBanking77Source(selectedSource),
+        buildBanking77Source(selectedSource, options),
         buildBanking77GroundTruth(selectedSource)
     );
 }
@@ -260,18 +301,42 @@ async function main() {
     const args = process.argv.slice(2);
     const outputDirectory = args[0];
     const sourceDirectoryIndex = args.indexOf("--source-directory");
+    const selectionConfigIndex = args.indexOf("--selection-config");
     const sourceDirectory =
         sourceDirectoryIndex >= 0
             ? args[sourceDirectoryIndex + 1]
             : null;
+    const selectionConfigPath =
+        selectionConfigIndex >= 0
+            ? args[selectionConfigIndex + 1]
+            : null;
     if (!outputDirectory) {
         throw new Error(
-            "usage: node prepare-banking77-workload.mjs <output-directory> [--source-directory <path>]"
+            "usage: node prepare-banking77-workload.mjs <output-directory> [--source-directory <path>] [--selection-config <path>]"
         );
     }
     if (sourceDirectoryIndex >= 0 && !sourceDirectory) {
         throw new Error("--source-directory requires a path");
     }
+    if (selectionConfigIndex >= 0 && !selectionConfigPath) {
+        throw new Error("--selection-config requires a path");
+    }
+
+    const selectionConfig = selectionConfigPath
+        ? JSON.parse(await readFile(resolve(selectionConfigPath), "utf8"))
+        : {};
+    const selectionOptions = selectionConfigPath
+        ? {
+              id: selectionConfig.id,
+              categoryIndexes: selectionConfig.category_indexes,
+              examplesPerCategory:
+                  selectionConfig.examples_per_category,
+              rule: selectionConfig.rule
+          }
+        : {};
+    const buildOptions = selectionConfigPath
+        ? { batchId: selectionConfig.batch_id }
+        : {};
 
     const [categoryBytes, testBytes, licenseBytes] = await Promise.all([
         loadSourceFile(UPSTREAM_FILES.categories, sourceDirectory),
@@ -281,7 +346,8 @@ async function main() {
     const categories = JSON.parse(categoryBytes.toString("utf8"));
     const selectedSource = selectBanking77Examples(
         categories,
-        testBytes.toString("utf8")
+        testBytes.toString("utf8"),
+        selectionOptions
     );
     const output = resolve(outputDirectory);
     await mkdir(output, { recursive: true });
@@ -289,7 +355,7 @@ async function main() {
         writeJson(join(output, "selected-source.json"), selectedSource),
         writeJson(
             join(output, "baseline-input.json"),
-            buildBanking77Source(selectedSource)
+            buildBanking77Source(selectedSource, buildOptions)
         ),
         writeJson(
             join(output, "ground-truth-routes.json"),
@@ -297,7 +363,10 @@ async function main() {
         ),
         writeJson(
             join(output, "expected-result.json"),
-            buildBanking77ExpectedResult(selectedSource)
+            buildBanking77ExpectedResult(
+                selectedSource,
+                buildOptions
+            )
         ),
         writeJson(
             join(output, "source-manifest.json"),

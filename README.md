@@ -594,6 +594,21 @@ quality 5/5, input-token p50 fell 0.512%, output-token p50 fell 22.874%, and
 wall-time p90 fell 4.001%. See
 `examples/hosted-direct-owner-pair-banking77-replay/measured-result-2026-10-07.md`.
 
+## Scale BANKING77 from five to ten intents
+
+The ten-intent scenario holds payload at 40 official test utterances while
+doubling label cardinality under a predeclared index rule:
+
+```powershell
+node .\examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-owner-pair-banking77-10-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-banking77-10-v1" `
+  --samples 3
+```
+
+See `examples/hosted-direct-owner-pair-banking77-10-replay/README.md` for the
+fixed-payload selection and unchanged pair treatment.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

@@ -1,0 +1,87 @@
+{
+  "schema_version": "0.1",
+  "dataset": "BANKING77",
+  "upstream_repository": "https://github.com/PolyAI-LDN/task-specific-datasets",
+  "upstream_commit": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+  "upstream_files": {
+    "categories": {
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/categories.json",
+      "sha256": "53261da888122daf2d120d925458631d9619e15d82e56052e7a42e535ce32b63"
+    },
+    "test": {
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/test.csv",
+      "sha256": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d"
+    },
+    "license": {
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/LICENSE",
+      "sha256": "7e7170e3cebf88a9f60c7b8421418323c09304da1af4d5e90f4da1dc1c8a2661"
+    }
+  },
+  "license": "Creative Commons Attribution 4.0 International",
+  "selection": {
+    "id": "banking77-test-index-step8-10x4-v1",
+    "category_indexes": [
+      0,
+      8,
+      16,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64,
+      72
+    ],
+    "examples_per_category": 4,
+    "rule": "official category indexes 0,8,16,24,32,40,48,56,64,72; first four matching test rows in upstream order"
+  },
+  "selected_labels": [
+    {
+      "index": 0,
+      "label": "card_arrival"
+    },
+    {
+      "index": 8,
+      "label": "automatic_top_up"
+    },
+    {
+      "index": 16,
+      "label": "pending_top_up"
+    },
+    {
+      "index": 24,
+      "label": "card_acceptance"
+    },
+    {
+      "index": 32,
+      "label": "visa_or_mastercard"
+    },
+    {
+      "index": 40,
+      "label": "pending_card_payment"
+    },
+    {
+      "index": 48,
+      "label": "card_swallowed"
+    },
+    {
+      "index": 56,
+      "label": "receiving_money"
+    },
+    {
+      "index": 64,
+      "label": "wrong_exchange_rate_for_cash_withdrawal"
+    },
+    {
+      "index": 72,
+      "label": "cash_withdrawal_charge"
+    }
+  ],
+  "selected_examples": 40,
+  "modifications": [
+    "selected a deterministic subset of the official test split",
+    "added stable B77 source-row identifiers",
+    "mapped intent labels to the Pace owner field",
+    "normalized the committed license copy to LF"
+  ]
+}
