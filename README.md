@@ -589,6 +589,11 @@ The initial v2 run and two fresh-output retries failed at transport before a
 balanced cohort existed. Those partial attempts are excluded. V3 preserves the
 same request treatment and adds privacy-safe fetch cause codes for diagnosis.
 
+The fresh v3 balanced `n=5` replication returned `keep`: both arms passed exact
+quality 5/5, input-token p50 fell 0.512%, output-token p50 fell 22.874%, and
+wall-time p90 fell 4.001%. See
+`examples/hosted-direct-owner-pair-banking77-replay/measured-result-2026-10-07.md`.
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

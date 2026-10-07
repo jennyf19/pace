@@ -50,6 +50,10 @@ cohorts existed. All partial attempts are preserved and excluded. The current
 v3 treatment keeps the same request semantics while adding privacy-safe fetch
 cause codes for diagnosis under fresh source identities.
 
+The fresh v3 balanced `n=5` replication returned `keep`. Both arms passed exact
+quality 5/5; input-token p50 fell 0.512%, output-token p50 fell 22.874%, and
+wall-time p90 fell 4.001%. See `measured-result-2026-10-07.md`.
+
 ```powershell
 $env:PACE_DIRECT_ACCESS_TOKEN = "<short-lived-token>"
 node examples\hosted-direct-owner-pair-banking77-replay\run-hosted-direct-owner-pair-banking77-replay.mjs `
