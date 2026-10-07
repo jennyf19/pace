@@ -1,0 +1,190 @@
+{
+  "schema_version": "0.1",
+  "analysis_id": "explicit-pair-wire-cost-v1",
+  "method": {
+    "encoding": "UTF-8",
+    "serialization": "minified JSON",
+    "deployment_value": "shared public placeholder; the unchanged private deployment value cancels from every byte delta",
+    "quality_gate": "both deterministic representations must reproduce the frozen expected result before sizes are reported"
+  },
+  "scenarios": [
+    {
+      "id": "synthetic-routing-64",
+      "corpus_id": "pace-hosted-scaled-routing-64-corpus-v2",
+      "evidence_status": "replicated-n5",
+      "comparison_receipt": "sha256:512082b98c889136",
+      "item_count": 64,
+      "label_count": 4,
+      "request": {
+        "prompt_utf8_bytes": {
+          "baseline": 7904,
+          "candidate": 7911,
+          "saved": -7,
+          "reduction_percent": -0.089
+        },
+        "response_format_utf8_bytes": {
+          "baseline": 956,
+          "candidate": 863,
+          "saved": 93,
+          "reduction_percent": 9.728
+        },
+        "serialized_request_utf8_bytes": {
+          "baseline": 9814,
+          "candidate": 9724,
+          "saved": 90,
+          "reduction_percent": 0.917
+        }
+      },
+      "expected_minified_output_utf8_bytes": {
+        "baseline": 2131,
+        "candidate": 1298,
+        "saved": 833,
+        "reduction_percent": 39.09,
+        "formula_bytes": 833,
+        "average_saved_per_item": 13.016
+      },
+      "observed": {
+        "samples_per_arm": 5,
+        "exact_quality_passes_per_arm": 5,
+        "input_tokens_p50": {
+          "baseline": 1868,
+          "candidate": 1857
+        },
+        "visible_answer_tokens_p50": {
+          "baseline": 631,
+          "candidate": 480
+        },
+        "savings": {
+          "input_tokens": 11,
+          "visible_answer_tokens": 151
+        }
+      },
+      "calibration": {
+        "request_bytes_saved_per_observed_input_token": 8.182,
+        "output_bytes_saved_per_observed_visible_answer_token": 5.517
+      }
+    },
+    {
+      "id": "banking77-five-intent-40",
+      "corpus_id": "pace-banking77-test-step15-5x8-corpus-v1",
+      "evidence_status": "replicated-n5",
+      "comparison_receipt": "sha256:c04712d51628cc68",
+      "item_count": 40,
+      "label_count": 5,
+      "request": {
+        "prompt_utf8_bytes": {
+          "baseline": 4929,
+          "candidate": 4936,
+          "saved": -7,
+          "reduction_percent": -0.142
+        },
+        "response_format_utf8_bytes": {
+          "baseline": 1025,
+          "candidate": 943,
+          "saved": 82,
+          "reduction_percent": 8
+        },
+        "serialized_request_utf8_bytes": {
+          "baseline": 6626,
+          "candidate": 6547,
+          "saved": 79,
+          "reduction_percent": 1.192
+        }
+      },
+      "expected_minified_output_utf8_bytes": {
+        "baseline": 2043,
+        "candidate": 1522,
+        "saved": 521,
+        "reduction_percent": 25.502,
+        "formula_bytes": 521,
+        "average_saved_per_item": 13.025
+      },
+      "observed": {
+        "samples_per_arm": 5,
+        "exact_quality_passes_per_arm": 5,
+        "input_tokens_p50": {
+          "baseline": 1564,
+          "candidate": 1556
+        },
+        "visible_answer_tokens_p50": {
+          "baseline": 643,
+          "candidate": 580
+        },
+        "savings": {
+          "input_tokens": 8,
+          "visible_answer_tokens": 63
+        }
+      },
+      "calibration": {
+        "request_bytes_saved_per_observed_input_token": 9.875,
+        "output_bytes_saved_per_observed_visible_answer_token": 8.27
+      }
+    },
+    {
+      "id": "banking77-ten-intent-40",
+      "corpus_id": "pace-banking77-test-step8-10x4-corpus-v1",
+      "evidence_status": "discovery-n3-replication-transport-blocked",
+      "comparison_receipt": "sha256:95351833bcad999d",
+      "item_count": 40,
+      "label_count": 10,
+      "request": {
+        "prompt_utf8_bytes": {
+          "baseline": 5461,
+          "candidate": 5468,
+          "saved": -7,
+          "reduction_percent": -0.128
+        },
+        "response_format_utf8_bytes": {
+          "baseline": 1123,
+          "candidate": 1041,
+          "saved": 82,
+          "reduction_percent": 7.302
+        },
+        "serialized_request_utf8_bytes": {
+          "baseline": 7290,
+          "candidate": 7211,
+          "saved": 79,
+          "reduction_percent": 1.084
+        }
+      },
+      "expected_minified_output_utf8_bytes": {
+        "baseline": 1935,
+        "candidate": 1414,
+        "saved": 521,
+        "reduction_percent": 26.925,
+        "formula_bytes": 521,
+        "average_saved_per_item": 13.025
+      },
+      "observed": {
+        "samples_per_arm": 3,
+        "exact_quality_passes_per_arm": 3,
+        "input_tokens_p50": {
+          "baseline": 1705,
+          "candidate": 1697
+        },
+        "visible_answer_tokens_p50": {
+          "baseline": 654,
+          "candidate": 551
+        },
+        "savings": {
+          "input_tokens": 8,
+          "visible_answer_tokens": 103
+        }
+      },
+      "calibration": {
+        "request_bytes_saved_per_observed_input_token": 9.875,
+        "output_bytes_saved_per_observed_visible_answer_token": 5.058
+      }
+    }
+  ],
+  "conclusions": {
+    "output_savings_rule": "13 bytes per item plus one byte from the shorter pairs container key",
+    "request_effect": "these frozen prompt and strict-schema pairs produce small request savings relative to output savings",
+    "supported_use": "rank response representations for later quality-gated model experiments",
+    "unsupported_uses": [
+      "predict token savings exactly",
+      "predict latency",
+      "replace semantic quality evaluation"
+    ]
+  }
+}
