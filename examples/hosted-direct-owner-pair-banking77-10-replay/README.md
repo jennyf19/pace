@@ -35,12 +35,20 @@ The treatment remains unchanged:
 The full-object baseline must pass exact quality before pair performance is
 eligible.
 
+The first actual balanced `n=3` cohort returned `keep` after one excluded
+`ECONNRESET` attempt and one excluded `n=2` transport probe. Both arms passed
+exact quality 3/3; input-token p50 fell 0.469%, output-token p50 fell 12.175%,
+and wall-time p90 fell 19.859%.
+
+The current v2 treatment is an unchanged balanced `n=5` replication under
+fresh identities.
+
 ```powershell
 $env:PACE_DIRECT_ACCESS_TOKEN = "<short-lived-token>"
 node examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-owner-pair-banking77-10-replay.mjs `
   --out <new-output-directory> `
   --provider-config <private-provider-config.json> `
   --model gpt-5-mini `
-  --samples 3
+  --samples 5
 Remove-Item Env:PACE_DIRECT_ACCESS_TOKEN
 ```

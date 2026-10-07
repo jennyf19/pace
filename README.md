@@ -609,6 +609,18 @@ node .\examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-o
 See `examples/hosted-direct-owner-pair-banking77-10-replay/README.md` for the
 fixed-payload selection and unchanged pair treatment.
 
+The first actual `n=3` cohort returned `keep`: both arms passed exact quality
+3/3, input-token p50 fell 0.469%, output-token p50 fell 12.175%, and wall-time
+p90 fell 19.859%. One transport failure and one `n=2` probe were excluded. The
+current v2 treatment repeats the unchanged representation at balanced `n=5`:
+
+```powershell
+node .\examples\hosted-direct-owner-pair-banking77-10-replay\run-hosted-direct-owner-pair-banking77-10-replay.mjs `
+  --provider-config "$HOME\.copilot\pace-direct-provider.private.json" `
+  --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-banking77-10-v2" `
+  --samples 5
+```
+
 ## Generalize symbolic labels to eight categories
 
 The symbolic-label scenario preserves the same 64 descriptions but doubles

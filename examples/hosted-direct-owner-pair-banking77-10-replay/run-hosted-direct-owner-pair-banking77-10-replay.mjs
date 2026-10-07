@@ -20,9 +20,9 @@ const WORKLOAD_BUILDER_PATH = resolve(
 export const BANKING77_TEN_OWNER_PAIR_TREATMENTS = Object.freeze({
     baseline: Object.freeze({
         configurationId:
-            "pace-banking77-ten-route-objects-pair-control-low-v1",
+            "pace-banking77-ten-route-objects-pair-control-low-v2",
         experimentPrefix:
-            "pace-banking77-ten-route-objects-pair-control-low-v1",
+            "pace-banking77-ten-route-objects-pair-control-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -30,9 +30,9 @@ export const BANKING77_TEN_OWNER_PAIR_TREATMENTS = Object.freeze({
     }),
     candidate: Object.freeze({
         configurationId:
-            "pace-banking77-ten-explicit-owner-pairs-low-v1",
+            "pace-banking77-ten-explicit-owner-pairs-low-v2",
         experimentPrefix:
-            "pace-banking77-ten-explicit-owner-pairs-low-v1",
+            "pace-banking77-ten-explicit-owner-pairs-low-v2",
         residualMode: "inline-tool-less",
         availableTools: Object.freeze([]),
         reasoningEffort: "low",
@@ -43,14 +43,14 @@ export const BANKING77_TEN_OWNER_PAIR_TREATMENTS = Object.freeze({
 export const BANKING77_TEN_OWNER_PAIR_SCENARIO = Object.freeze({
     workloadDirectory: EXAMPLE_DIRECTORY,
     corpusId: "pace-banking77-test-step8-10x4-corpus-v1",
-    sourceRevision: "pace-banking77-ten-owner-pair-v1",
-    experimentId: "banking77-ten-owner-pair-v1",
-    replayId: "pace-banking77-ten-owner-pair-replay-v1",
-    comparisonId: "pace-banking77-ten-owner-pair-comparison-v1",
+    sourceRevision: "pace-banking77-ten-owner-pair-v2",
+    experimentId: "banking77-ten-owner-pair-v2",
+    replayId: "pace-banking77-ten-owner-pair-replay-v2",
+    comparisonId: "pace-banking77-ten-owner-pair-comparison-v2",
     baselineSchemaName:
-        "banking77_ten_route_objects_pair_control_40_v1",
+        "banking77_ten_route_objects_pair_control_40_v2",
     candidateSchemaName:
-        "banking77_ten_explicit_id_owner_pairs_40_v1",
+        "banking77_ten_explicit_id_owner_pairs_40_v2",
     treatments: BANKING77_TEN_OWNER_PAIR_TREATMENTS,
     configurationFiles: Object.freeze([
         Object.freeze({

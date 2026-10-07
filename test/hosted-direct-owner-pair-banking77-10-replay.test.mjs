@@ -145,7 +145,7 @@ test("ten-intent scenario changes cardinality but not treatment", () => {
         candidate.responseRepresentation,
         "ordered-explicit-id-owner-pairs"
     );
-    assert.match(baseline.configurationId, /-v1$/);
-    assert.match(candidate.configurationId, /-v1$/);
+    assert.match(baseline.configurationId, /-v2$/);
+    assert.match(candidate.configurationId, /-v2$/);
     assert.match(BANKING77_TEN_OWNER_PAIR_SCENARIO.corpusId, /10x4/);
 });
