@@ -23,6 +23,19 @@ function requireString(value, label) {
     return value;
 }
 
+function fetchErrorCode(error) {
+    for (const value of [
+        error?.cause?.code,
+        error?.code,
+        error?.cause?.name
+    ]) {
+        if (typeof value === "string" && value.trim()) {
+            return value.trim();
+        }
+    }
+    return null;
+}
+
 function stableJson(value) {
     if (value === null || typeof value !== "object") {
         return JSON.stringify(value);
@@ -209,7 +222,10 @@ export async function runDirectModelSample({
             signal: AbortSignal.timeout(timeoutMs)
         });
     } catch (error) {
-        throw new Error(`direct model request failed: ${error.message}`);
+        const code = fetchErrorCode(error);
+        throw new Error(
+            `direct model request failed: ${error.message}${code ? ` (${code})` : ""}`
+        );
     }
     const responseBody = await response.text();
     const apiTimeMs = Math.max(0, performance.now() - started);

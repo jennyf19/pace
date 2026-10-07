@@ -575,7 +575,7 @@ treatment.
 
 The first `n=3` cohort returned `keep`: both arms passed exact quality 3/3,
 input-token p50 fell 0.512%, output-token p50 fell 11.613%, and wall-time p90
-fell 26.600%. The current v2 treatment repeats the unchanged representation at
+fell 26.600%. The v2 treatment repeated the unchanged representation at
 balanced `n=5`:
 
 ```powershell
@@ -584,6 +584,10 @@ node .\examples\hosted-direct-owner-pair-banking77-replay\run-hosted-direct-owne
   --out "$HOME\.copilot\pace-runs\hosted-direct-owner-pair-banking77-v2" `
   --samples 5
 ```
+
+The initial v2 run and two fresh-output retries failed at transport before a
+balanced cohort existed. Those partial attempts are excluded. V3 preserves the
+same request treatment and adds privacy-safe fetch cause codes for diagnosis.
 
 ## Generalize symbolic labels to eight categories
 

@@ -230,6 +230,36 @@ test("rejects insecure remote endpoints and missing usage", async () => {
     }
 });
 
+test("reports a privacy-safe fetch failure code", async () => {
+    const directory = await mkdtemp(
+        join(tmpdir(), "pace-direct-model-fetch-failure-")
+    );
+    try {
+        await assert.rejects(
+            runDirectModelSample({
+                output: directory,
+                sampleName: "fetch-failure",
+                prompt: "prompt",
+                responsesUrl: "http://127.0.0.1:1234/v1/responses",
+                authorizationHeader: "******",
+                provider: "provider",
+                deployment: "deployment",
+                model: "model",
+                modelVersion: "1",
+                runIdPrefix: "run",
+                fetchImpl: async () => {
+                    const cause = new Error("private endpoint detail");
+                    cause.code = "UND_ERR_CONNECT_TIMEOUT";
+                    throw new TypeError("fetch failed", { cause });
+                }
+            }),
+            /fetch failed \(UND_ERR_CONNECT_TIMEOUT\)/
+        );
+    } finally {
+        await rm(directory, { recursive: true, force: true });
+    }
+});
+
 test("reports the provider reason for an incomplete response", async () => {
     const directory = await mkdtemp(
         join(tmpdir(), "pace-direct-model-incomplete-")

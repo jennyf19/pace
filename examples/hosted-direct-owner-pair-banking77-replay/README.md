@@ -41,8 +41,14 @@ is eligible.
 
 The first balanced `n=3` cohort returned `keep`. Both arms passed exact quality
 3/3; input-token p50 fell 0.512%, output-token p50 fell 11.613%, and wall-time
-p90 fell 26.600%. The current v2 treatment is an unchanged balanced `n=5`
+p90 fell 26.600%. The v2 treatment was an unchanged balanced `n=5`
 replication under fresh identities.
+
+The first v2 attempt completed nine requests and failed on the tenth at
+transport. Two fresh-output retries also failed at transport before balanced
+cohorts existed. All partial attempts are preserved and excluded. The current
+v3 treatment keeps the same request semantics while adding privacy-safe fetch
+cause codes for diagnosis under fresh source identities.
 
 ```powershell
 $env:PACE_DIRECT_ACCESS_TOKEN = "<short-lived-token>"
