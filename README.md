@@ -220,6 +220,29 @@ the composite total `null`.
 
 ## Compare baseline and candidate runs
 
+Measure both approaches against the same workload and evaluator before deciding
+whether the change is worth keeping. For repeated runs, also validate the
+frozen replay configuration. The comparison follows these gates:
+
+```mermaid
+flowchart TD
+    Freeze["Freeze workload<br/>and evaluator"] --> Execute["Run baseline<br/>and candidate"]
+    Execute --> Profile["Profile both runs"]
+    Execute --> Evaluate["Evaluate outputs<br/>the same way"]
+    Profile --> Bind["Bind quality to<br/>profile hashes"]
+    Evaluate --> Bind
+    Freeze --> Replay["Repeated runs:<br/>validate replay"]
+    Replay --> Compare["Compare chosen<br/>metrics"]
+    Bind --> Compare
+    Compare --> Failure{"Candidate quality<br/>failure?"}
+    Failure -->|Yes| Reject["reject"]
+    Failure -->|No| Complete{"Quality gate<br/>and accounting<br/>ready?"}
+    Complete -->|No| Unproven["unproven"]
+    Complete -->|Yes| Goals{"Goals met and<br/>a strict win?"}
+    Goals -->|No| Revise["revise"]
+    Goals -->|Yes| Keep["keep"]
+```
+
 Create an external quality result whose run IDs and full profile hashes exactly
 match the emitted run profiles:
 
