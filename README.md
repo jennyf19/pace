@@ -43,16 +43,16 @@ These are alternative sources of measured runs, not steps you must all perform:
 
 ```mermaid
 flowchart LR
-    Events["Copilot CLI session events"] --> Session["Session profiler"]
-    Transform["Synchronous JSON transform"] --> Local["Deterministic receipt"]
-    Provider["Direct model call"] --> Direct["Provider receipt"]
+    Events["Copilot CLI<br/>session events"] --> Session["Session<br/>profiler"]
+    Transform["Synchronous<br/>JSON transform"] --> Local["Deterministic<br/>receipt"]
+    Provider["Direct model<br/>call"] --> Direct["Provider<br/>receipt"]
     Session --> Runs["Run profiles"]
     Local --> Runs
     Direct --> Runs
-    Runs --> Comparison["Single or repeated comparison"]
-    Evaluator["External quality check"] --> Comparison
-    Replay["Frozen replay evidence<br/>for repeated runs"] --> Comparison
-    Comparison --> Report["JSON receipt and Markdown report"]
+    Runs --> Comparison["Compare runs"]
+    Evaluator["External quality<br/>check"] --> Comparison
+    Replay["Replay evidence<br/>for repeated runs"] --> Comparison
+    Comparison --> Report["JSON receipt<br/>and Markdown report"]
 ```
 
 A `keep` decision requires passing quality, complete accounting for the
