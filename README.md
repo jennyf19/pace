@@ -52,7 +52,7 @@ flowchart LR
     Runs --> Comparison["Compare runs"]
     Evaluator["External quality<br/>check"] --> Comparison
     Replay["Replay<br/>manifest"] --> Comparison
-    Comparison --> Report["JSON receipt<br/>Markdown report"]
+    Comparison --> Report["JSON receipt<br/>and Markdown<br/>report"]
 ```
 
 A `keep` decision requires passing quality, complete accounting for the
