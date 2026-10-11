@@ -146,6 +146,8 @@ See `accounting-invariants.md` for the full contract.
 
 ## Profile a deterministic JSON run
 
+If a candidate replaces a model step with local code, profile it this way to
+distinguish a contract-backed zero-model receipt from missing provider telemetry.
 Use `profileDeterministicJsonTransform` for a synchronous local transform whose
 implementation, input, and output can be hash-bound:
 
@@ -858,6 +860,9 @@ See
 the v0.4 residual cohort decomposition.
 
 ## Compare repeated run sets
+
+Use repeated samples when timing or model behavior varies, so you can inspect
+the distribution instead of treating one run as representative.
 
 First freeze the workload, source revision, configuration files, expected
 runtime signatures, and cohort membership. File hashes are full SHA-256 values
