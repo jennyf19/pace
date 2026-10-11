@@ -1,10 +1,71 @@
-# Pace session profiler
+# Pace: measure agent workflows without losing quality
 
-This dependency-free Pace MVP parses GitHub Copilot CLI `events.jsonl`
-artifacts and hash-bound deterministic executions into provider-neutral
-session and run profiles with human-readable Markdown reports.
+Pace helps you find out whether a change to an agent workflow saves model usage
+or time **without changing the result**. For example, you can compare asking
+Copilot to filter findings with filtering the same findings in local code,
+then check both outputs against the same evaluator.
 
-Requires Node.js 22 or later. Pace has no runtime package dependencies.
+Pace is a local measurement toolkit, not an agent framework or a service to
+deploy. It reads GitHub Copilot CLI session events, measures synchronous local
+JSON transforms or direct model calls, and produces JSON profiles and readable
+Markdown reports. Comparisons combine those measurements with a separate
+quality check. Requires Node.js 22 or later; there are no runtime package
+dependencies.
+
+## Try a complete comparison without model calls
+
+Run the bundled synthetic example from the repository root:
+
+```powershell
+node .\examples\frozen-comparison\run-example.mjs `
+  --out .\pace-output\frozen-comparison
+```
+
+It profiles a baseline and candidate, evaluates both against one frozen
+corpus, and writes a comparison report. The expected result is `keep` for
+**this example**, not a promise about other workloads. It uses existing
+synthetic session artifacts and makes no model or provider calls. See
+[the frozen example](examples/frozen-comparison/README.md) for the inputs and
+measured deltas.
+
+## Choose your path
+
+| If you want to... | Start here |
+| --- | --- |
+| Understand one Copilot session's usage and timing | [Profile one session](#profile-one-session) |
+| Account for multiple sessions without double-counting subagents | [Profile a run set](#profile-a-run-set) |
+| Measure a local-code or mixed code-and-model approach | [Profile a deterministic JSON run](#profile-a-deterministic-json-run) or [compose a hybrid run](#compose-a-hybrid-run) |
+| Decide whether one change improved performance without losing quality | [Compare baseline and candidate runs](#compare-baseline-and-candidate-runs) |
+| Compare repeated samples under frozen inputs and runtime settings | [Compare repeated run sets](#compare-repeated-run-sets) |
+| Run a live example that calls Copilot or a model provider | [Hosted measured example](#run-the-hosted-measured-example) or [direct-model boundary example](#run-the-direct-model-boundary-isolation) |
+
+These are alternative sources of measured runs, not steps you must all perform:
+
+```mermaid
+flowchart LR
+    Events["Copilot CLI session events"] --> Session["Session profiler"]
+    Transform["Synchronous JSON transform"] --> Local["Deterministic receipt"]
+    Provider["Direct model call"] --> Direct["Provider receipt"]
+    Session --> Runs["Run profiles"]
+    Local --> Runs
+    Direct --> Runs
+    Runs --> Comparison["Single or repeated comparison"]
+    Evaluator["External quality check"] --> Comparison
+    Replay["Frozen replay evidence<br/>for repeated runs"] --> Comparison
+    Comparison --> Report["JSON receipt and Markdown report"]
+```
+
+A `keep` decision requires passing quality, complete accounting for the
+metrics you chose, and a measured improvement. Incomplete evidence is
+`unproven`; a known quality regression is `reject`. Missing usage is never
+treated as zero. See [the accounting contract](accounting-invariants.md) for
+the precise rules and [the current boundary](#current-boundary) for what Pace
+does not claim to measure.
+
+Profiling existing events does not start Copilot. **Hosted examples do** and
+may incur model or provider charges; keep their raw artifacts and private
+provider configuration outside the repository. Session profiles omit prompts,
+messages, code, and tool inputs/results by default.
 
 ## Profile one session
 
@@ -238,20 +299,6 @@ Percentage change is marked `n/a (zero baseline)` when a complete baseline is
 zero and the candidate is non-zero; the absolute delta remains available. The
 v0.1 decision is an exact single-run comparison and does not claim statistical
 confidence or apply a noise tolerance.
-
-## Run the frozen end-to-end example
-
-The public-safe synthetic example profiles both sides, runs a deterministic
-external evaluator, writes the quality receipt, and produces the comparison:
-
-```powershell
-node .\examples\frozen-comparison\run-example.mjs `
-  --out .\pace-output\frozen-comparison
-```
-
-The expected disposition is `keep`. See
-`examples/frozen-comparison/README.md` for the frozen corpus and measured
-deltas.
 
 ## Run the hosted measured example
 
