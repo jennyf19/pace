@@ -1082,3 +1082,15 @@ transforms, classify model/tool stages automatically, calculate confidence
 intervals or statistical significance, apply noise tolerances, analyze
 scaling, or monitor drift. Structural model/tool stages intentionally remain
 `unknown` until a human classifies them.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for how to report a vulnerability and how Pace
+handles credentials, provider calls, and raw artifacts.
+
+## License
+
+Pace is released under the [MIT License](LICENSE). The two BANKING77 examples
+include a small subset of the PolyAI BANKING77 dataset, which remains licensed
+under CC BY 4.0. See `BANKING77-ATTRIBUTION.md` and `LICENSE-BANKING77.txt` in
+each of those example folders.
