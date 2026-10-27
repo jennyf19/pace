@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/pace.svg" width="112" alt="Pace — a stopwatch with a small slice of intelligence" />
+</p>
+
+<p align="center"><strong>Spend intelligence where intelligence is needed.</strong></p>
+
 # Pace: measure agent workflows without losing quality
 
 Pace helps you find out whether a change to an agent workflow saves model usage
